@@ -25,7 +25,7 @@ plugins {
     //jhipster-needle-gradle-plugins - JHipster will add additional gradle plugins here
 }
 
-group = "com.iteratec.mepster"
+group = "org.freeteratec.mepster"
 version = "0.0.1-SNAPSHOT"
 
 description = ""
@@ -62,9 +62,6 @@ if (project.hasProperty("gae")) {
     appengineStage.dependsOn thinResolve
 }
 
-if (project.hasProperty("zipkin")) {
-    apply from: "gradle/zipkin.gradle"
-}
 
 idea {
     module {
@@ -85,7 +82,7 @@ eclipse {
 defaultTasks "bootRun"
 
 springBoot {
-    mainClassName = "com.iteratec.mepster.MepsterApp"
+    mainClassName = "org.freeteratec.mepster.MepsterApp"
 }
 
 test {
@@ -111,7 +108,6 @@ task integrationTest(type: Test) {
     description = "Execute integration tests."
     group = "verification"
     include "**/*IT*", "**/*IntTest*"
-    exclude "**/*CucumberIT*"
     testLogging {
         events 'FAILED', 'SKIPPED'
     }
@@ -126,31 +122,6 @@ task integrationTest(type: Test) {
     reports.html.enabled = false
 }
 
-task consoleLauncherTest(type: JavaExec) {
-    dependsOn(testClasses)
-    String cucumberReportsDir = file("$buildDir/reports/tests")
-    outputs.dir(reportsDir)
-    classpath = sourceSets["test"].runtimeClasspath
-    main = "org.junit.platform.console.ConsoleLauncher"
-    args("--scan-classpath")
-    args("--include-engine", "cucumber")
-    args("--reports-dir", cucumberReportsDir)
-}
-
-task cucumberTest(type: Test) {
-    dependsOn(consoleLauncherTest)
-    description = "Execute cucumber BDD tests."
-    group = "verification"
-    include "**/*CucumberIT*"
-
-    // uncomment if the tests reports are not generated
-    // see https://github.com/jhipster/generator-jhipster/pull/2771 and https://github.com/jhipster/generator-jhipster/pull/4484
-    // ignoreFailures true
-    reports.html.enabled = false
-}
-
-check.dependsOn cucumberTest
-
 check.dependsOn integrationTest
 task testReport(type: TestReport) {
     destinationDir = file("$buildDir/reports/tests")
@@ -160,11 +131,6 @@ task testReport(type: TestReport) {
 task integrationTestReport(type: TestReport) {
     destinationDir = file("$buildDir/reports/tests")
     reportOn integrationTest
-}
-
-task cucumberTestReport(type: TestReport) {
-    destinationDir = file("$buildDir/reports/tests")
-    reportOn cucumberTest
 }
 
 if (!project.hasProperty("runList")) {
@@ -191,7 +157,7 @@ liquibase {
             username "mepster"
             password ""
             changeLogFile project.ext.diffChangelogFile
-            referenceUrl "hibernate:spring:com.iteratec.mepster.domain?dialect=tech.jhipster.domain.util.FixedPostgreSQL10Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
+            referenceUrl "hibernate:spring:org.freeteratec.mepster.domain?dialect=tech.jhipster.domain.util.FixedPostgreSQL10Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
             defaultSchemaName ""
             logLevel "debug"
             classpath "$buildDir/classes/java/main"
@@ -280,9 +246,6 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-undertow"
     implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
     implementation "org.zalando:problem-spring-web"
-    implementation "org.springframework.cloud:spring-cloud-starter-bootstrap"
-    implementation "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"
-    implementation "org.springframework.cloud:spring-cloud-starter-config"
     implementation "org.springframework.security:spring-security-config"
     implementation "org.springframework.security:spring-security-data"
     implementation "org.springframework.security:spring-security-web"
@@ -302,11 +265,6 @@ dependencies {
     annotationProcessor "org.hibernate:hibernate-jpamodelgen:${hibernateVersion}"
     annotationProcessor "org.glassfish.jaxb:jaxb-runtime:${jaxbRuntimeVersion}"
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}"
-    testImplementation "org.junit.platform:junit-platform-console"
-    testImplementation "io.cucumber:cucumber-junit-platform-engine"
-    testImplementation "io.cucumber:cucumber-java"
-    testImplementation "io.cucumber:cucumber-spring"
-    testImplementation "org.testng:testng"
     testImplementation "org.springframework.boot:spring-boot-starter-test"
     testImplementation "org.springframework.security:spring-security-test"
     testImplementation "org.springframework.boot:spring-boot-test"

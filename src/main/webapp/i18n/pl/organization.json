@@ -1,0 +1,33 @@
+{
+  "mepsterApp": {
+    "organization": {
+      "home": {
+        "title": "Organization",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Dodaj Organization",
+        "createOrEditLabel": "Dodaj lub edytuj: Organization",
+        "notFound": "No Organizations found"
+      },
+      "created": "Utworzono nowy obiekt typu Organization z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Organization z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Organization z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Organization {{ id }}?"
+      },
+      "detail": {
+        "title": "Organization"
+      },
+      "id": "ID",
+      "name": "Name",
+      "street": "Street",
+      "number": "Number",
+      "city": "City",
+      "zipcode": "Zipcode",
+      "country": "Country",
+      "phone": "Phone",
+      "email": "Email",
+      "persons": "Persons",
+      "projects": "Projects"
+    }
+  }
+}

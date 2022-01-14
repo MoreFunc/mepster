@@ -1,0 +1,32 @@
+{
+  "name": "Role",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMinlength": "2",
+      "fieldValidateRulesMaxlength": "40"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "projectPosition",
+      "otherEntityRelationshipName": "role",
+      "relationshipName": "projectPosition",
+      "otherEntityField": "title",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "role",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["mepster"],
+  "changelogDate": "20220114145433"
+}

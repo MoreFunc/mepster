@@ -1,0 +1,25 @@
+{
+  "mepsterApp": {
+    "role": {
+      "home": {
+        "title": "Role",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Dodaj Role",
+        "createOrEditLabel": "Dodaj lub edytuj: Role",
+        "notFound": "No Roles found"
+      },
+      "created": "Utworzono nowy obiekt typu Role z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Role z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Role z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Role {{ id }}?"
+      },
+      "detail": {
+        "title": "Role"
+      },
+      "id": "ID",
+      "title": "Title",
+      "projectPosition": "Project Position"
+    }
+  }
+}

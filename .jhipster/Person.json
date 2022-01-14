@@ -1,0 +1,50 @@
+{
+  "name": "Person",
+  "fields": [
+    {
+      "fieldName": "firstname",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMinlength": "2",
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "lastname",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMinlength": "2",
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "organization",
+      "otherEntityRelationshipName": "persons",
+      "relationshipName": "organization",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "monthlyProjectPositionAssignment",
+      "otherEntityRelationshipName": "person",
+      "relationshipName": "monthlyAssignments",
+      "otherEntityField": "yearmonth"
+    }
+  ],
+  "entityTableName": "person",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["mepster"],
+  "changelogDate": "20220114145432"
+}

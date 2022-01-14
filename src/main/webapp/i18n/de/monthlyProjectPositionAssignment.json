@@ -1,0 +1,28 @@
+{
+  "mepsterApp": {
+    "monthlyProjectPositionAssignment": {
+      "home": {
+        "title": "Monthly Project Position Assignments",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Monthly Project Position Assignment erstellen",
+        "createOrEditLabel": "Monthly Project Position Assignment erstellen oder bearbeiten",
+        "notFound": "Keine Monthly Project Position Assignments gefunden"
+      },
+      "created": "Monthly Project Position Assignment erstellt mit ID {{ param }}",
+      "updated": "Monthly Project Position Assignment aktualisiert mit ID {{ param }}",
+      "deleted": "Monthly Project Position Assignment gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Monthly Project Position Assignment {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Monthly Project Position Assignment"
+      },
+      "id": "ID",
+      "yearmonth": "Yearmonth",
+      "percent": "Percent",
+      "active": "Active",
+      "projectPosition": "Project Position",
+      "person": "Person"
+    }
+  }
+}

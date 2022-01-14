@@ -1,0 +1,30 @@
+{
+  "mepsterApp": {
+    "projectPosition": {
+      "home": {
+        "title": "Project Positions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Project Position",
+        "createOrEditLabel": "Create or edit a Project Position",
+        "notFound": "No Project Positions found"
+      },
+      "created": "A new Project Position is created with identifier {{ param }}",
+      "updated": "A Project Position is updated with identifier {{ param }}",
+      "deleted": "A Project Position is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Project Position {{ id }}?"
+      },
+      "detail": {
+        "title": "Project Position"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "percent": "Percent",
+      "role": "Role",
+      "skills": "Skills",
+      "project": "Project",
+      "monthlyAssignments": "Monthly Assignments"
+    }
+  }
+}

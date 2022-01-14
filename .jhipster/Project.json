@@ -1,0 +1,63 @@
+{
+  "name": "Project",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMinlength": "2",
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "start",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "end",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "active",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "organization",
+      "otherEntityRelationshipName": "projects",
+      "relationshipValidateRules": "required",
+      "relationshipName": "organization",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "projectPosition",
+      "otherEntityRelationshipName": "project",
+      "relationshipValidateRules": "required",
+      "relationshipName": "projectPositions",
+      "otherEntityField": "title"
+    }
+  ],
+  "entityTableName": "project",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["mepster"],
+  "changelogDate": "20220114145434"
+}

@@ -1,0 +1,82 @@
+{
+  "name": "Organization",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "street",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "number",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "5"
+    },
+    {
+      "fieldName": "city",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "zipcode",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "5",
+      "fieldValidateRulesPattern": "^[0-9]{5}$"
+    },
+    {
+      "fieldName": "country",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "20",
+      "fieldValidateRulesPattern": "^[A-Za-z-]*$"
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "20",
+      "fieldValidateRulesPattern": "^[0-9 +-]*$"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "30",
+      "fieldValidateRulesPattern": "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "person",
+      "otherEntityRelationshipName": "organization",
+      "relationshipName": "persons",
+      "otherEntityField": "lastname"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "project",
+      "otherEntityRelationshipName": "organization",
+      "relationshipName": "projects",
+      "otherEntityField": "title"
+    }
+  ],
+  "entityTableName": "organization",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["mepster"],
+  "changelogDate": "20220114145431"
+}

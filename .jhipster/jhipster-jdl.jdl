@@ -1,0 +1,89 @@
+
+application {
+  config {
+    baseName mepster,
+    applicationType monolith,
+    packageName org.freeteratec.mepster,
+    buildTool gradle,
+    cacheProvider ehcache,
+    authenticationType jwt,
+    clientFramework vue,
+    clientPackageManager npm,
+    databaseType sql,
+    devDatabaseType postgresql,
+    prodDatabaseType postgresql,
+    enableHibernateCache true,
+    enableSwaggerCodegen true,
+    enableTranslation true,
+    languages [en,de,pl],
+    nativeLanguage en,
+    testFrameworks [cypress],
+    serverPort 8080,
+  }
+  entities *
+  dto * with mapstruct
+}
+
+
+entity Organization(organization) {
+  name String required
+  street String maxlength(50)
+  number String maxlength(5)
+  city String maxlength(20)
+  zipcode String maxlength(5) pattern(/^[0-9]{5}$/)
+  country String maxlength(20) pattern(/^[A-Za-z-]*$/)
+  phone String maxlength(20) pattern(/^[0-9 +-]*$/)
+  email String maxlength(30) pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+}
+
+entity Person(person) {
+  firstname String required minlength(2) maxlength(50)
+  lastname String required minlength(2) maxlength(50)
+  notes TextBlob
+}
+
+entity Role(role) {
+  title String required minlength(2) maxlength(40)
+}
+
+entity Project(project) {
+  title String required minlength(2) maxlength(50)
+  description TextBlob
+  start LocalDate
+  end LocalDate
+  active Boolean required
+  notes TextBlob
+}
+
+entity ProjectPosition(project_position) {
+  title String required minlength(2) maxlength(20)
+  description TextBlob
+  percent Integer min(0) max(100)
+}
+
+entity Skill(skill) {
+  title String required minlength(2) maxlength(30)
+  description TextBlob
+}
+
+entity MonthlyProjectPositionAssignment(monthly_position_assignment) {
+  yearmonth LocalDate
+  percent Integer min(0) max(100)
+  active Boolean required
+}
+
+relationship OneToMany {
+  Organization{persons(lastname)} to Person{organization(name)}
+  Organization{projects(title)} to Project{organization(name) required}
+  ProjectPosition{skills(title)} to Skill
+}
+
+relationship ManyToOne {
+  ProjectPosition{project(title) required} to Project{projectPositions(title) required}
+  MonthlyProjectPositionAssignment{projectPosition(title) required} to ProjectPosition{monthlyAssignments(yearmonth)}
+  MonthlyProjectPositionAssignment{person(lastname) required} to Person{monthlyAssignments(yearmonth)}
+}
+
+relationship OneToOne {
+  ProjectPosition{role(title) required} to Role{projectPosition(title)}
+}

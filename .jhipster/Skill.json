@@ -1,0 +1,35 @@
+{
+  "name": "Skill",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMinlength": "2",
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "projectPosition",
+      "otherEntityRelationshipName": "skills",
+      "relationshipName": "projectPosition"
+    }
+  ],
+  "entityTableName": "skill",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["mepster"],
+  "changelogDate": "20220114145436"
+}

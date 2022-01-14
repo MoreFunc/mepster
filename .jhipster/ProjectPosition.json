@@ -1,0 +1,67 @@
+{
+  "name": "ProjectPosition",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMinlength": "2",
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "percent",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMin": "0",
+      "fieldValidateRulesMax": "100"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "role",
+      "otherEntityRelationshipName": "projectPosition",
+      "relationshipValidateRules": "required",
+      "relationshipName": "role",
+      "otherEntityField": "title",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "skill",
+      "otherEntityRelationshipName": "projectPosition",
+      "relationshipName": "skills",
+      "otherEntityField": "title"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "project",
+      "otherEntityRelationshipName": "projectPositions",
+      "relationshipValidateRules": "required",
+      "relationshipName": "project",
+      "otherEntityField": "title"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "monthlyProjectPositionAssignment",
+      "otherEntityRelationshipName": "projectPosition",
+      "relationshipName": "monthlyAssignments",
+      "otherEntityField": "yearmonth"
+    }
+  ],
+  "entityTableName": "project_position",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["mepster"],
+  "changelogDate": "20220114145435"
+}

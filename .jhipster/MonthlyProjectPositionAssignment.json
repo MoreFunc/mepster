@@ -1,0 +1,49 @@
+{
+  "name": "MonthlyProjectPositionAssignment",
+  "fields": [
+    {
+      "fieldName": "yearmonth",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "percent",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMin": "0",
+      "fieldValidateRulesMax": "100"
+    },
+    {
+      "fieldName": "active",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "projectPosition",
+      "otherEntityRelationshipName": "monthlyAssignments",
+      "relationshipValidateRules": "required",
+      "relationshipName": "projectPosition",
+      "otherEntityField": "title"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "person",
+      "otherEntityRelationshipName": "monthlyAssignments",
+      "relationshipValidateRules": "required",
+      "relationshipName": "person",
+      "otherEntityField": "lastname"
+    }
+  ],
+  "entityTableName": "monthly_position_assignment",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["mepster"],
+  "changelogDate": "20220114145539"
+}
