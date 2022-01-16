@@ -41,10 +41,10 @@
       "fieldValidateRulesPattern": "^[A-Za-z-]*$"
     },
     {
-      "fieldName": "phone",
+      "fieldName": "phoneNumber",
       "fieldType": "String",
       "fieldValidateRules": ["maxlength", "pattern"],
-      "fieldValidateRulesMaxlength": "20",
+      "fieldValidateRulesMaxlength": "30",
       "fieldValidateRulesPattern": "^[0-9 +-]*$"
     },
     {
@@ -53,6 +53,11 @@
       "fieldValidateRules": ["maxlength", "pattern"],
       "fieldValidateRulesMaxlength": "30",
       "fieldValidateRulesPattern": "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
     }
   ],
   "relationships": [

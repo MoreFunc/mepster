@@ -166,30 +166,32 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="form-control-label" v-text="$t('mepsterApp.organization.phone')" for="organization-phone">Phone</label>
+            <label class="form-control-label" v-text="$t('mepsterApp.organization.phoneNumber')" for="organization-phoneNumber"
+              >Phone Number</label
+            >
             <input
               type="text"
               class="form-control"
-              name="phone"
-              id="organization-phone"
-              data-cy="phone"
-              :class="{ valid: !$v.organization.phone.$invalid, invalid: $v.organization.phone.$invalid }"
-              v-model="$v.organization.phone.$model"
+              name="phoneNumber"
+              id="organization-phoneNumber"
+              data-cy="phoneNumber"
+              :class="{ valid: !$v.organization.phoneNumber.$invalid, invalid: $v.organization.phoneNumber.$invalid }"
+              v-model="$v.organization.phoneNumber.$model"
             />
-            <div v-if="$v.organization.phone.$anyDirty && $v.organization.phone.$invalid">
+            <div v-if="$v.organization.phoneNumber.$anyDirty && $v.organization.phoneNumber.$invalid">
               <small
                 class="form-text text-danger"
-                v-if="!$v.organization.phone.maxLength"
-                v-text="$t('entity.validation.maxlength', { max: 20 })"
+                v-if="!$v.organization.phoneNumber.maxLength"
+                v-text="$t('entity.validation.maxlength', { max: 30 })"
               >
-                This field cannot be longer than 20 characters.
+                This field cannot be longer than 30 characters.
               </small>
               <small
                 class="form-text text-danger"
-                v-if="!$v.organization.phone.pattern"
-                v-text="$t('entity.validation.pattern', { pattern: 'Phone' })"
+                v-if="!$v.organization.phoneNumber.pattern"
+                v-text="$t('entity.validation.pattern', { pattern: 'Phone Number' })"
               >
-                This field should follow pattern for "Phone".
+                This field should follow pattern for "Phone Number".
               </small>
             </div>
           </div>
@@ -220,6 +222,17 @@
                 This field should follow pattern for "Email".
               </small>
             </div>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" v-text="$t('mepsterApp.organization.notes')" for="organization-notes">Notes</label>
+            <textarea
+              class="form-control"
+              name="notes"
+              id="organization-notes"
+              data-cy="notes"
+              :class="{ valid: !$v.organization.notes.$invalid, invalid: $v.organization.notes.$invalid }"
+              v-model="$v.organization.notes.$model"
+            ></textarea>
           </div>
         </div>
         <div>

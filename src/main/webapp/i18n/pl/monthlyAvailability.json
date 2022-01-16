@@ -1,0 +1,27 @@
+{
+  "mepsterApp": {
+    "monthlyAvailability": {
+      "home": {
+        "title": "Monthly Availability",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Dodaj Monthly Availability",
+        "createOrEditLabel": "Dodaj lub edytuj: Monthly Availability",
+        "notFound": "No Monthly Availabilities found"
+      },
+      "created": "Utworzono nowy obiekt typu Monthly Availability z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Monthly Availability z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Monthly Availability z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Monthly Availability {{ id }}?"
+      },
+      "detail": {
+        "title": "Monthly Availability"
+      },
+      "id": "ID",
+      "yearmonth": "Yearmonth",
+      "percent": "Percent",
+      "isActive": "Is Active",
+      "person": "Person"
+    }
+  }
+}

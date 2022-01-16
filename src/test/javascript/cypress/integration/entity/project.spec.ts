@@ -16,7 +16,7 @@ describe('Project e2e test', () => {
   const projectPageUrlPattern = new RegExp('/project(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const projectSample = { title: 'brand', active: false };
+  const projectSample = { title: 'Highway blue', isActive: true };
 
   let project: any;
   //let projectPosition: any;
@@ -32,7 +32,7 @@ describe('Project e2e test', () => {
     cy.authenticatedRequest({
       method: 'POST',
       url: '/api/project-positions',
-      body: {"title":"Legacy","description":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ=","start":"2022-01-14","end":"2022-01-13","percent":9},
+      body: {"title":"Legacy","description":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ=","startDate":"2022-01-14","endDate":"2022-01-13","percent":9},
     }).then(({ body }) => {
       projectPosition = body;
     });
@@ -40,7 +40,7 @@ describe('Project e2e test', () => {
     cy.authenticatedRequest({
       method: 'POST',
       url: '/api/organizations',
-      body: {"name":"Loan optical","street":"Ondricka Coves","number":"Bedfo","city":"West Adriana","zipcode":"19196","country":"q","phone":"0","email":"RsB@S8yH"},
+      body: {"name":"Loan optical","street":"Ondricka Coves","number":"Bedfo","city":"West Adriana","zipcode":"19196","country":"q","phoneNumber":"0","email":"RsB@S8yH","notes":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ="},
     }).then(({ body }) => {
       organization = body;
     });
@@ -231,12 +231,14 @@ describe('Project e2e test', () => {
         .invoke('val')
         .should('match', new RegExp('../fake-data/blob/hipster.txt'));
 
-      cy.get(`[data-cy="start"]`).type('2022-01-13').should('have.value', '2022-01-13');
+      cy.get(`[data-cy="startDate"]`).type('2022-01-13').should('have.value', '2022-01-13');
 
-      cy.get(`[data-cy="end"]`).type('2022-01-14').should('have.value', '2022-01-14');
+      cy.get(`[data-cy="endDate"]`).type('2022-01-14').should('have.value', '2022-01-14');
 
-      cy.get(`[data-cy="active"]`).should('not.be.checked');
-      cy.get(`[data-cy="active"]`).click().should('be.checked');
+      cy.get(`[data-cy="isActive"]`).should('not.be.checked');
+      cy.get(`[data-cy="isActive"]`).click().should('be.checked');
+
+      cy.get(`[data-cy="chancePercent"]`).type('27').should('have.value', '27');
 
       cy.get(`[data-cy="notes"]`)
         .type('../fake-data/blob/hipster.txt')

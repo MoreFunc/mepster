@@ -3,7 +3,7 @@ import { Component, Inject } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import JhiDataUtils from '@/shared/data/data-utils.service';
 
-import { required, minLength, maxLength } from 'vuelidate/lib/validators';
+import { required, minLength, maxLength, numeric, minValue, maxValue } from 'vuelidate/lib/validators';
 
 import AlertService from '@/shared/alert/alert.service';
 
@@ -24,10 +24,15 @@ const validations: any = {
       maxLength: maxLength(50),
     },
     description: {},
-    start: {},
-    end: {},
-    active: {
+    startDate: {},
+    endDate: {},
+    isActive: {
       required,
+    },
+    chancePercent: {
+      numeric,
+      min: minValue(0),
+      max: maxValue(100),
     },
     notes: {},
     projectPositions: {

@@ -1,0 +1,41 @@
+{
+  "name": "MonthlyAvailability",
+  "fields": [
+    {
+      "fieldName": "yearmonth",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "percent",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMin": "0",
+      "fieldValidateRulesMax": "100"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "person",
+      "otherEntityRelationshipName": "monthlyAvailabilities",
+      "relationshipValidateRules": "required",
+      "relationshipName": "person",
+      "otherEntityField": "lastname"
+    }
+  ],
+  "entityTableName": "monthly_availability",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["mepster"],
+  "changelogDate": "20220116164153"
+}

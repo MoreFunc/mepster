@@ -32,6 +32,10 @@ public class Role implements Serializable {
     @OneToOne(mappedBy = "role")
     private ProjectPosition projectPosition;
 
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "skills", "roles", "organization", "monthlyAssignments", "monthlyAvailabilities" }, allowSetters = true)
+    private Person person;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -76,6 +80,19 @@ public class Role implements Serializable {
 
     public Role projectPosition(ProjectPosition projectPosition) {
         this.setProjectPosition(projectPosition);
+        return this;
+    }
+
+    public Person getPerson() {
+        return this.person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public Role person(Person person) {
+        this.setPerson(person);
         return this;
     }
 

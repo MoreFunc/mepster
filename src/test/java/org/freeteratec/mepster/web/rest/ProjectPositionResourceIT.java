@@ -42,11 +42,11 @@ class ProjectPositionResourceIT {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
-    private static final LocalDate DEFAULT_START = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_START = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_START_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_START_DATE = LocalDate.now(ZoneId.systemDefault());
 
-    private static final LocalDate DEFAULT_END = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_END = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_END_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_END_DATE = LocalDate.now(ZoneId.systemDefault());
 
     private static final Integer DEFAULT_PERCENT = 0;
     private static final Integer UPDATED_PERCENT = 1;
@@ -81,8 +81,8 @@ class ProjectPositionResourceIT {
         ProjectPosition projectPosition = new ProjectPosition()
             .title(DEFAULT_TITLE)
             .description(DEFAULT_DESCRIPTION)
-            .start(DEFAULT_START)
-            .end(DEFAULT_END)
+            .startDate(DEFAULT_START_DATE)
+            .endDate(DEFAULT_END_DATE)
             .percent(DEFAULT_PERCENT);
         // Add required entity
         Role role;
@@ -117,8 +117,8 @@ class ProjectPositionResourceIT {
         ProjectPosition projectPosition = new ProjectPosition()
             .title(UPDATED_TITLE)
             .description(UPDATED_DESCRIPTION)
-            .start(UPDATED_START)
-            .end(UPDATED_END)
+            .startDate(UPDATED_START_DATE)
+            .endDate(UPDATED_END_DATE)
             .percent(UPDATED_PERCENT);
         // Add required entity
         Role role;
@@ -166,8 +166,8 @@ class ProjectPositionResourceIT {
         ProjectPosition testProjectPosition = projectPositionList.get(projectPositionList.size() - 1);
         assertThat(testProjectPosition.getTitle()).isEqualTo(DEFAULT_TITLE);
         assertThat(testProjectPosition.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
-        assertThat(testProjectPosition.getStart()).isEqualTo(DEFAULT_START);
-        assertThat(testProjectPosition.getEnd()).isEqualTo(DEFAULT_END);
+        assertThat(testProjectPosition.getStartDate()).isEqualTo(DEFAULT_START_DATE);
+        assertThat(testProjectPosition.getEndDate()).isEqualTo(DEFAULT_END_DATE);
         assertThat(testProjectPosition.getPercent()).isEqualTo(DEFAULT_PERCENT);
     }
 
@@ -226,8 +226,8 @@ class ProjectPositionResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(projectPosition.getId().intValue())))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
-            .andExpect(jsonPath("$.[*].start").value(hasItem(DEFAULT_START.toString())))
-            .andExpect(jsonPath("$.[*].end").value(hasItem(DEFAULT_END.toString())))
+            .andExpect(jsonPath("$.[*].startDate").value(hasItem(DEFAULT_START_DATE.toString())))
+            .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())))
             .andExpect(jsonPath("$.[*].percent").value(hasItem(DEFAULT_PERCENT)));
     }
 
@@ -245,8 +245,8 @@ class ProjectPositionResourceIT {
             .andExpect(jsonPath("$.id").value(projectPosition.getId().intValue()))
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
-            .andExpect(jsonPath("$.start").value(DEFAULT_START.toString()))
-            .andExpect(jsonPath("$.end").value(DEFAULT_END.toString()))
+            .andExpect(jsonPath("$.startDate").value(DEFAULT_START_DATE.toString()))
+            .andExpect(jsonPath("$.endDate").value(DEFAULT_END_DATE.toString()))
             .andExpect(jsonPath("$.percent").value(DEFAULT_PERCENT));
     }
 
@@ -272,8 +272,8 @@ class ProjectPositionResourceIT {
         updatedProjectPosition
             .title(UPDATED_TITLE)
             .description(UPDATED_DESCRIPTION)
-            .start(UPDATED_START)
-            .end(UPDATED_END)
+            .startDate(UPDATED_START_DATE)
+            .endDate(UPDATED_END_DATE)
             .percent(UPDATED_PERCENT);
         ProjectPositionDTO projectPositionDTO = projectPositionMapper.toDto(updatedProjectPosition);
 
@@ -291,8 +291,8 @@ class ProjectPositionResourceIT {
         ProjectPosition testProjectPosition = projectPositionList.get(projectPositionList.size() - 1);
         assertThat(testProjectPosition.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testProjectPosition.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
-        assertThat(testProjectPosition.getStart()).isEqualTo(UPDATED_START);
-        assertThat(testProjectPosition.getEnd()).isEqualTo(UPDATED_END);
+        assertThat(testProjectPosition.getStartDate()).isEqualTo(UPDATED_START_DATE);
+        assertThat(testProjectPosition.getEndDate()).isEqualTo(UPDATED_END_DATE);
         assertThat(testProjectPosition.getPercent()).isEqualTo(UPDATED_PERCENT);
     }
 
@@ -391,8 +391,8 @@ class ProjectPositionResourceIT {
         ProjectPosition testProjectPosition = projectPositionList.get(projectPositionList.size() - 1);
         assertThat(testProjectPosition.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testProjectPosition.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
-        assertThat(testProjectPosition.getStart()).isEqualTo(DEFAULT_START);
-        assertThat(testProjectPosition.getEnd()).isEqualTo(DEFAULT_END);
+        assertThat(testProjectPosition.getStartDate()).isEqualTo(DEFAULT_START_DATE);
+        assertThat(testProjectPosition.getEndDate()).isEqualTo(DEFAULT_END_DATE);
         assertThat(testProjectPosition.getPercent()).isEqualTo(UPDATED_PERCENT);
     }
 
@@ -411,8 +411,8 @@ class ProjectPositionResourceIT {
         partialUpdatedProjectPosition
             .title(UPDATED_TITLE)
             .description(UPDATED_DESCRIPTION)
-            .start(UPDATED_START)
-            .end(UPDATED_END)
+            .startDate(UPDATED_START_DATE)
+            .endDate(UPDATED_END_DATE)
             .percent(UPDATED_PERCENT);
 
         restProjectPositionMockMvc
@@ -429,8 +429,8 @@ class ProjectPositionResourceIT {
         ProjectPosition testProjectPosition = projectPositionList.get(projectPositionList.size() - 1);
         assertThat(testProjectPosition.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testProjectPosition.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
-        assertThat(testProjectPosition.getStart()).isEqualTo(UPDATED_START);
-        assertThat(testProjectPosition.getEnd()).isEqualTo(UPDATED_END);
+        assertThat(testProjectPosition.getStartDate()).isEqualTo(UPDATED_START_DATE);
+        assertThat(testProjectPosition.getEndDate()).isEqualTo(UPDATED_END_DATE);
         assertThat(testProjectPosition.getPercent()).isEqualTo(UPDATED_PERCENT);
     }
 

@@ -1,4 +1,4 @@
-id;title;description;start;jhi_end;percent;role_id;project_id
+id;title;description;start_date;end_date;percent;role_id;project_id
 1;web-readiness Gorgeo;../fake-data/blob/hipster.txt;2022-01-14;2022-01-13;77;1;1
 2;Keyboard quantify;../fake-data/blob/hipster.txt;2022-01-14;2022-01-14;16;2;2
 3;International Saving;../fake-data/blob/hipster.txt;2022-01-14;2022-01-14;18;3;3

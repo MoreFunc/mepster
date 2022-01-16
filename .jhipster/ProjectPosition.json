@@ -14,11 +14,11 @@
       "fieldTypeBlobContent": "text"
     },
     {
-      "fieldName": "start",
+      "fieldName": "startDate",
       "fieldType": "LocalDate"
     },
     {
-      "fieldName": "end",
+      "fieldName": "endDate",
       "fieldType": "LocalDate"
     },
     {

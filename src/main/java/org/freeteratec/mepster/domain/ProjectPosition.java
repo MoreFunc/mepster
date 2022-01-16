@@ -37,18 +37,18 @@ public class ProjectPosition implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "start")
-    private LocalDate start;
+    @Column(name = "start_date")
+    private LocalDate startDate;
 
-    @Column(name = "jhi_end")
-    private LocalDate end;
+    @Column(name = "end_date")
+    private LocalDate endDate;
 
     @Min(value = 0)
     @Max(value = 100)
     @Column(name = "percent")
     private Integer percent;
 
-    @JsonIgnoreProperties(value = { "projectPosition" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "projectPosition", "person" }, allowSetters = true)
     @OneToOne(optional = false)
     @NotNull
     @JoinColumn(unique = true)
@@ -110,30 +110,30 @@ public class ProjectPosition implements Serializable {
         this.description = description;
     }
 
-    public LocalDate getStart() {
-        return this.start;
+    public LocalDate getStartDate() {
+        return this.startDate;
     }
 
-    public ProjectPosition start(LocalDate start) {
-        this.setStart(start);
+    public ProjectPosition startDate(LocalDate startDate) {
+        this.setStartDate(startDate);
         return this;
     }
 
-    public void setStart(LocalDate start) {
-        this.start = start;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
-    public LocalDate getEnd() {
-        return this.end;
+    public LocalDate getEndDate() {
+        return this.endDate;
     }
 
-    public ProjectPosition end(LocalDate end) {
-        this.setEnd(end);
+    public ProjectPosition endDate(LocalDate endDate) {
+        this.setEndDate(endDate);
         return this;
     }
 
-    public void setEnd(LocalDate end) {
-        this.end = end;
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public Integer getPercent() {
@@ -263,8 +263,8 @@ public class ProjectPosition implements Serializable {
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
             ", description='" + getDescription() + "'" +
-            ", start='" + getStart() + "'" +
-            ", end='" + getEnd() + "'" +
+            ", startDate='" + getStartDate() + "'" +
+            ", endDate='" + getEndDate() + "'" +
             ", percent=" + getPercent() +
             "}";
     }

@@ -10,11 +10,17 @@ import AlertService from '@/shared/alert/alert.service';
 import SkillService from '@/entities/skill/skill.service';
 import { ISkill } from '@/shared/model/skill.model';
 
+import RoleService from '@/entities/role/role.service';
+import { IRole } from '@/shared/model/role.model';
+
 import OrganizationService from '@/entities/organization/organization.service';
 import { IOrganization } from '@/shared/model/organization.model';
 
 import MonthlyProjectPositionAssignmentService from '@/entities/monthly-project-position-assignment/monthly-project-position-assignment.service';
 import { IMonthlyProjectPositionAssignment } from '@/shared/model/monthly-project-position-assignment.model';
+
+import MonthlyAvailabilityService from '@/entities/monthly-availability/monthly-availability.service';
+import { IMonthlyAvailability } from '@/shared/model/monthly-availability.model';
 
 import { IPerson, Person } from '@/shared/model/person.model';
 import PersonService from './person.service';
@@ -30,6 +36,12 @@ const validations: any = {
       required,
       minLength: minLength(2),
       maxLength: maxLength(50),
+    },
+    phoneNumber: {
+      maxLength: maxLength(30),
+    },
+    email: {
+      maxLength: maxLength(30),
     },
     notes: {},
   },
@@ -48,6 +60,10 @@ export default class PersonUpdate extends mixins(JhiDataUtils) {
 
   public skills: ISkill[] = [];
 
+  @Inject('roleService') private roleService: () => RoleService;
+
+  public roles: IRole[] = [];
+
   @Inject('organizationService') private organizationService: () => OrganizationService;
 
   public organizations: IOrganization[] = [];
@@ -56,6 +72,10 @@ export default class PersonUpdate extends mixins(JhiDataUtils) {
   private monthlyProjectPositionAssignmentService: () => MonthlyProjectPositionAssignmentService;
 
   public monthlyProjectPositionAssignments: IMonthlyProjectPositionAssignment[] = [];
+
+  @Inject('monthlyAvailabilityService') private monthlyAvailabilityService: () => MonthlyAvailabilityService;
+
+  public monthlyAvailabilities: IMonthlyAvailability[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
@@ -142,6 +162,11 @@ export default class PersonUpdate extends mixins(JhiDataUtils) {
       .then(res => {
         this.skills = res.data;
       });
+    this.roleService()
+      .retrieve()
+      .then(res => {
+        this.roles = res.data;
+      });
     this.organizationService()
       .retrieve()
       .then(res => {
@@ -151,6 +176,11 @@ export default class PersonUpdate extends mixins(JhiDataUtils) {
       .retrieve()
       .then(res => {
         this.monthlyProjectPositionAssignments = res.data;
+      });
+    this.monthlyAvailabilityService()
+      .retrieve()
+      .then(res => {
+        this.monthlyAvailabilities = res.data;
       });
   }
 }

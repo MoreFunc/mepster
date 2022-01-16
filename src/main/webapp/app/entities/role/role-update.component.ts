@@ -7,6 +7,9 @@ import AlertService from '@/shared/alert/alert.service';
 import ProjectPositionService from '@/entities/project-position/project-position.service';
 import { IProjectPosition } from '@/shared/model/project-position.model';
 
+import PersonService from '@/entities/person/person.service';
+import { IPerson } from '@/shared/model/person.model';
+
 import { IRole, Role } from '@/shared/model/role.model';
 import RoleService from './role.service';
 
@@ -32,6 +35,10 @@ export default class RoleUpdate extends Vue {
   @Inject('projectPositionService') private projectPositionService: () => ProjectPositionService;
 
   public projectPositions: IProjectPosition[] = [];
+
+  @Inject('personService') private personService: () => PersonService;
+
+  public people: IPerson[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
@@ -117,6 +124,11 @@ export default class RoleUpdate extends Vue {
       .retrieve()
       .then(res => {
         this.projectPositions = res.data;
+      });
+    this.personService()
+      .retrieve()
+      .then(res => {
+        this.people = res.data;
       });
   }
 }

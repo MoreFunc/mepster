@@ -33,8 +33,8 @@ public class MonthlyProjectPositionAssignment implements Serializable {
     private Integer percent;
 
     @NotNull
-    @Column(name = "active", nullable = false)
-    private Boolean active;
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive;
 
     @ManyToOne(optional = false)
     @NotNull
@@ -43,7 +43,7 @@ public class MonthlyProjectPositionAssignment implements Serializable {
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties(value = { "skills", "organization", "monthlyAssignments" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "skills", "roles", "organization", "monthlyAssignments", "monthlyAvailabilities" }, allowSetters = true)
     private Person person;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -87,17 +87,17 @@ public class MonthlyProjectPositionAssignment implements Serializable {
         this.percent = percent;
     }
 
-    public Boolean getActive() {
-        return this.active;
+    public Boolean getIsActive() {
+        return this.isActive;
     }
 
-    public MonthlyProjectPositionAssignment active(Boolean active) {
-        this.setActive(active);
+    public MonthlyProjectPositionAssignment isActive(Boolean isActive) {
+        this.setIsActive(isActive);
         return this;
     }
 
-    public void setActive(Boolean active) {
-        this.active = active;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 
     public ProjectPosition getProjectPosition() {
@@ -152,7 +152,7 @@ public class MonthlyProjectPositionAssignment implements Serializable {
             "id=" + getId() +
             ", yearmonth='" + getYearmonth() + "'" +
             ", percent=" + getPercent() +
-            ", active='" + getActive() + "'" +
+            ", isActive='" + getIsActive() + "'" +
             "}";
     }
 }

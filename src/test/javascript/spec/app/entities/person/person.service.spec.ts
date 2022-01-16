@@ -29,7 +29,7 @@ describe('Service Tests', () => {
 
     beforeEach(() => {
       service = new PersonService();
-      elemDefault = new Person(123, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Person(123, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -83,6 +83,8 @@ describe('Service Tests', () => {
           {
             firstname: 'BBBBBB',
             lastname: 'BBBBBB',
+            phoneNumber: 'BBBBBB',
+            email: 'BBBBBB',
             notes: 'BBBBBB',
           },
           elemDefault
@@ -111,6 +113,7 @@ describe('Service Tests', () => {
         const patchObject = Object.assign(
           {
             lastname: 'BBBBBB',
+            email: 'BBBBBB',
           },
           new Person()
         );
@@ -140,6 +143,8 @@ describe('Service Tests', () => {
           {
             firstname: 'BBBBBB',
             lastname: 'BBBBBB',
+            phoneNumber: 'BBBBBB',
+            email: 'BBBBBB',
             notes: 'BBBBBB',
           },
           elemDefault

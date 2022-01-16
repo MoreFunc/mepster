@@ -24,8 +24,9 @@
       "city": "City",
       "zipcode": "Zipcode",
       "country": "Country",
-      "phone": "Phone",
+      "phoneNumber": "Phone Number",
       "email": "Email",
+      "notes": "Notes",
       "persons": "Persons",
       "projects": "Projects"
     }

@@ -38,7 +38,7 @@
             <th scope="row"><span v-text="$t('global.field.id')">ID</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.monthlyProjectPositionAssignment.yearmonth')">Yearmonth</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.monthlyProjectPositionAssignment.percent')">Percent</span></th>
-            <th scope="row"><span v-text="$t('mepsterApp.monthlyProjectPositionAssignment.active')">Active</span></th>
+            <th scope="row"><span v-text="$t('mepsterApp.monthlyProjectPositionAssignment.isActive')">Is Active</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.monthlyProjectPositionAssignment.projectPosition')">Project Position</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.monthlyProjectPositionAssignment.person')">Person</span></th>
             <th scope="row"></th>
@@ -61,7 +61,7 @@
             </td>
             <td>{{ monthlyProjectPositionAssignment.yearmonth }}</td>
             <td>{{ monthlyProjectPositionAssignment.percent }}</td>
-            <td>{{ monthlyProjectPositionAssignment.active }}</td>
+            <td>{{ monthlyProjectPositionAssignment.isActive }}</td>
             <td>
               <div v-if="monthlyProjectPositionAssignment.projectPosition">
                 <router-link

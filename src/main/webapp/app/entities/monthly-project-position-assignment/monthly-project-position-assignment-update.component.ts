@@ -24,7 +24,7 @@ const validations: any = {
       min: minValue(0),
       max: maxValue(100),
     },
-    active: {
+    isActive: {
       required,
     },
     projectPosition: {

@@ -96,27 +96,27 @@
           <div class="form-group">
             <label
               class="form-control-label"
-              v-text="$t('mepsterApp.monthlyProjectPositionAssignment.active')"
-              for="monthly-project-position-assignment-active"
-              >Active</label
+              v-text="$t('mepsterApp.monthlyProjectPositionAssignment.isActive')"
+              for="monthly-project-position-assignment-isActive"
+              >Is Active</label
             >
             <input
               type="checkbox"
               class="form-check"
-              name="active"
-              id="monthly-project-position-assignment-active"
-              data-cy="active"
+              name="isActive"
+              id="monthly-project-position-assignment-isActive"
+              data-cy="isActive"
               :class="{
-                valid: !$v.monthlyProjectPositionAssignment.active.$invalid,
-                invalid: $v.monthlyProjectPositionAssignment.active.$invalid,
+                valid: !$v.monthlyProjectPositionAssignment.isActive.$invalid,
+                invalid: $v.monthlyProjectPositionAssignment.isActive.$invalid,
               }"
-              v-model="$v.monthlyProjectPositionAssignment.active.$model"
+              v-model="$v.monthlyProjectPositionAssignment.isActive.$model"
               required
             />
-            <div v-if="$v.monthlyProjectPositionAssignment.active.$anyDirty && $v.monthlyProjectPositionAssignment.active.$invalid">
+            <div v-if="$v.monthlyProjectPositionAssignment.isActive.$anyDirty && $v.monthlyProjectPositionAssignment.isActive.$invalid">
               <small
                 class="form-text text-danger"
-                v-if="!$v.monthlyProjectPositionAssignment.active.required"
+                v-if="!$v.monthlyProjectPositionAssignment.isActive.required"
                 v-text="$t('entity.validation.required')"
               >
                 This field is required.

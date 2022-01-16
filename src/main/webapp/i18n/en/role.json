@@ -19,7 +19,8 @@
       },
       "id": "ID",
       "title": "Title",
-      "projectPosition": "Project Position"
+      "projectPosition": "Project Position",
+      "person": "Person"
     }
   }
 }

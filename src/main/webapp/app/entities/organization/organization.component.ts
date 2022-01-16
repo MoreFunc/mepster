@@ -1,6 +1,9 @@
+import { mixins } from 'vue-class-component';
 import { Component, Vue, Inject } from 'vue-property-decorator';
 import Vue2Filters from 'vue2-filters';
 import { IOrganization } from '@/shared/model/organization.model';
+
+import JhiDataUtils from '@/shared/data/data-utils.service';
 
 import OrganizationService from './organization.service';
 import AlertService from '@/shared/alert/alert.service';
@@ -8,7 +11,7 @@ import AlertService from '@/shared/alert/alert.service';
 @Component({
   mixins: [Vue2Filters.mixin],
 })
-export default class Organization extends Vue {
+export default class Organization extends mixins(JhiDataUtils) {
   @Inject('organizationService') private organizationService: () => OrganizationService;
   @Inject('alertService') private alertService: () => AlertService;
 

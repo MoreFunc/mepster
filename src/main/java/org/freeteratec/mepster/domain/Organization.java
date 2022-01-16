@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 
 /**
  * A Organization.
@@ -52,19 +53,24 @@ public class Organization implements Serializable {
     @Column(name = "country", length = 20)
     private String country;
 
-    @Size(max = 20)
+    @Size(max = 30)
     @Pattern(regexp = "^[0-9 +-]*$")
-    @Column(name = "phone", length = 20)
-    private String phone;
+    @Column(name = "phone_number", length = 30)
+    private String phoneNumber;
 
     @Size(max = 30)
     @Pattern(regexp = "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")
     @Column(name = "email", length = 30)
     private String email;
 
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
+    @Column(name = "notes")
+    private String notes;
+
     @OneToMany(mappedBy = "organization")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "skills", "organization", "monthlyAssignments" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "skills", "roles", "organization", "monthlyAssignments", "monthlyAvailabilities" }, allowSetters = true)
     private Set<Person> persons = new HashSet<>();
 
     @OneToMany(mappedBy = "organization")
@@ -165,17 +171,17 @@ public class Organization implements Serializable {
         this.country = country;
     }
 
-    public String getPhone() {
-        return this.phone;
+    public String getPhoneNumber() {
+        return this.phoneNumber;
     }
 
-    public Organization phone(String phone) {
-        this.setPhone(phone);
+    public Organization phoneNumber(String phoneNumber) {
+        this.setPhoneNumber(phoneNumber);
         return this;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
@@ -189,6 +195,19 @@ public class Organization implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getNotes() {
+        return this.notes;
+    }
+
+    public Organization notes(String notes) {
+        this.setNotes(notes);
+        return this;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     public Set<Person> getPersons() {
@@ -283,8 +302,9 @@ public class Organization implements Serializable {
             ", city='" + getCity() + "'" +
             ", zipcode='" + getZipcode() + "'" +
             ", country='" + getCountry() + "'" +
-            ", phone='" + getPhone() + "'" +
+            ", phoneNumber='" + getPhoneNumber() + "'" +
             ", email='" + getEmail() + "'" +
+            ", notes='" + getNotes() + "'" +
             "}";
     }
 }

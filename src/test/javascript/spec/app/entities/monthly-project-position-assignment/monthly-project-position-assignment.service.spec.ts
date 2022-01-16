@@ -98,7 +98,7 @@ describe('Service Tests', () => {
           {
             yearmonth: dayjs(currentDate).format(DATE_FORMAT),
             percent: 1,
-            active: true,
+            isActive: true,
           },
           elemDefault
         );
@@ -166,7 +166,7 @@ describe('Service Tests', () => {
           {
             yearmonth: dayjs(currentDate).format(DATE_FORMAT),
             percent: 1,
-            active: true,
+            isActive: true,
           },
           elemDefault
         );

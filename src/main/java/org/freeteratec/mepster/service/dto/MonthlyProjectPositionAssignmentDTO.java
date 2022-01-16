@@ -19,7 +19,7 @@ public class MonthlyProjectPositionAssignmentDTO implements Serializable {
     private Integer percent;
 
     @NotNull
-    private Boolean active;
+    private Boolean isActive;
 
     private ProjectPositionDTO projectPosition;
 
@@ -49,12 +49,12 @@ public class MonthlyProjectPositionAssignmentDTO implements Serializable {
         this.percent = percent;
     }
 
-    public Boolean getActive() {
-        return active;
+    public Boolean getIsActive() {
+        return isActive;
     }
 
-    public void setActive(Boolean active) {
-        this.active = active;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 
     public ProjectPositionDTO getProjectPosition() {
@@ -101,7 +101,7 @@ public class MonthlyProjectPositionAssignmentDTO implements Serializable {
             "id=" + getId() +
             ", yearmonth='" + getYearmonth() + "'" +
             ", percent=" + getPercent() +
-            ", active='" + getActive() + "'" +
+            ", isActive='" + getIsActive() + "'" +
             ", projectPosition=" + getProjectPosition() +
             ", person=" + getPerson() +
             "}";

@@ -43,16 +43,22 @@
             <span>{{ organization.country }}</span>
           </dd>
           <dt>
-            <span v-text="$t('mepsterApp.organization.phone')">Phone</span>
+            <span v-text="$t('mepsterApp.organization.phoneNumber')">Phone Number</span>
           </dt>
           <dd>
-            <span>{{ organization.phone }}</span>
+            <span>{{ organization.phoneNumber }}</span>
           </dd>
           <dt>
             <span v-text="$t('mepsterApp.organization.email')">Email</span>
           </dt>
           <dd>
             <span>{{ organization.email }}</span>
+          </dd>
+          <dt>
+            <span v-text="$t('mepsterApp.organization.notes')">Notes</span>
+          </dt>
+          <dd>
+            <span>{{ organization.notes }}</span>
           </dd>
         </dl>
         <button type="submit" v-on:click.prevent="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

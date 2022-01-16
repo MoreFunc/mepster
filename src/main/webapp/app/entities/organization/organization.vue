@@ -35,8 +35,9 @@
             <th scope="row"><span v-text="$t('mepsterApp.organization.city')">City</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.organization.zipcode')">Zipcode</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.organization.country')">Country</span></th>
-            <th scope="row"><span v-text="$t('mepsterApp.organization.phone')">Phone</span></th>
+            <th scope="row"><span v-text="$t('mepsterApp.organization.phoneNumber')">Phone Number</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.organization.email')">Email</span></th>
+            <th scope="row"><span v-text="$t('mepsterApp.organization.notes')">Notes</span></th>
             <th scope="row"></th>
           </tr>
         </thead>
@@ -53,8 +54,9 @@
             <td>{{ organization.city }}</td>
             <td>{{ organization.zipcode }}</td>
             <td>{{ organization.country }}</td>
-            <td>{{ organization.phone }}</td>
+            <td>{{ organization.phoneNumber }}</td>
             <td>{{ organization.email }}</td>
+            <td>{{ organization.notes }}</td>
             <td class="text-right">
               <div class="btn-group">
                 <router-link :to="{ name: 'OrganizationView', params: { organizationId: organization.id } }" custom v-slot="{ navigate }">

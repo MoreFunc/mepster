@@ -32,13 +32,16 @@ entity Organization(organization) {
   city String maxlength(20)
   zipcode String maxlength(5) pattern(/^[0-9]{5}$/)
   country String maxlength(20) pattern(/^[A-Za-z-]*$/)
-  phone String maxlength(20) pattern(/^[0-9 +-]*$/)
+  phoneNumber String maxlength(30) pattern(/^[0-9 +-]*$/)
   email String maxlength(30) pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+  notes TextBlob
 }
 
 entity Person(person) {
   firstname String required minlength(2) maxlength(50)
   lastname String required minlength(2) maxlength(50)
+  phoneNumber String maxlength(30) pattern(/^[0-9 +-]*$/)
+  email String maxlength(30) pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
   notes TextBlob
 }
 
@@ -49,17 +52,18 @@ entity Role(role) {
 entity Project(project) {
   title String required minlength(2) maxlength(50)
   description TextBlob
-  start LocalDate
-  end LocalDate
-  active Boolean required
+  startDate LocalDate
+  endDate LocalDate
+  isActive Boolean required
+  chancePercent Integer min(0) max(100)
   notes TextBlob
 }
 
 entity ProjectPosition(project_position) {
   title String required minlength(2) maxlength(20)
   description TextBlob
-  start LocalDate
-  end LocalDate
+  startDate LocalDate
+  endDate LocalDate
   percent Integer min(0) max(100)
 }
 
@@ -71,7 +75,13 @@ entity Skill(skill) {
 entity MonthlyProjectPositionAssignment(monthly_position_assignment) {
   yearmonth LocalDate
   percent Integer min(0) max(100)
-  active Boolean required
+  isActive Boolean required
+}
+
+entity MonthlyAvailability(monthly_availability) {
+  yearmonth LocalDate
+  percent Integer min(0) max(100)
+  isActive Boolean required
 }
 
 relationship OneToMany {
@@ -80,11 +90,13 @@ relationship OneToMany {
   Project{projectPositions(title) required} to ProjectPosition{project(title) required}
   ProjectPosition{skills(title)} to Skill
   Person{skills(title)} to Skill
+  Person{roles(title)} to Role
 }
 
 relationship ManyToOne {
   MonthlyProjectPositionAssignment{projectPosition(title) required} to ProjectPosition{monthlyAssignments(yearmonth)}
   MonthlyProjectPositionAssignment{person(lastname) required} to Person{monthlyAssignments(yearmonth)}
+  MonthlyAvailability{person(lastname) required} to Person{monthlyAvailabilities(yearmonth)}
 }
 
 relationship OneToOne {

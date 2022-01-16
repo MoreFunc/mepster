@@ -42,14 +42,17 @@ class ProjectResourceIT {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
-    private static final LocalDate DEFAULT_START = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_START = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_START_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_START_DATE = LocalDate.now(ZoneId.systemDefault());
 
-    private static final LocalDate DEFAULT_END = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_END = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_END_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_END_DATE = LocalDate.now(ZoneId.systemDefault());
 
-    private static final Boolean DEFAULT_ACTIVE = false;
-    private static final Boolean UPDATED_ACTIVE = true;
+    private static final Boolean DEFAULT_IS_ACTIVE = false;
+    private static final Boolean UPDATED_IS_ACTIVE = true;
+
+    private static final Integer DEFAULT_CHANCE_PERCENT = 0;
+    private static final Integer UPDATED_CHANCE_PERCENT = 1;
 
     private static final String DEFAULT_NOTES = "AAAAAAAAAA";
     private static final String UPDATED_NOTES = "BBBBBBBBBB";
@@ -84,9 +87,10 @@ class ProjectResourceIT {
         Project project = new Project()
             .title(DEFAULT_TITLE)
             .description(DEFAULT_DESCRIPTION)
-            .start(DEFAULT_START)
-            .end(DEFAULT_END)
-            .active(DEFAULT_ACTIVE)
+            .startDate(DEFAULT_START_DATE)
+            .endDate(DEFAULT_END_DATE)
+            .isActive(DEFAULT_IS_ACTIVE)
+            .chancePercent(DEFAULT_CHANCE_PERCENT)
             .notes(DEFAULT_NOTES);
         // Add required entity
         ProjectPosition projectPosition;
@@ -121,9 +125,10 @@ class ProjectResourceIT {
         Project project = new Project()
             .title(UPDATED_TITLE)
             .description(UPDATED_DESCRIPTION)
-            .start(UPDATED_START)
-            .end(UPDATED_END)
-            .active(UPDATED_ACTIVE)
+            .startDate(UPDATED_START_DATE)
+            .endDate(UPDATED_END_DATE)
+            .isActive(UPDATED_IS_ACTIVE)
+            .chancePercent(UPDATED_CHANCE_PERCENT)
             .notes(UPDATED_NOTES);
         // Add required entity
         ProjectPosition projectPosition;
@@ -169,9 +174,10 @@ class ProjectResourceIT {
         Project testProject = projectList.get(projectList.size() - 1);
         assertThat(testProject.getTitle()).isEqualTo(DEFAULT_TITLE);
         assertThat(testProject.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
-        assertThat(testProject.getStart()).isEqualTo(DEFAULT_START);
-        assertThat(testProject.getEnd()).isEqualTo(DEFAULT_END);
-        assertThat(testProject.getActive()).isEqualTo(DEFAULT_ACTIVE);
+        assertThat(testProject.getStartDate()).isEqualTo(DEFAULT_START_DATE);
+        assertThat(testProject.getEndDate()).isEqualTo(DEFAULT_END_DATE);
+        assertThat(testProject.getIsActive()).isEqualTo(DEFAULT_IS_ACTIVE);
+        assertThat(testProject.getChancePercent()).isEqualTo(DEFAULT_CHANCE_PERCENT);
         assertThat(testProject.getNotes()).isEqualTo(DEFAULT_NOTES);
     }
 
@@ -214,10 +220,10 @@ class ProjectResourceIT {
 
     @Test
     @Transactional
-    void checkActiveIsRequired() throws Exception {
+    void checkIsActiveIsRequired() throws Exception {
         int databaseSizeBeforeTest = projectRepository.findAll().size();
         // set the field null
-        project.setActive(null);
+        project.setIsActive(null);
 
         // Create the Project, which fails.
         ProjectDTO projectDTO = projectMapper.toDto(project);
@@ -244,9 +250,10 @@ class ProjectResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(project.getId().intValue())))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
-            .andExpect(jsonPath("$.[*].start").value(hasItem(DEFAULT_START.toString())))
-            .andExpect(jsonPath("$.[*].end").value(hasItem(DEFAULT_END.toString())))
-            .andExpect(jsonPath("$.[*].active").value(hasItem(DEFAULT_ACTIVE.booleanValue())))
+            .andExpect(jsonPath("$.[*].startDate").value(hasItem(DEFAULT_START_DATE.toString())))
+            .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())))
+            .andExpect(jsonPath("$.[*].isActive").value(hasItem(DEFAULT_IS_ACTIVE.booleanValue())))
+            .andExpect(jsonPath("$.[*].chancePercent").value(hasItem(DEFAULT_CHANCE_PERCENT)))
             .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES.toString())));
     }
 
@@ -264,9 +271,10 @@ class ProjectResourceIT {
             .andExpect(jsonPath("$.id").value(project.getId().intValue()))
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
-            .andExpect(jsonPath("$.start").value(DEFAULT_START.toString()))
-            .andExpect(jsonPath("$.end").value(DEFAULT_END.toString()))
-            .andExpect(jsonPath("$.active").value(DEFAULT_ACTIVE.booleanValue()))
+            .andExpect(jsonPath("$.startDate").value(DEFAULT_START_DATE.toString()))
+            .andExpect(jsonPath("$.endDate").value(DEFAULT_END_DATE.toString()))
+            .andExpect(jsonPath("$.isActive").value(DEFAULT_IS_ACTIVE.booleanValue()))
+            .andExpect(jsonPath("$.chancePercent").value(DEFAULT_CHANCE_PERCENT))
             .andExpect(jsonPath("$.notes").value(DEFAULT_NOTES.toString()));
     }
 
@@ -292,9 +300,10 @@ class ProjectResourceIT {
         updatedProject
             .title(UPDATED_TITLE)
             .description(UPDATED_DESCRIPTION)
-            .start(UPDATED_START)
-            .end(UPDATED_END)
-            .active(UPDATED_ACTIVE)
+            .startDate(UPDATED_START_DATE)
+            .endDate(UPDATED_END_DATE)
+            .isActive(UPDATED_IS_ACTIVE)
+            .chancePercent(UPDATED_CHANCE_PERCENT)
             .notes(UPDATED_NOTES);
         ProjectDTO projectDTO = projectMapper.toDto(updatedProject);
 
@@ -312,9 +321,10 @@ class ProjectResourceIT {
         Project testProject = projectList.get(projectList.size() - 1);
         assertThat(testProject.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testProject.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
-        assertThat(testProject.getStart()).isEqualTo(UPDATED_START);
-        assertThat(testProject.getEnd()).isEqualTo(UPDATED_END);
-        assertThat(testProject.getActive()).isEqualTo(UPDATED_ACTIVE);
+        assertThat(testProject.getStartDate()).isEqualTo(UPDATED_START_DATE);
+        assertThat(testProject.getEndDate()).isEqualTo(UPDATED_END_DATE);
+        assertThat(testProject.getIsActive()).isEqualTo(UPDATED_IS_ACTIVE);
+        assertThat(testProject.getChancePercent()).isEqualTo(UPDATED_CHANCE_PERCENT);
         assertThat(testProject.getNotes()).isEqualTo(UPDATED_NOTES);
     }
 
@@ -395,7 +405,7 @@ class ProjectResourceIT {
         Project partialUpdatedProject = new Project();
         partialUpdatedProject.setId(project.getId());
 
-        partialUpdatedProject.title(UPDATED_TITLE).end(UPDATED_END).active(UPDATED_ACTIVE);
+        partialUpdatedProject.title(UPDATED_TITLE).endDate(UPDATED_END_DATE).isActive(UPDATED_IS_ACTIVE).notes(UPDATED_NOTES);
 
         restProjectMockMvc
             .perform(
@@ -411,10 +421,11 @@ class ProjectResourceIT {
         Project testProject = projectList.get(projectList.size() - 1);
         assertThat(testProject.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testProject.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
-        assertThat(testProject.getStart()).isEqualTo(DEFAULT_START);
-        assertThat(testProject.getEnd()).isEqualTo(UPDATED_END);
-        assertThat(testProject.getActive()).isEqualTo(UPDATED_ACTIVE);
-        assertThat(testProject.getNotes()).isEqualTo(DEFAULT_NOTES);
+        assertThat(testProject.getStartDate()).isEqualTo(DEFAULT_START_DATE);
+        assertThat(testProject.getEndDate()).isEqualTo(UPDATED_END_DATE);
+        assertThat(testProject.getIsActive()).isEqualTo(UPDATED_IS_ACTIVE);
+        assertThat(testProject.getChancePercent()).isEqualTo(DEFAULT_CHANCE_PERCENT);
+        assertThat(testProject.getNotes()).isEqualTo(UPDATED_NOTES);
     }
 
     @Test
@@ -432,9 +443,10 @@ class ProjectResourceIT {
         partialUpdatedProject
             .title(UPDATED_TITLE)
             .description(UPDATED_DESCRIPTION)
-            .start(UPDATED_START)
-            .end(UPDATED_END)
-            .active(UPDATED_ACTIVE)
+            .startDate(UPDATED_START_DATE)
+            .endDate(UPDATED_END_DATE)
+            .isActive(UPDATED_IS_ACTIVE)
+            .chancePercent(UPDATED_CHANCE_PERCENT)
             .notes(UPDATED_NOTES);
 
         restProjectMockMvc
@@ -451,9 +463,10 @@ class ProjectResourceIT {
         Project testProject = projectList.get(projectList.size() - 1);
         assertThat(testProject.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testProject.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
-        assertThat(testProject.getStart()).isEqualTo(UPDATED_START);
-        assertThat(testProject.getEnd()).isEqualTo(UPDATED_END);
-        assertThat(testProject.getActive()).isEqualTo(UPDATED_ACTIVE);
+        assertThat(testProject.getStartDate()).isEqualTo(UPDATED_START_DATE);
+        assertThat(testProject.getEndDate()).isEqualTo(UPDATED_END_DATE);
+        assertThat(testProject.getIsActive()).isEqualTo(UPDATED_IS_ACTIVE);
+        assertThat(testProject.getChancePercent()).isEqualTo(UPDATED_CHANCE_PERCENT);
         assertThat(testProject.getNotes()).isEqualTo(UPDATED_NOTES);
     }
 

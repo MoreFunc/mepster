@@ -8,6 +8,7 @@ import ProjectService from './project/project.service';
 import ProjectPositionService from './project-position/project-position.service';
 import SkillService from './skill/skill.service';
 import MonthlyProjectPositionAssignmentService from './monthly-project-position-assignment/monthly-project-position-assignment.service';
+import MonthlyAvailabilityService from './monthly-availability/monthly-availability.service';
 // jhipster-needle-add-entity-service-to-entities-component-import - JHipster will import entities services here
 
 @Component
@@ -21,5 +22,6 @@ export default class Entities extends Vue {
   @Provide('skillService') private skillService = () => new SkillService();
   @Provide('monthlyProjectPositionAssignmentService') private monthlyProjectPositionAssignmentService = () =>
     new MonthlyProjectPositionAssignmentService();
+  @Provide('monthlyAvailabilityService') private monthlyAvailabilityService = () => new MonthlyAvailabilityService();
   // jhipster-needle-add-entity-service-to-entities-component - JHipster will import entities services here
 }

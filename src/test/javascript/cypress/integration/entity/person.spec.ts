@@ -16,7 +16,7 @@ describe('Person e2e test', () => {
   const personPageUrlPattern = new RegExp('/person(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const personSample = { firstname: 'Designer blue', lastname: 'Spain' };
+  const personSample = { firstname: 'Directives Bahrain Strategist', lastname: 'Soft copy Surinam' };
 
   let person: any;
 
@@ -151,6 +151,10 @@ describe('Person e2e test', () => {
       cy.get(`[data-cy="firstname"]`).type('B2C').should('have.value', 'B2C');
 
       cy.get(`[data-cy="lastname"]`).type('SMTP Chief Metal').should('have.value', 'SMTP Chief Metal');
+
+      cy.get(`[data-cy="phoneNumber"]`).type('-79').should('have.value', '-79');
+
+      cy.get(`[data-cy="email"]`).type('fO@H0').should('have.value', 'fO@H0');
 
       cy.get(`[data-cy="notes"]`)
         .type('../fake-data/blob/hipster.txt')

@@ -20,7 +20,7 @@
       "id": "ID",
       "yearmonth": "Yearmonth",
       "percent": "Percent",
-      "active": "Active",
+      "isActive": "Is Active",
       "projectPosition": "Project Position",
       "person": "Person"
     }

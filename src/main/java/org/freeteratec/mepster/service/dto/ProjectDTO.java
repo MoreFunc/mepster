@@ -20,12 +20,16 @@ public class ProjectDTO implements Serializable {
     @Lob
     private String description;
 
-    private LocalDate start;
+    private LocalDate startDate;
 
-    private LocalDate end;
+    private LocalDate endDate;
 
     @NotNull
-    private Boolean active;
+    private Boolean isActive;
+
+    @Min(value = 0)
+    @Max(value = 100)
+    private Integer chancePercent;
 
     @Lob
     private String notes;
@@ -56,28 +60,36 @@ public class ProjectDTO implements Serializable {
         this.description = description;
     }
 
-    public LocalDate getStart() {
-        return start;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setStart(LocalDate start) {
-        this.start = start;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
-    public LocalDate getEnd() {
-        return end;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
-    public void setEnd(LocalDate end) {
-        this.end = end;
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
-    public Boolean getActive() {
-        return active;
+    public Boolean getIsActive() {
+        return isActive;
     }
 
-    public void setActive(Boolean active) {
-        this.active = active;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public Integer getChancePercent() {
+        return chancePercent;
+    }
+
+    public void setChancePercent(Integer chancePercent) {
+        this.chancePercent = chancePercent;
     }
 
     public String getNotes() {
@@ -124,9 +136,10 @@ public class ProjectDTO implements Serializable {
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
             ", description='" + getDescription() + "'" +
-            ", start='" + getStart() + "'" +
-            ", end='" + getEnd() + "'" +
-            ", active='" + getActive() + "'" +
+            ", startDate='" + getStartDate() + "'" +
+            ", endDate='" + getEndDate() + "'" +
+            ", isActive='" + getIsActive() + "'" +
+            ", chancePercent=" + getChancePercent() +
             ", notes='" + getNotes() + "'" +
             ", organization=" + getOrganization() +
             "}";

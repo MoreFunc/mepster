@@ -28,6 +28,10 @@
       <font-awesome-icon icon="asterisk" />
       <span v-text="$t('global.menu.entities.monthlyProjectPositionAssignment')">Monthly Project Position Assignment</span>
     </b-dropdown-item>
+    <b-dropdown-item to="/monthly-availability">
+      <font-awesome-icon icon="asterisk" />
+      <span v-text="$t('global.menu.entities.monthlyAvailability')">Monthly Availability</span>
+    </b-dropdown-item>
     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
   </div>
 </template>

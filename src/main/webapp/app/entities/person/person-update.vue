@@ -79,6 +79,62 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="form-control-label" v-text="$t('mepsterApp.person.phoneNumber')" for="person-phoneNumber">Phone Number</label>
+            <input
+              type="text"
+              class="form-control"
+              name="phoneNumber"
+              id="person-phoneNumber"
+              data-cy="phoneNumber"
+              :class="{ valid: !$v.person.phoneNumber.$invalid, invalid: $v.person.phoneNumber.$invalid }"
+              v-model="$v.person.phoneNumber.$model"
+            />
+            <div v-if="$v.person.phoneNumber.$anyDirty && $v.person.phoneNumber.$invalid">
+              <small
+                class="form-text text-danger"
+                v-if="!$v.person.phoneNumber.maxLength"
+                v-text="$t('entity.validation.maxlength', { max: 30 })"
+              >
+                This field cannot be longer than 30 characters.
+              </small>
+              <small
+                class="form-text text-danger"
+                v-if="!$v.person.phoneNumber.pattern"
+                v-text="$t('entity.validation.pattern', { pattern: 'Phone Number' })"
+              >
+                This field should follow pattern for "Phone Number".
+              </small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" v-text="$t('mepsterApp.person.email')" for="person-email">Email</label>
+            <input
+              type="text"
+              class="form-control"
+              name="email"
+              id="person-email"
+              data-cy="email"
+              :class="{ valid: !$v.person.email.$invalid, invalid: $v.person.email.$invalid }"
+              v-model="$v.person.email.$model"
+            />
+            <div v-if="$v.person.email.$anyDirty && $v.person.email.$invalid">
+              <small
+                class="form-text text-danger"
+                v-if="!$v.person.email.maxLength"
+                v-text="$t('entity.validation.maxlength', { max: 30 })"
+              >
+                This field cannot be longer than 30 characters.
+              </small>
+              <small
+                class="form-text text-danger"
+                v-if="!$v.person.email.pattern"
+                v-text="$t('entity.validation.pattern', { pattern: 'Email' })"
+              >
+                This field should follow pattern for "Email".
+              </small>
+            </div>
+          </div>
+          <div class="form-group">
             <label class="form-control-label" v-text="$t('mepsterApp.person.notes')" for="person-notes">Notes</label>
             <textarea
               class="form-control"

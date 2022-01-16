@@ -20,9 +20,10 @@
       "id": "ID",
       "title": "Title",
       "description": "Description",
-      "start": "Start",
-      "end": "End",
-      "active": "Active",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "isActive": "Is Active",
+      "chancePercent": "Chance Percent",
       "notes": "Notes",
       "projectPositions": "Project Positions",
       "organization": "Organization"

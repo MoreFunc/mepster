@@ -19,22 +19,28 @@
             <span>{{ project.description }}</span>
           </dd>
           <dt>
-            <span v-text="$t('mepsterApp.project.start')">Start</span>
+            <span v-text="$t('mepsterApp.project.startDate')">Start Date</span>
           </dt>
           <dd>
-            <span>{{ project.start }}</span>
+            <span>{{ project.startDate }}</span>
           </dd>
           <dt>
-            <span v-text="$t('mepsterApp.project.end')">End</span>
+            <span v-text="$t('mepsterApp.project.endDate')">End Date</span>
           </dt>
           <dd>
-            <span>{{ project.end }}</span>
+            <span>{{ project.endDate }}</span>
           </dd>
           <dt>
-            <span v-text="$t('mepsterApp.project.active')">Active</span>
+            <span v-text="$t('mepsterApp.project.isActive')">Is Active</span>
           </dt>
           <dd>
-            <span>{{ project.active }}</span>
+            <span>{{ project.isActive }}</span>
+          </dd>
+          <dt>
+            <span v-text="$t('mepsterApp.project.chancePercent')">Chance Percent</span>
+          </dt>
+          <dd>
+            <span>{{ project.chancePercent }}</span>
           </dd>
           <dt>
             <span v-text="$t('mepsterApp.project.notes')">Notes</span>

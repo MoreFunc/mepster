@@ -15,6 +15,8 @@ public class RoleDTO implements Serializable {
     @Size(min = 2, max = 40)
     private String title;
 
+    private PersonDTO person;
+
     public Long getId() {
         return id;
     }
@@ -29,6 +31,14 @@ public class RoleDTO implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public PersonDTO getPerson() {
+        return person;
+    }
+
+    public void setPerson(PersonDTO person) {
+        this.person = person;
     }
 
     @Override
@@ -58,6 +68,7 @@ public class RoleDTO implements Serializable {
         return "RoleDTO{" +
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
+            ", person=" + getPerson() +
             "}";
     }
 }

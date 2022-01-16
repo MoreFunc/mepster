@@ -14,6 +14,7 @@
         "projectPosition": "Project Position",
         "skill": "Skill",
         "monthlyProjectPositionAssignment": "Monthly Project Position Assignment",
+        "monthlyAvailability": "Monthly Availability",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

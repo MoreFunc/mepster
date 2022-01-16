@@ -32,10 +32,13 @@
             <column name="country" type="varchar(20)">
                 <constraints nullable="true" />
             </column>
-            <column name="phone" type="varchar(20)">
+            <column name="phone_number" type="varchar(30)">
                 <constraints nullable="true" />
             </column>
             <column name="email" type="varchar(30)">
+                <constraints nullable="true" />
+            </column>
+            <column name="notes" type="${clobType}">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
@@ -65,8 +68,9 @@
             <column name="city" type="string"/>
             <column name="zipcode" type="string"/>
             <column name="country" type="string"/>
-            <column name="phone" type="string"/>
+            <column name="phone_number" type="string"/>
             <column name="email" type="string"/>
+            <column name="notes" type="clob"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

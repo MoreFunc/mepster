@@ -22,6 +22,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 
 /**
  * Integration tests for the {@link OrganizationResource} REST controller.
@@ -49,11 +50,14 @@ class OrganizationResourceIT {
     private static final String DEFAULT_COUNTRY = "AAAAAAAAAA";
     private static final String UPDATED_COUNTRY = "BBBBBBBBBB";
 
-    private static final String DEFAULT_PHONE = "275";
-    private static final String UPDATED_PHONE = "";
+    private static final String DEFAULT_PHONE_NUMBER = "275";
+    private static final String UPDATED_PHONE_NUMBER = "";
 
     private static final String DEFAULT_EMAIL = "?u*@d0e4";
     private static final String UPDATED_EMAIL = "H6W{@hR.KrnWWi.l0a";
+
+    private static final String DEFAULT_NOTES = "AAAAAAAAAA";
+    private static final String UPDATED_NOTES = "BBBBBBBBBB";
 
     private static final String ENTITY_API_URL = "/api/organizations";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -89,8 +93,9 @@ class OrganizationResourceIT {
             .city(DEFAULT_CITY)
             .zipcode(DEFAULT_ZIPCODE)
             .country(DEFAULT_COUNTRY)
-            .phone(DEFAULT_PHONE)
-            .email(DEFAULT_EMAIL);
+            .phoneNumber(DEFAULT_PHONE_NUMBER)
+            .email(DEFAULT_EMAIL)
+            .notes(DEFAULT_NOTES);
         return organization;
     }
 
@@ -108,8 +113,9 @@ class OrganizationResourceIT {
             .city(UPDATED_CITY)
             .zipcode(UPDATED_ZIPCODE)
             .country(UPDATED_COUNTRY)
-            .phone(UPDATED_PHONE)
-            .email(UPDATED_EMAIL);
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .email(UPDATED_EMAIL)
+            .notes(UPDATED_NOTES);
         return organization;
     }
 
@@ -140,8 +146,9 @@ class OrganizationResourceIT {
         assertThat(testOrganization.getCity()).isEqualTo(DEFAULT_CITY);
         assertThat(testOrganization.getZipcode()).isEqualTo(DEFAULT_ZIPCODE);
         assertThat(testOrganization.getCountry()).isEqualTo(DEFAULT_COUNTRY);
-        assertThat(testOrganization.getPhone()).isEqualTo(DEFAULT_PHONE);
+        assertThat(testOrganization.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
         assertThat(testOrganization.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testOrganization.getNotes()).isEqualTo(DEFAULT_NOTES);
     }
 
     @Test
@@ -203,8 +210,9 @@ class OrganizationResourceIT {
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY)))
             .andExpect(jsonPath("$.[*].zipcode").value(hasItem(DEFAULT_ZIPCODE)))
             .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY)))
-            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE)))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)));
+            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
+            .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES.toString())));
     }
 
     @Test
@@ -225,8 +233,9 @@ class OrganizationResourceIT {
             .andExpect(jsonPath("$.city").value(DEFAULT_CITY))
             .andExpect(jsonPath("$.zipcode").value(DEFAULT_ZIPCODE))
             .andExpect(jsonPath("$.country").value(DEFAULT_COUNTRY))
-            .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE))
-            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL));
+            .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
+            .andExpect(jsonPath("$.notes").value(DEFAULT_NOTES.toString()));
     }
 
     @Test
@@ -255,8 +264,9 @@ class OrganizationResourceIT {
             .city(UPDATED_CITY)
             .zipcode(UPDATED_ZIPCODE)
             .country(UPDATED_COUNTRY)
-            .phone(UPDATED_PHONE)
-            .email(UPDATED_EMAIL);
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .email(UPDATED_EMAIL)
+            .notes(UPDATED_NOTES);
         OrganizationDTO organizationDTO = organizationMapper.toDto(updatedOrganization);
 
         restOrganizationMockMvc
@@ -277,8 +287,9 @@ class OrganizationResourceIT {
         assertThat(testOrganization.getCity()).isEqualTo(UPDATED_CITY);
         assertThat(testOrganization.getZipcode()).isEqualTo(UPDATED_ZIPCODE);
         assertThat(testOrganization.getCountry()).isEqualTo(UPDATED_COUNTRY);
-        assertThat(testOrganization.getPhone()).isEqualTo(UPDATED_PHONE);
+        assertThat(testOrganization.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testOrganization.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testOrganization.getNotes()).isEqualTo(UPDATED_NOTES);
     }
 
     @Test
@@ -360,7 +371,7 @@ class OrganizationResourceIT {
         Organization partialUpdatedOrganization = new Organization();
         partialUpdatedOrganization.setId(organization.getId());
 
-        partialUpdatedOrganization.street(UPDATED_STREET).number(UPDATED_NUMBER).phone(UPDATED_PHONE);
+        partialUpdatedOrganization.street(UPDATED_STREET).number(UPDATED_NUMBER).phoneNumber(UPDATED_PHONE_NUMBER).notes(UPDATED_NOTES);
 
         restOrganizationMockMvc
             .perform(
@@ -380,8 +391,9 @@ class OrganizationResourceIT {
         assertThat(testOrganization.getCity()).isEqualTo(DEFAULT_CITY);
         assertThat(testOrganization.getZipcode()).isEqualTo(DEFAULT_ZIPCODE);
         assertThat(testOrganization.getCountry()).isEqualTo(DEFAULT_COUNTRY);
-        assertThat(testOrganization.getPhone()).isEqualTo(UPDATED_PHONE);
+        assertThat(testOrganization.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testOrganization.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testOrganization.getNotes()).isEqualTo(UPDATED_NOTES);
     }
 
     @Test
@@ -403,8 +415,9 @@ class OrganizationResourceIT {
             .city(UPDATED_CITY)
             .zipcode(UPDATED_ZIPCODE)
             .country(UPDATED_COUNTRY)
-            .phone(UPDATED_PHONE)
-            .email(UPDATED_EMAIL);
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .email(UPDATED_EMAIL)
+            .notes(UPDATED_NOTES);
 
         restOrganizationMockMvc
             .perform(
@@ -424,8 +437,9 @@ class OrganizationResourceIT {
         assertThat(testOrganization.getCity()).isEqualTo(UPDATED_CITY);
         assertThat(testOrganization.getZipcode()).isEqualTo(UPDATED_ZIPCODE);
         assertThat(testOrganization.getCountry()).isEqualTo(UPDATED_COUNTRY);
-        assertThat(testOrganization.getPhone()).isEqualTo(UPDATED_PHONE);
+        assertThat(testOrganization.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testOrganization.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testOrganization.getNotes()).isEqualTo(UPDATED_NOTES);
     }
 
     @Test

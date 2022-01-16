@@ -29,7 +29,18 @@ describe('Service Tests', () => {
 
     beforeEach(() => {
       service = new OrganizationService();
-      elemDefault = new Organization(123, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Organization(
+        123,
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA'
+      );
     });
 
     describe('Service methods', () => {
@@ -87,8 +98,9 @@ describe('Service Tests', () => {
             city: 'BBBBBB',
             zipcode: 'BBBBBB',
             country: 'BBBBBB',
-            phone: 'BBBBBB',
+            phoneNumber: 'BBBBBB',
             email: 'BBBBBB',
+            notes: 'BBBBBB',
           },
           elemDefault
         );
@@ -120,7 +132,7 @@ describe('Service Tests', () => {
             city: 'BBBBBB',
             zipcode: 'BBBBBB',
             country: 'BBBBBB',
-            phone: 'BBBBBB',
+            phoneNumber: 'BBBBBB',
             email: 'BBBBBB',
           },
           new Organization()
@@ -155,8 +167,9 @@ describe('Service Tests', () => {
             city: 'BBBBBB',
             zipcode: 'BBBBBB',
             country: 'BBBBBB',
-            phone: 'BBBBBB',
+            phoneNumber: 'BBBBBB',
             email: 'BBBBBB',
+            notes: 'BBBBBB',
           },
           elemDefault
         );

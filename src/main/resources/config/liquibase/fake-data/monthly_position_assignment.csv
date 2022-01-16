@@ -1,4 +1,4 @@
-id;yearmonth;percent;active;project_position_id;person_id
+id;yearmonth;percent;is_active;project_position_id;person_id
 1;2022-01-14;20;false;1;1
 2;2022-01-13;64;false;2;2
 3;2022-01-13;30;false;3;3

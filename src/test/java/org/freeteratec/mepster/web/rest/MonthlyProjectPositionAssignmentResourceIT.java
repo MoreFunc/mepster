@@ -41,8 +41,8 @@ class MonthlyProjectPositionAssignmentResourceIT {
     private static final Integer DEFAULT_PERCENT = 0;
     private static final Integer UPDATED_PERCENT = 1;
 
-    private static final Boolean DEFAULT_ACTIVE = false;
-    private static final Boolean UPDATED_ACTIVE = true;
+    private static final Boolean DEFAULT_IS_ACTIVE = false;
+    private static final Boolean UPDATED_IS_ACTIVE = true;
 
     private static final String ENTITY_API_URL = "/api/monthly-project-position-assignments";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -74,7 +74,7 @@ class MonthlyProjectPositionAssignmentResourceIT {
         MonthlyProjectPositionAssignment monthlyProjectPositionAssignment = new MonthlyProjectPositionAssignment()
             .yearmonth(DEFAULT_YEARMONTH)
             .percent(DEFAULT_PERCENT)
-            .active(DEFAULT_ACTIVE);
+            .isActive(DEFAULT_IS_ACTIVE);
         // Add required entity
         ProjectPosition projectPosition;
         if (TestUtil.findAll(em, ProjectPosition.class).isEmpty()) {
@@ -108,7 +108,7 @@ class MonthlyProjectPositionAssignmentResourceIT {
         MonthlyProjectPositionAssignment monthlyProjectPositionAssignment = new MonthlyProjectPositionAssignment()
             .yearmonth(UPDATED_YEARMONTH)
             .percent(UPDATED_PERCENT)
-            .active(UPDATED_ACTIVE);
+            .isActive(UPDATED_IS_ACTIVE);
         // Add required entity
         ProjectPosition projectPosition;
         if (TestUtil.findAll(em, ProjectPosition.class).isEmpty()) {
@@ -161,7 +161,7 @@ class MonthlyProjectPositionAssignmentResourceIT {
         );
         assertThat(testMonthlyProjectPositionAssignment.getYearmonth()).isEqualTo(DEFAULT_YEARMONTH);
         assertThat(testMonthlyProjectPositionAssignment.getPercent()).isEqualTo(DEFAULT_PERCENT);
-        assertThat(testMonthlyProjectPositionAssignment.getActive()).isEqualTo(DEFAULT_ACTIVE);
+        assertThat(testMonthlyProjectPositionAssignment.getIsActive()).isEqualTo(DEFAULT_IS_ACTIVE);
     }
 
     @Test
@@ -191,10 +191,10 @@ class MonthlyProjectPositionAssignmentResourceIT {
 
     @Test
     @Transactional
-    void checkActiveIsRequired() throws Exception {
+    void checkIsActiveIsRequired() throws Exception {
         int databaseSizeBeforeTest = monthlyProjectPositionAssignmentRepository.findAll().size();
         // set the field null
-        monthlyProjectPositionAssignment.setActive(null);
+        monthlyProjectPositionAssignment.setIsActive(null);
 
         // Create the MonthlyProjectPositionAssignment, which fails.
         MonthlyProjectPositionAssignmentDTO monthlyProjectPositionAssignmentDTO = monthlyProjectPositionAssignmentMapper.toDto(
@@ -227,7 +227,7 @@ class MonthlyProjectPositionAssignmentResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(monthlyProjectPositionAssignment.getId().intValue())))
             .andExpect(jsonPath("$.[*].yearmonth").value(hasItem(DEFAULT_YEARMONTH.toString())))
             .andExpect(jsonPath("$.[*].percent").value(hasItem(DEFAULT_PERCENT)))
-            .andExpect(jsonPath("$.[*].active").value(hasItem(DEFAULT_ACTIVE.booleanValue())));
+            .andExpect(jsonPath("$.[*].isActive").value(hasItem(DEFAULT_IS_ACTIVE.booleanValue())));
     }
 
     @Test
@@ -244,7 +244,7 @@ class MonthlyProjectPositionAssignmentResourceIT {
             .andExpect(jsonPath("$.id").value(monthlyProjectPositionAssignment.getId().intValue()))
             .andExpect(jsonPath("$.yearmonth").value(DEFAULT_YEARMONTH.toString()))
             .andExpect(jsonPath("$.percent").value(DEFAULT_PERCENT))
-            .andExpect(jsonPath("$.active").value(DEFAULT_ACTIVE.booleanValue()));
+            .andExpect(jsonPath("$.isActive").value(DEFAULT_IS_ACTIVE.booleanValue()));
     }
 
     @Test
@@ -268,7 +268,7 @@ class MonthlyProjectPositionAssignmentResourceIT {
             .get();
         // Disconnect from session so that the updates on updatedMonthlyProjectPositionAssignment are not directly saved in db
         em.detach(updatedMonthlyProjectPositionAssignment);
-        updatedMonthlyProjectPositionAssignment.yearmonth(UPDATED_YEARMONTH).percent(UPDATED_PERCENT).active(UPDATED_ACTIVE);
+        updatedMonthlyProjectPositionAssignment.yearmonth(UPDATED_YEARMONTH).percent(UPDATED_PERCENT).isActive(UPDATED_IS_ACTIVE);
         MonthlyProjectPositionAssignmentDTO monthlyProjectPositionAssignmentDTO = monthlyProjectPositionAssignmentMapper.toDto(
             updatedMonthlyProjectPositionAssignment
         );
@@ -289,7 +289,7 @@ class MonthlyProjectPositionAssignmentResourceIT {
         );
         assertThat(testMonthlyProjectPositionAssignment.getYearmonth()).isEqualTo(UPDATED_YEARMONTH);
         assertThat(testMonthlyProjectPositionAssignment.getPercent()).isEqualTo(UPDATED_PERCENT);
-        assertThat(testMonthlyProjectPositionAssignment.getActive()).isEqualTo(UPDATED_ACTIVE);
+        assertThat(testMonthlyProjectPositionAssignment.getIsActive()).isEqualTo(UPDATED_IS_ACTIVE);
     }
 
     @Test
@@ -397,7 +397,7 @@ class MonthlyProjectPositionAssignmentResourceIT {
         );
         assertThat(testMonthlyProjectPositionAssignment.getYearmonth()).isEqualTo(UPDATED_YEARMONTH);
         assertThat(testMonthlyProjectPositionAssignment.getPercent()).isEqualTo(UPDATED_PERCENT);
-        assertThat(testMonthlyProjectPositionAssignment.getActive()).isEqualTo(DEFAULT_ACTIVE);
+        assertThat(testMonthlyProjectPositionAssignment.getIsActive()).isEqualTo(DEFAULT_IS_ACTIVE);
     }
 
     @Test
@@ -412,7 +412,7 @@ class MonthlyProjectPositionAssignmentResourceIT {
         MonthlyProjectPositionAssignment partialUpdatedMonthlyProjectPositionAssignment = new MonthlyProjectPositionAssignment();
         partialUpdatedMonthlyProjectPositionAssignment.setId(monthlyProjectPositionAssignment.getId());
 
-        partialUpdatedMonthlyProjectPositionAssignment.yearmonth(UPDATED_YEARMONTH).percent(UPDATED_PERCENT).active(UPDATED_ACTIVE);
+        partialUpdatedMonthlyProjectPositionAssignment.yearmonth(UPDATED_YEARMONTH).percent(UPDATED_PERCENT).isActive(UPDATED_IS_ACTIVE);
 
         restMonthlyProjectPositionAssignmentMockMvc
             .perform(
@@ -430,7 +430,7 @@ class MonthlyProjectPositionAssignmentResourceIT {
         );
         assertThat(testMonthlyProjectPositionAssignment.getYearmonth()).isEqualTo(UPDATED_YEARMONTH);
         assertThat(testMonthlyProjectPositionAssignment.getPercent()).isEqualTo(UPDATED_PERCENT);
-        assertThat(testMonthlyProjectPositionAssignment.getActive()).isEqualTo(UPDATED_ACTIVE);
+        assertThat(testMonthlyProjectPositionAssignment.getIsActive()).isEqualTo(UPDATED_IS_ACTIVE);
     }
 
     @Test

@@ -2,6 +2,7 @@ package org.freeteratec.mepster.service.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Lob;
 import javax.validation.constraints.*;
 
 /**
@@ -32,13 +33,16 @@ public class OrganizationDTO implements Serializable {
     @Pattern(regexp = "^[A-Za-z-]*$")
     private String country;
 
-    @Size(max = 20)
+    @Size(max = 30)
     @Pattern(regexp = "^[0-9 +-]*$")
-    private String phone;
+    private String phoneNumber;
 
     @Size(max = 30)
     @Pattern(regexp = "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")
     private String email;
+
+    @Lob
+    private String notes;
 
     public Long getId() {
         return id;
@@ -96,12 +100,12 @@ public class OrganizationDTO implements Serializable {
         this.country = country;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
@@ -110,6 +114,14 @@ public class OrganizationDTO implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     @Override
@@ -144,8 +156,9 @@ public class OrganizationDTO implements Serializable {
             ", city='" + getCity() + "'" +
             ", zipcode='" + getZipcode() + "'" +
             ", country='" + getCountry() + "'" +
-            ", phone='" + getPhone() + "'" +
+            ", phoneNumber='" + getPhoneNumber() + "'" +
             ", email='" + getEmail() + "'" +
+            ", notes='" + getNotes() + "'" +
             "}";
     }
 }

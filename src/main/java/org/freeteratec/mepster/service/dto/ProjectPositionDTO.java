@@ -20,9 +20,9 @@ public class ProjectPositionDTO implements Serializable {
     @Lob
     private String description;
 
-    private LocalDate start;
+    private LocalDate startDate;
 
-    private LocalDate end;
+    private LocalDate endDate;
 
     @Min(value = 0)
     @Max(value = 100)
@@ -56,20 +56,20 @@ public class ProjectPositionDTO implements Serializable {
         this.description = description;
     }
 
-    public LocalDate getStart() {
-        return start;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setStart(LocalDate start) {
-        this.start = start;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
-    public LocalDate getEnd() {
-        return end;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
-    public void setEnd(LocalDate end) {
-        this.end = end;
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public Integer getPercent() {
@@ -124,8 +124,8 @@ public class ProjectPositionDTO implements Serializable {
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
             ", description='" + getDescription() + "'" +
-            ", start='" + getStart() + "'" +
-            ", end='" + getEnd() + "'" +
+            ", startDate='" + getStartDate() + "'" +
+            ", endDate='" + getEndDate() + "'" +
             ", percent=" + getPercent() +
             ", role=" + getRole() +
             ", project=" + getProject() +

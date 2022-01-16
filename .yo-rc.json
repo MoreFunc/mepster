@@ -45,7 +45,16 @@
     "enableGradleEnterprise": false,
     "gradleEnterpriseHost": "",
     "applicationIndex": 0,
-    "entities": ["Organization", "Person", "Role", "Project", "ProjectPosition", "Skill", "MonthlyProjectPositionAssignment"],
-    "lastLiquibaseTimestamp": 1642172139000
+    "entities": [
+      "Organization",
+      "Person",
+      "Role",
+      "Project",
+      "ProjectPosition",
+      "Skill",
+      "MonthlyProjectPositionAssignment",
+      "MonthlyAvailability"
+    ],
+    "lastLiquibaseTimestamp": 1642351313000
   }
 }

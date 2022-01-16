@@ -11,9 +11,13 @@ import PersonService from '@/entities/person/person.service';
 
 import SkillService from '@/entities/skill/skill.service';
 
+import RoleService from '@/entities/role/role.service';
+
 import OrganizationService from '@/entities/organization/organization.service';
 
 import MonthlyProjectPositionAssignmentService from '@/entities/monthly-project-position-assignment/monthly-project-position-assignment.service';
+
+import MonthlyAvailabilityService from '@/entities/monthly-availability/monthly-availability.service';
 import AlertService from '@/shared/alert/alert.service';
 
 const localVue = createLocalVue();
@@ -53,6 +57,11 @@ describe('Component Tests', () => {
               retrieve: sinon.stub().resolves({}),
             } as any),
 
+          roleService: () =>
+            sinon.createStubInstance<RoleService>(RoleService, {
+              retrieve: sinon.stub().resolves({}),
+            } as any),
+
           organizationService: () =>
             sinon.createStubInstance<OrganizationService>(OrganizationService, {
               retrieve: sinon.stub().resolves({}),
@@ -60,6 +69,11 @@ describe('Component Tests', () => {
 
           monthlyProjectPositionAssignmentService: () =>
             sinon.createStubInstance<MonthlyProjectPositionAssignmentService>(MonthlyProjectPositionAssignmentService, {
+              retrieve: sinon.stub().resolves({}),
+            } as any),
+
+          monthlyAvailabilityService: () =>
+            sinon.createStubInstance<MonthlyAvailabilityService>(MonthlyAvailabilityService, {
               retrieve: sinon.stub().resolves({}),
             } as any),
         },

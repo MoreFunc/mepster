@@ -30,8 +30,8 @@ const validations: any = {
       maxLength: maxLength(20),
     },
     description: {},
-    start: {},
-    end: {},
+    startDate: {},
+    endDate: {},
     percent: {
       numeric,
       min: minValue(0),

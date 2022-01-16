@@ -13,7 +13,7 @@
       "fieldValidateRulesMax": "100"
     },
     {
-      "fieldName": "active",
+      "fieldName": "isActive",
       "fieldType": "Boolean",
       "fieldValidateRules": ["required"]
     }

@@ -20,14 +20,17 @@
             <column name="description" type="${clobType}">
                 <constraints nullable="true" />
             </column>
-            <column name="start" type="date">
+            <column name="start_date" type="date">
                 <constraints nullable="true" />
             </column>
-            <column name="jhi_end" type="date">
+            <column name="end_date" type="date">
                 <constraints nullable="true" />
             </column>
-            <column name="active" type="boolean">
+            <column name="is_active" type="boolean">
                 <constraints nullable="false" />
+            </column>
+            <column name="chance_percent" type="integer">
+                <constraints nullable="true" />
             </column>
             <column name="notes" type="${clobType}">
                 <constraints nullable="true" />
@@ -58,9 +61,10 @@
             <column name="id" type="numeric"/>
             <column name="title" type="string"/>
             <column name="description" type="clob"/>
-            <column name="start" type="date"/>
-            <column name="jhi_end" type="date"/>
-            <column name="active" type="boolean"/>
+            <column name="start_date" type="date"/>
+            <column name="end_date" type="date"/>
+            <column name="is_active" type="boolean"/>
+            <column name="chance_percent" type="numeric"/>
             <column name="notes" type="clob"/>
             <column name="organization_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->

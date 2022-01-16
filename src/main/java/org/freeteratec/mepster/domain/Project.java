@@ -37,15 +37,20 @@ public class Project implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "start")
-    private LocalDate start;
+    @Column(name = "start_date")
+    private LocalDate startDate;
 
-    @Column(name = "jhi_end")
-    private LocalDate end;
+    @Column(name = "end_date")
+    private LocalDate endDate;
 
     @NotNull
-    @Column(name = "active", nullable = false)
-    private Boolean active;
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive;
+
+    @Min(value = 0)
+    @Max(value = 100)
+    @Column(name = "chance_percent")
+    private Integer chancePercent;
 
     @Lob
     @Type(type = "org.hibernate.type.TextType")
@@ -103,43 +108,56 @@ public class Project implements Serializable {
         this.description = description;
     }
 
-    public LocalDate getStart() {
-        return this.start;
+    public LocalDate getStartDate() {
+        return this.startDate;
     }
 
-    public Project start(LocalDate start) {
-        this.setStart(start);
+    public Project startDate(LocalDate startDate) {
+        this.setStartDate(startDate);
         return this;
     }
 
-    public void setStart(LocalDate start) {
-        this.start = start;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
-    public LocalDate getEnd() {
-        return this.end;
+    public LocalDate getEndDate() {
+        return this.endDate;
     }
 
-    public Project end(LocalDate end) {
-        this.setEnd(end);
+    public Project endDate(LocalDate endDate) {
+        this.setEndDate(endDate);
         return this;
     }
 
-    public void setEnd(LocalDate end) {
-        this.end = end;
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
-    public Boolean getActive() {
-        return this.active;
+    public Boolean getIsActive() {
+        return this.isActive;
     }
 
-    public Project active(Boolean active) {
-        this.setActive(active);
+    public Project isActive(Boolean isActive) {
+        this.setIsActive(isActive);
         return this;
     }
 
-    public void setActive(Boolean active) {
-        this.active = active;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public Integer getChancePercent() {
+        return this.chancePercent;
+    }
+
+    public Project chancePercent(Integer chancePercent) {
+        this.setChancePercent(chancePercent);
+        return this;
+    }
+
+    public void setChancePercent(Integer chancePercent) {
+        this.chancePercent = chancePercent;
     }
 
     public String getNotes() {
@@ -225,9 +243,10 @@ public class Project implements Serializable {
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
             ", description='" + getDescription() + "'" +
-            ", start='" + getStart() + "'" +
-            ", end='" + getEnd() + "'" +
-            ", active='" + getActive() + "'" +
+            ", startDate='" + getStartDate() + "'" +
+            ", endDate='" + getEndDate() + "'" +
+            ", isActive='" + getIsActive() + "'" +
+            ", chancePercent=" + getChancePercent() +
             ", notes='" + getNotes() + "'" +
             "}";
     }

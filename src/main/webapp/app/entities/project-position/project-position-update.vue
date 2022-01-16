@@ -60,13 +60,15 @@
             ></textarea>
           </div>
           <div class="form-group">
-            <label class="form-control-label" v-text="$t('mepsterApp.projectPosition.start')" for="project-position-start">Start</label>
+            <label class="form-control-label" v-text="$t('mepsterApp.projectPosition.startDate')" for="project-position-startDate"
+              >Start Date</label
+            >
             <b-input-group class="mb-3">
               <b-input-group-prepend>
                 <b-form-datepicker
-                  aria-controls="project-position-start"
-                  v-model="$v.projectPosition.start.$model"
-                  name="start"
+                  aria-controls="project-position-startDate"
+                  v-model="$v.projectPosition.startDate.$model"
+                  name="startDate"
                   class="form-control"
                   :locale="currentLanguage"
                   button-only
@@ -77,24 +79,26 @@
                 </b-form-datepicker>
               </b-input-group-prepend>
               <b-form-input
-                id="project-position-start"
-                data-cy="start"
+                id="project-position-startDate"
+                data-cy="startDate"
                 type="text"
                 class="form-control"
-                name="start"
-                :class="{ valid: !$v.projectPosition.start.$invalid, invalid: $v.projectPosition.start.$invalid }"
-                v-model="$v.projectPosition.start.$model"
+                name="startDate"
+                :class="{ valid: !$v.projectPosition.startDate.$invalid, invalid: $v.projectPosition.startDate.$invalid }"
+                v-model="$v.projectPosition.startDate.$model"
               />
             </b-input-group>
           </div>
           <div class="form-group">
-            <label class="form-control-label" v-text="$t('mepsterApp.projectPosition.end')" for="project-position-end">End</label>
+            <label class="form-control-label" v-text="$t('mepsterApp.projectPosition.endDate')" for="project-position-endDate"
+              >End Date</label
+            >
             <b-input-group class="mb-3">
               <b-input-group-prepend>
                 <b-form-datepicker
-                  aria-controls="project-position-end"
-                  v-model="$v.projectPosition.end.$model"
-                  name="end"
+                  aria-controls="project-position-endDate"
+                  v-model="$v.projectPosition.endDate.$model"
+                  name="endDate"
                   class="form-control"
                   :locale="currentLanguage"
                   button-only
@@ -105,13 +109,13 @@
                 </b-form-datepicker>
               </b-input-group-prepend>
               <b-form-input
-                id="project-position-end"
-                data-cy="end"
+                id="project-position-endDate"
+                data-cy="endDate"
                 type="text"
                 class="form-control"
-                name="end"
-                :class="{ valid: !$v.projectPosition.end.$invalid, invalid: $v.projectPosition.end.$invalid }"
-                v-model="$v.projectPosition.end.$model"
+                name="endDate"
+                :class="{ valid: !$v.projectPosition.endDate.$invalid, invalid: $v.projectPosition.endDate.$invalid }"
+                v-model="$v.projectPosition.endDate.$model"
               />
             </b-input-group>
           </div>

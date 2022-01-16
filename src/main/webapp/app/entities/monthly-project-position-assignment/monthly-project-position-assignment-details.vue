@@ -20,10 +20,10 @@
             <span>{{ monthlyProjectPositionAssignment.percent }}</span>
           </dd>
           <dt>
-            <span v-text="$t('mepsterApp.monthlyProjectPositionAssignment.active')">Active</span>
+            <span v-text="$t('mepsterApp.monthlyProjectPositionAssignment.isActive')">Is Active</span>
           </dt>
           <dd>
-            <span>{{ monthlyProjectPositionAssignment.active }}</span>
+            <span>{{ monthlyProjectPositionAssignment.isActive }}</span>
           </dd>
           <dt>
             <span v-text="$t('mepsterApp.monthlyProjectPositionAssignment.projectPosition')">Project Position</span>

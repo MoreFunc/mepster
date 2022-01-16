@@ -16,6 +16,20 @@
       "fieldValidateRulesMaxlength": "50"
     },
     {
+      "fieldName": "phoneNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "30",
+      "fieldValidateRulesPattern": "^[0-9 +-]*$"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "30",
+      "fieldValidateRulesPattern": "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
+    },
+    {
       "fieldName": "notes",
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "text"
@@ -30,6 +44,13 @@
       "otherEntityField": "title"
     },
     {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "role",
+      "otherEntityRelationshipName": "person",
+      "relationshipName": "roles",
+      "otherEntityField": "title"
+    },
+    {
       "relationshipType": "many-to-one",
       "otherEntityName": "organization",
       "otherEntityRelationshipName": "persons",
@@ -41,6 +62,13 @@
       "otherEntityName": "monthlyProjectPositionAssignment",
       "otherEntityRelationshipName": "person",
       "relationshipName": "monthlyAssignments",
+      "otherEntityField": "yearmonth"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "monthlyAvailability",
+      "otherEntityRelationshipName": "person",
+      "relationshipName": "monthlyAvailabilities",
       "otherEntityField": "yearmonth"
     }
   ],

@@ -53,7 +53,9 @@ public class CacheConfiguration {
             createCache(cm, org.freeteratec.mepster.domain.Organization.class.getName() + ".projects");
             createCache(cm, org.freeteratec.mepster.domain.Person.class.getName());
             createCache(cm, org.freeteratec.mepster.domain.Person.class.getName() + ".skills");
+            createCache(cm, org.freeteratec.mepster.domain.Person.class.getName() + ".roles");
             createCache(cm, org.freeteratec.mepster.domain.Person.class.getName() + ".monthlyAssignments");
+            createCache(cm, org.freeteratec.mepster.domain.Person.class.getName() + ".monthlyAvailabilities");
             createCache(cm, org.freeteratec.mepster.domain.Role.class.getName());
             createCache(cm, org.freeteratec.mepster.domain.Project.class.getName());
             createCache(cm, org.freeteratec.mepster.domain.Project.class.getName() + ".projectPositions");
@@ -62,6 +64,7 @@ public class CacheConfiguration {
             createCache(cm, org.freeteratec.mepster.domain.ProjectPosition.class.getName() + ".monthlyAssignments");
             createCache(cm, org.freeteratec.mepster.domain.Skill.class.getName());
             createCache(cm, org.freeteratec.mepster.domain.MonthlyProjectPositionAssignment.class.getName());
+            createCache(cm, org.freeteratec.mepster.domain.MonthlyAvailability.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

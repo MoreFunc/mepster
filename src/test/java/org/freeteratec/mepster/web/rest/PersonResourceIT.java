@@ -38,6 +38,12 @@ class PersonResourceIT {
     private static final String DEFAULT_LASTNAME = "AAAAAAAAAA";
     private static final String UPDATED_LASTNAME = "BBBBBBBBBB";
 
+    private static final String DEFAULT_PHONE_NUMBER = "";
+    private static final String UPDATED_PHONE_NUMBER = " ";
+
+    private static final String DEFAULT_EMAIL = "|a@XH.LKEB.H.R.Vf7A";
+    private static final String UPDATED_EMAIL = "Q@xLUx.ER57V9.iaD.F";
+
     private static final String DEFAULT_NOTES = "AAAAAAAAAA";
     private static final String UPDATED_NOTES = "BBBBBBBBBB";
 
@@ -68,7 +74,12 @@ class PersonResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Person createEntity(EntityManager em) {
-        Person person = new Person().firstname(DEFAULT_FIRSTNAME).lastname(DEFAULT_LASTNAME).notes(DEFAULT_NOTES);
+        Person person = new Person()
+            .firstname(DEFAULT_FIRSTNAME)
+            .lastname(DEFAULT_LASTNAME)
+            .phoneNumber(DEFAULT_PHONE_NUMBER)
+            .email(DEFAULT_EMAIL)
+            .notes(DEFAULT_NOTES);
         return person;
     }
 
@@ -79,7 +90,12 @@ class PersonResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Person createUpdatedEntity(EntityManager em) {
-        Person person = new Person().firstname(UPDATED_FIRSTNAME).lastname(UPDATED_LASTNAME).notes(UPDATED_NOTES);
+        Person person = new Person()
+            .firstname(UPDATED_FIRSTNAME)
+            .lastname(UPDATED_LASTNAME)
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .email(UPDATED_EMAIL)
+            .notes(UPDATED_NOTES);
         return person;
     }
 
@@ -104,6 +120,8 @@ class PersonResourceIT {
         Person testPerson = personList.get(personList.size() - 1);
         assertThat(testPerson.getFirstname()).isEqualTo(DEFAULT_FIRSTNAME);
         assertThat(testPerson.getLastname()).isEqualTo(DEFAULT_LASTNAME);
+        assertThat(testPerson.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
+        assertThat(testPerson.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testPerson.getNotes()).isEqualTo(DEFAULT_NOTES);
     }
 
@@ -176,6 +194,8 @@ class PersonResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(person.getId().intValue())))
             .andExpect(jsonPath("$.[*].firstname").value(hasItem(DEFAULT_FIRSTNAME)))
             .andExpect(jsonPath("$.[*].lastname").value(hasItem(DEFAULT_LASTNAME)))
+            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES.toString())));
     }
 
@@ -193,6 +213,8 @@ class PersonResourceIT {
             .andExpect(jsonPath("$.id").value(person.getId().intValue()))
             .andExpect(jsonPath("$.firstname").value(DEFAULT_FIRSTNAME))
             .andExpect(jsonPath("$.lastname").value(DEFAULT_LASTNAME))
+            .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
             .andExpect(jsonPath("$.notes").value(DEFAULT_NOTES.toString()));
     }
 
@@ -215,7 +237,12 @@ class PersonResourceIT {
         Person updatedPerson = personRepository.findById(person.getId()).get();
         // Disconnect from session so that the updates on updatedPerson are not directly saved in db
         em.detach(updatedPerson);
-        updatedPerson.firstname(UPDATED_FIRSTNAME).lastname(UPDATED_LASTNAME).notes(UPDATED_NOTES);
+        updatedPerson
+            .firstname(UPDATED_FIRSTNAME)
+            .lastname(UPDATED_LASTNAME)
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .email(UPDATED_EMAIL)
+            .notes(UPDATED_NOTES);
         PersonDTO personDTO = personMapper.toDto(updatedPerson);
 
         restPersonMockMvc
@@ -232,6 +259,8 @@ class PersonResourceIT {
         Person testPerson = personList.get(personList.size() - 1);
         assertThat(testPerson.getFirstname()).isEqualTo(UPDATED_FIRSTNAME);
         assertThat(testPerson.getLastname()).isEqualTo(UPDATED_LASTNAME);
+        assertThat(testPerson.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
+        assertThat(testPerson.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testPerson.getNotes()).isEqualTo(UPDATED_NOTES);
     }
 
@@ -312,7 +341,7 @@ class PersonResourceIT {
         Person partialUpdatedPerson = new Person();
         partialUpdatedPerson.setId(person.getId());
 
-        partialUpdatedPerson.notes(UPDATED_NOTES);
+        partialUpdatedPerson.email(UPDATED_EMAIL);
 
         restPersonMockMvc
             .perform(
@@ -328,7 +357,9 @@ class PersonResourceIT {
         Person testPerson = personList.get(personList.size() - 1);
         assertThat(testPerson.getFirstname()).isEqualTo(DEFAULT_FIRSTNAME);
         assertThat(testPerson.getLastname()).isEqualTo(DEFAULT_LASTNAME);
-        assertThat(testPerson.getNotes()).isEqualTo(UPDATED_NOTES);
+        assertThat(testPerson.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
+        assertThat(testPerson.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testPerson.getNotes()).isEqualTo(DEFAULT_NOTES);
     }
 
     @Test
@@ -343,7 +374,12 @@ class PersonResourceIT {
         Person partialUpdatedPerson = new Person();
         partialUpdatedPerson.setId(person.getId());
 
-        partialUpdatedPerson.firstname(UPDATED_FIRSTNAME).lastname(UPDATED_LASTNAME).notes(UPDATED_NOTES);
+        partialUpdatedPerson
+            .firstname(UPDATED_FIRSTNAME)
+            .lastname(UPDATED_LASTNAME)
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .email(UPDATED_EMAIL)
+            .notes(UPDATED_NOTES);
 
         restPersonMockMvc
             .perform(
@@ -359,6 +395,8 @@ class PersonResourceIT {
         Person testPerson = personList.get(personList.size() - 1);
         assertThat(testPerson.getFirstname()).isEqualTo(UPDATED_FIRSTNAME);
         assertThat(testPerson.getLastname()).isEqualTo(UPDATED_LASTNAME);
+        assertThat(testPerson.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
+        assertThat(testPerson.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testPerson.getNotes()).isEqualTo(UPDATED_NOTES);
     }
 

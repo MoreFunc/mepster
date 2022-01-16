@@ -34,6 +34,10 @@ const MonthlyProjectPositionAssignmentUpdate = () =>
 const MonthlyProjectPositionAssignmentDetails = () =>
   import('@/entities/monthly-project-position-assignment/monthly-project-position-assignment-details.vue');
 
+const MonthlyAvailability = () => import('@/entities/monthly-availability/monthly-availability.vue');
+const MonthlyAvailabilityUpdate = () => import('@/entities/monthly-availability/monthly-availability-update.vue');
+const MonthlyAvailabilityDetails = () => import('@/entities/monthly-availability/monthly-availability-details.vue');
+
 // jhipster-needle-add-entity-to-router-import - JHipster will import entities to the router here
 
 export default {
@@ -206,6 +210,30 @@ export default {
       path: 'monthly-project-position-assignment/:monthlyProjectPositionAssignmentId/view',
       name: 'MonthlyProjectPositionAssignmentView',
       component: MonthlyProjectPositionAssignmentDetails,
+      meta: { authorities: [Authority.USER] },
+    },
+    {
+      path: 'monthly-availability',
+      name: 'MonthlyAvailability',
+      component: MonthlyAvailability,
+      meta: { authorities: [Authority.USER] },
+    },
+    {
+      path: 'monthly-availability/new',
+      name: 'MonthlyAvailabilityCreate',
+      component: MonthlyAvailabilityUpdate,
+      meta: { authorities: [Authority.USER] },
+    },
+    {
+      path: 'monthly-availability/:monthlyAvailabilityId/edit',
+      name: 'MonthlyAvailabilityEdit',
+      component: MonthlyAvailabilityUpdate,
+      meta: { authorities: [Authority.USER] },
+    },
+    {
+      path: 'monthly-availability/:monthlyAvailabilityId/view',
+      name: 'MonthlyAvailabilityView',
+      component: MonthlyAvailabilityDetails,
       meta: { authorities: [Authority.USER] },
     },
     // jhipster-needle-add-entity-to-router - JHipster will add entities to the router here

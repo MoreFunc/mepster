@@ -16,7 +16,7 @@ describe('MonthlyProjectPositionAssignment e2e test', () => {
   const monthlyProjectPositionAssignmentPageUrlPattern = new RegExp('/monthly-project-position-assignment(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const monthlyProjectPositionAssignmentSample = { active: false };
+  const monthlyProjectPositionAssignmentSample = { isActive: false };
 
   let monthlyProjectPositionAssignment: any;
   //let projectPosition: any;
@@ -32,7 +32,7 @@ describe('MonthlyProjectPositionAssignment e2e test', () => {
     cy.authenticatedRequest({
       method: 'POST',
       url: '/api/project-positions',
-      body: {"title":"Versatile Ecuador sy","description":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ=","start":"2022-01-14","end":"2022-01-14","percent":65},
+      body: {"title":"Versatile Ecuador sy","description":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ=","startDate":"2022-01-14","endDate":"2022-01-14","percent":65},
     }).then(({ body }) => {
       projectPosition = body;
     });
@@ -40,7 +40,7 @@ describe('MonthlyProjectPositionAssignment e2e test', () => {
     cy.authenticatedRequest({
       method: 'POST',
       url: '/api/people',
-      body: {"firstname":"Wells","lastname":"Barbados Divide","notes":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ="},
+      body: {"firstname":"Wells","lastname":"Barbados Divide","phoneNumber":"9 6+","email":"%o@tXQh.iqpUQN.YPySIj","notes":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ="},
     }).then(({ body }) => {
       person = body;
     });
@@ -228,8 +228,8 @@ describe('MonthlyProjectPositionAssignment e2e test', () => {
 
       cy.get(`[data-cy="percent"]`).type('3').should('have.value', '3');
 
-      cy.get(`[data-cy="active"]`).should('not.be.checked');
-      cy.get(`[data-cy="active"]`).click().should('be.checked');
+      cy.get(`[data-cy="isActive"]`).should('not.be.checked');
+      cy.get(`[data-cy="isActive"]`).click().should('be.checked');
 
       cy.get(`[data-cy="projectPosition"]`).select(1);
       cy.get(`[data-cy="person"]`).select(1);

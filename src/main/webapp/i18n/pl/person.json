@@ -20,10 +20,14 @@
       "id": "ID",
       "firstname": "Firstname",
       "lastname": "Lastname",
+      "phoneNumber": "Phone Number",
+      "email": "Email",
       "notes": "Notes",
       "skills": "Skills",
+      "roles": "Roles",
       "organization": "Organization",
-      "monthlyAssignments": "Monthly Assignments"
+      "monthlyAssignments": "Monthly Assignments",
+      "monthlyAvailabilities": "Monthly Availabilities"
     }
   }
 }

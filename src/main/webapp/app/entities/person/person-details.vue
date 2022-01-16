@@ -19,6 +19,18 @@
             <span>{{ person.lastname }}</span>
           </dd>
           <dt>
+            <span v-text="$t('mepsterApp.person.phoneNumber')">Phone Number</span>
+          </dt>
+          <dd>
+            <span>{{ person.phoneNumber }}</span>
+          </dd>
+          <dt>
+            <span v-text="$t('mepsterApp.person.email')">Email</span>
+          </dt>
+          <dd>
+            <span>{{ person.email }}</span>
+          </dd>
+          <dt>
             <span v-text="$t('mepsterApp.person.notes')">Notes</span>
           </dt>
           <dd>

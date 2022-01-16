@@ -162,6 +162,11 @@ describe('Organization e2e test', () => {
 
       cy.get(`[data-cy="email"]`).type('6CaC@2Tex.xFs6.Kr9F.R6f59').should('have.value', '6CaC@2Tex.xFs6.Kr9F.R6f59');
 
+      cy.get(`[data-cy="notes"]`)
+        .type('../fake-data/blob/hipster.txt')
+        .invoke('val')
+        .should('match', new RegExp('../fake-data/blob/hipster.txt'));
+
       cy.get(entityCreateSaveButtonSelector).click();
 
       cy.wait('@postEntityRequest').then(({ response }) => {

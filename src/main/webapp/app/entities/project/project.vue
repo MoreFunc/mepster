@@ -31,9 +31,10 @@
             <th scope="row"><span v-text="$t('global.field.id')">ID</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.project.title')">Title</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.project.description')">Description</span></th>
-            <th scope="row"><span v-text="$t('mepsterApp.project.start')">Start</span></th>
-            <th scope="row"><span v-text="$t('mepsterApp.project.end')">End</span></th>
-            <th scope="row"><span v-text="$t('mepsterApp.project.active')">Active</span></th>
+            <th scope="row"><span v-text="$t('mepsterApp.project.startDate')">Start Date</span></th>
+            <th scope="row"><span v-text="$t('mepsterApp.project.endDate')">End Date</span></th>
+            <th scope="row"><span v-text="$t('mepsterApp.project.isActive')">Is Active</span></th>
+            <th scope="row"><span v-text="$t('mepsterApp.project.chancePercent')">Chance Percent</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.project.notes')">Notes</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.project.organization')">Organization</span></th>
             <th scope="row"></th>
@@ -46,9 +47,10 @@
             </td>
             <td>{{ project.title }}</td>
             <td>{{ project.description }}</td>
-            <td>{{ project.start }}</td>
-            <td>{{ project.end }}</td>
-            <td>{{ project.active }}</td>
+            <td>{{ project.startDate }}</td>
+            <td>{{ project.endDate }}</td>
+            <td>{{ project.isActive }}</td>
+            <td>{{ project.chancePercent }}</td>
             <td>{{ project.notes }}</td>
             <td>
               <div v-if="project.organization">

@@ -1,4 +1,7 @@
-import { Component, Vue, Inject } from 'vue-property-decorator';
+import { Component, Inject } from 'vue-property-decorator';
+
+import { mixins } from 'vue-class-component';
+import JhiDataUtils from '@/shared/data/data-utils.service';
 
 import { required, minLength, maxLength } from 'vuelidate/lib/validators';
 
@@ -35,19 +38,20 @@ const validations: any = {
     country: {
       maxLength: maxLength(20),
     },
-    phone: {
-      maxLength: maxLength(20),
+    phoneNumber: {
+      maxLength: maxLength(30),
     },
     email: {
       maxLength: maxLength(30),
     },
+    notes: {},
   },
 };
 
 @Component({
   validations,
 })
-export default class OrganizationUpdate extends Vue {
+export default class OrganizationUpdate extends mixins(JhiDataUtils) {
   @Inject('organizationService') private organizationService: () => OrganizationService;
   @Inject('alertService') private alertService: () => AlertService;
 

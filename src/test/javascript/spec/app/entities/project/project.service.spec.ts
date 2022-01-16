@@ -33,15 +33,15 @@ describe('Service Tests', () => {
     beforeEach(() => {
       service = new ProjectService();
       currentDate = new Date();
-      elemDefault = new Project(123, 'AAAAAAA', 'AAAAAAA', currentDate, currentDate, false, 'AAAAAAA');
+      elemDefault = new Project(123, 'AAAAAAA', 'AAAAAAA', currentDate, currentDate, false, 0, 'AAAAAAA');
     });
 
     describe('Service methods', () => {
       it('should find an element', async () => {
         const returnedFromService = Object.assign(
           {
-            start: dayjs(currentDate).format(DATE_FORMAT),
-            end: dayjs(currentDate).format(DATE_FORMAT),
+            startDate: dayjs(currentDate).format(DATE_FORMAT),
+            endDate: dayjs(currentDate).format(DATE_FORMAT),
           },
           elemDefault
         );
@@ -66,15 +66,15 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 123,
-            start: dayjs(currentDate).format(DATE_FORMAT),
-            end: dayjs(currentDate).format(DATE_FORMAT),
+            startDate: dayjs(currentDate).format(DATE_FORMAT),
+            endDate: dayjs(currentDate).format(DATE_FORMAT),
           },
           elemDefault
         );
         const expected = Object.assign(
           {
-            start: currentDate,
-            end: currentDate,
+            startDate: currentDate,
+            endDate: currentDate,
           },
           returnedFromService
         );
@@ -101,9 +101,10 @@ describe('Service Tests', () => {
           {
             title: 'BBBBBB',
             description: 'BBBBBB',
-            start: dayjs(currentDate).format(DATE_FORMAT),
-            end: dayjs(currentDate).format(DATE_FORMAT),
-            active: true,
+            startDate: dayjs(currentDate).format(DATE_FORMAT),
+            endDate: dayjs(currentDate).format(DATE_FORMAT),
+            isActive: true,
+            chancePercent: 1,
             notes: 'BBBBBB',
           },
           elemDefault
@@ -111,8 +112,8 @@ describe('Service Tests', () => {
 
         const expected = Object.assign(
           {
-            start: currentDate,
-            end: currentDate,
+            startDate: currentDate,
+            endDate: currentDate,
           },
           returnedFromService
         );
@@ -138,7 +139,8 @@ describe('Service Tests', () => {
         const patchObject = Object.assign(
           {
             title: 'BBBBBB',
-            active: true,
+            isActive: true,
+            chancePercent: 1,
             notes: 'BBBBBB',
           },
           new Project()
@@ -147,8 +149,8 @@ describe('Service Tests', () => {
 
         const expected = Object.assign(
           {
-            start: currentDate,
-            end: currentDate,
+            startDate: currentDate,
+            endDate: currentDate,
           },
           returnedFromService
         );
@@ -175,17 +177,18 @@ describe('Service Tests', () => {
           {
             title: 'BBBBBB',
             description: 'BBBBBB',
-            start: dayjs(currentDate).format(DATE_FORMAT),
-            end: dayjs(currentDate).format(DATE_FORMAT),
-            active: true,
+            startDate: dayjs(currentDate).format(DATE_FORMAT),
+            endDate: dayjs(currentDate).format(DATE_FORMAT),
+            isActive: true,
+            chancePercent: 1,
             notes: 'BBBBBB',
           },
           elemDefault
         );
         const expected = Object.assign(
           {
-            start: currentDate,
-            end: currentDate,
+            startDate: currentDate,
+            endDate: currentDate,
           },
           returnedFromService
         );

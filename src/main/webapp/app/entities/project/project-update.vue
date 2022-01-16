@@ -58,13 +58,13 @@
             ></textarea>
           </div>
           <div class="form-group">
-            <label class="form-control-label" v-text="$t('mepsterApp.project.start')" for="project-start">Start</label>
+            <label class="form-control-label" v-text="$t('mepsterApp.project.startDate')" for="project-startDate">Start Date</label>
             <b-input-group class="mb-3">
               <b-input-group-prepend>
                 <b-form-datepicker
-                  aria-controls="project-start"
-                  v-model="$v.project.start.$model"
-                  name="start"
+                  aria-controls="project-startDate"
+                  v-model="$v.project.startDate.$model"
+                  name="startDate"
                   class="form-control"
                   :locale="currentLanguage"
                   button-only
@@ -75,24 +75,24 @@
                 </b-form-datepicker>
               </b-input-group-prepend>
               <b-form-input
-                id="project-start"
-                data-cy="start"
+                id="project-startDate"
+                data-cy="startDate"
                 type="text"
                 class="form-control"
-                name="start"
-                :class="{ valid: !$v.project.start.$invalid, invalid: $v.project.start.$invalid }"
-                v-model="$v.project.start.$model"
+                name="startDate"
+                :class="{ valid: !$v.project.startDate.$invalid, invalid: $v.project.startDate.$invalid }"
+                v-model="$v.project.startDate.$model"
               />
             </b-input-group>
           </div>
           <div class="form-group">
-            <label class="form-control-label" v-text="$t('mepsterApp.project.end')" for="project-end">End</label>
+            <label class="form-control-label" v-text="$t('mepsterApp.project.endDate')" for="project-endDate">End Date</label>
             <b-input-group class="mb-3">
               <b-input-group-prepend>
                 <b-form-datepicker
-                  aria-controls="project-end"
-                  v-model="$v.project.end.$model"
-                  name="end"
+                  aria-controls="project-endDate"
+                  v-model="$v.project.endDate.$model"
+                  name="endDate"
                   class="form-control"
                   :locale="currentLanguage"
                   button-only
@@ -103,31 +103,56 @@
                 </b-form-datepicker>
               </b-input-group-prepend>
               <b-form-input
-                id="project-end"
-                data-cy="end"
+                id="project-endDate"
+                data-cy="endDate"
                 type="text"
                 class="form-control"
-                name="end"
-                :class="{ valid: !$v.project.end.$invalid, invalid: $v.project.end.$invalid }"
-                v-model="$v.project.end.$model"
+                name="endDate"
+                :class="{ valid: !$v.project.endDate.$invalid, invalid: $v.project.endDate.$invalid }"
+                v-model="$v.project.endDate.$model"
               />
             </b-input-group>
           </div>
           <div class="form-group">
-            <label class="form-control-label" v-text="$t('mepsterApp.project.active')" for="project-active">Active</label>
+            <label class="form-control-label" v-text="$t('mepsterApp.project.isActive')" for="project-isActive">Is Active</label>
             <input
               type="checkbox"
               class="form-check"
-              name="active"
-              id="project-active"
-              data-cy="active"
-              :class="{ valid: !$v.project.active.$invalid, invalid: $v.project.active.$invalid }"
-              v-model="$v.project.active.$model"
+              name="isActive"
+              id="project-isActive"
+              data-cy="isActive"
+              :class="{ valid: !$v.project.isActive.$invalid, invalid: $v.project.isActive.$invalid }"
+              v-model="$v.project.isActive.$model"
               required
             />
-            <div v-if="$v.project.active.$anyDirty && $v.project.active.$invalid">
-              <small class="form-text text-danger" v-if="!$v.project.active.required" v-text="$t('entity.validation.required')">
+            <div v-if="$v.project.isActive.$anyDirty && $v.project.isActive.$invalid">
+              <small class="form-text text-danger" v-if="!$v.project.isActive.required" v-text="$t('entity.validation.required')">
                 This field is required.
+              </small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" v-text="$t('mepsterApp.project.chancePercent')" for="project-chancePercent"
+              >Chance Percent</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              name="chancePercent"
+              id="project-chancePercent"
+              data-cy="chancePercent"
+              :class="{ valid: !$v.project.chancePercent.$invalid, invalid: $v.project.chancePercent.$invalid }"
+              v-model.number="$v.project.chancePercent.$model"
+            />
+            <div v-if="$v.project.chancePercent.$anyDirty && $v.project.chancePercent.$invalid">
+              <small class="form-text text-danger" v-if="!$v.project.chancePercent.min" v-text="$t('entity.validation.min', { min: 0 })">
+                This field should be at least 0.
+              </small>
+              <small class="form-text text-danger" v-if="!$v.project.chancePercent.max" v-text="$t('entity.validation.max', { max: 100 })">
+                This field cannot be longer than 100 characters.
+              </small>
+              <small class="form-text text-danger" v-if="!$v.project.chancePercent.numeric" v-text="$t('entity.validation.number')">
+                This field should be a number.
               </small>
             </div>
           </div>

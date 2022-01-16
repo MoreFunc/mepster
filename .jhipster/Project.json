@@ -14,17 +14,24 @@
       "fieldTypeBlobContent": "text"
     },
     {
-      "fieldName": "start",
+      "fieldName": "startDate",
       "fieldType": "LocalDate"
     },
     {
-      "fieldName": "end",
+      "fieldName": "endDate",
       "fieldType": "LocalDate"
     },
     {
-      "fieldName": "active",
+      "fieldName": "isActive",
       "fieldType": "Boolean",
       "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "chancePercent",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMin": "0",
+      "fieldValidateRulesMax": "100"
     },
     {
       "fieldName": "notes",

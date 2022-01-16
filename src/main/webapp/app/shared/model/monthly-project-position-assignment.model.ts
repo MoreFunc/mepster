@@ -5,7 +5,7 @@ export interface IMonthlyProjectPositionAssignment {
   id?: number;
   yearmonth?: Date | null;
   percent?: number | null;
-  active?: boolean;
+  isActive?: boolean;
   projectPosition?: IProjectPosition;
   person?: IPerson;
 }
@@ -15,10 +15,10 @@ export class MonthlyProjectPositionAssignment implements IMonthlyProjectPosition
     public id?: number,
     public yearmonth?: Date | null,
     public percent?: number | null,
-    public active?: boolean,
+    public isActive?: boolean,
     public projectPosition?: IProjectPosition,
     public person?: IPerson
   ) {
-    this.active = this.active ?? false;
+    this.isActive = this.isActive ?? false;
   }
 }

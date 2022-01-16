@@ -40,7 +40,7 @@ describe('ProjectPosition e2e test', () => {
     cy.authenticatedRequest({
       method: 'POST',
       url: '/api/projects',
-      body: {"title":"application Savings Benin","description":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ=","start":"2022-01-13","end":"2022-01-14","active":true,"notes":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ="},
+      body: {"title":"application Savings Benin","description":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ=","startDate":"2022-01-13","endDate":"2022-01-14","isActive":true,"chancePercent":14,"notes":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ="},
     }).then(({ body }) => {
       project = body;
     });
@@ -241,9 +241,9 @@ describe('ProjectPosition e2e test', () => {
         .invoke('val')
         .should('match', new RegExp('../fake-data/blob/hipster.txt'));
 
-      cy.get(`[data-cy="start"]`).type('2022-01-14').should('have.value', '2022-01-14');
+      cy.get(`[data-cy="startDate"]`).type('2022-01-14').should('have.value', '2022-01-14');
 
-      cy.get(`[data-cy="end"]`).type('2022-01-13').should('have.value', '2022-01-13');
+      cy.get(`[data-cy="endDate"]`).type('2022-01-13').should('have.value', '2022-01-13');
 
       cy.get(`[data-cy="percent"]`).type('45').should('have.value', '45');
 
