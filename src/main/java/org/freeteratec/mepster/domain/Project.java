@@ -52,15 +52,15 @@ public class Project implements Serializable {
     @Column(name = "notes")
     private String notes;
 
-    @ManyToOne(optional = false)
-    @NotNull
-    @JsonIgnoreProperties(value = { "persons", "projects" }, allowSetters = true)
-    private Organization organization;
-
     @OneToMany(mappedBy = "project")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "role", "skills", "project", "monthlyAssignments" }, allowSetters = true)
     private Set<ProjectPosition> projectPositions = new HashSet<>();
+
+    @ManyToOne(optional = false)
+    @NotNull
+    @JsonIgnoreProperties(value = { "persons", "projects" }, allowSetters = true)
+    private Organization organization;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -155,19 +155,6 @@ public class Project implements Serializable {
         this.notes = notes;
     }
 
-    public Organization getOrganization() {
-        return this.organization;
-    }
-
-    public void setOrganization(Organization organization) {
-        this.organization = organization;
-    }
-
-    public Project organization(Organization organization) {
-        this.setOrganization(organization);
-        return this;
-    }
-
     public Set<ProjectPosition> getProjectPositions() {
         return this.projectPositions;
     }
@@ -196,6 +183,19 @@ public class Project implements Serializable {
     public Project removeProjectPositions(ProjectPosition projectPosition) {
         this.projectPositions.remove(projectPosition);
         projectPosition.setProject(null);
+        return this;
+    }
+
+    public Organization getOrganization() {
+        return this.organization;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
+    }
+
+    public Project organization(Organization organization) {
+        this.setOrganization(organization);
         return this;
     }
 

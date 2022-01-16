@@ -26,7 +26,8 @@ public class Organization implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "name", nullable = false)
+    @Size(min = 2, max = 50)
+    @Column(name = "name", length = 50, nullable = false)
     private String name;
 
     @Size(max = 50)
@@ -63,12 +64,12 @@ public class Organization implements Serializable {
 
     @OneToMany(mappedBy = "organization")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "organization", "monthlyAssignments" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "skills", "organization", "monthlyAssignments" }, allowSetters = true)
     private Set<Person> persons = new HashSet<>();
 
     @OneToMany(mappedBy = "organization")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "organization", "projectPositions" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "projectPositions", "organization" }, allowSetters = true)
     private Set<Project> projects = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

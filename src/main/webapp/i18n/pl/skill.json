@@ -20,7 +20,8 @@
       "id": "ID",
       "title": "Title",
       "description": "Description",
-      "projectPosition": "Project Position"
+      "projectPosition": "Project Position",
+      "person": "Person"
     }
   }
 }

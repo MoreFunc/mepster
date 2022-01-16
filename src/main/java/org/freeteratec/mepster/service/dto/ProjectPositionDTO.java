@@ -1,6 +1,7 @@
 package org.freeteratec.mepster.service.dto;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 import javax.persistence.Lob;
 import javax.validation.constraints.*;
@@ -18,6 +19,10 @@ public class ProjectPositionDTO implements Serializable {
 
     @Lob
     private String description;
+
+    private LocalDate start;
+
+    private LocalDate end;
 
     @Min(value = 0)
     @Max(value = 100)
@@ -49,6 +54,22 @@ public class ProjectPositionDTO implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public LocalDate getStart() {
+        return start;
+    }
+
+    public void setStart(LocalDate start) {
+        this.start = start;
+    }
+
+    public LocalDate getEnd() {
+        return end;
+    }
+
+    public void setEnd(LocalDate end) {
+        this.end = end;
     }
 
     public Integer getPercent() {
@@ -103,6 +124,8 @@ public class ProjectPositionDTO implements Serializable {
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
             ", description='" + getDescription() + "'" +
+            ", start='" + getStart() + "'" +
+            ", end='" + getEnd() + "'" +
             ", percent=" + getPercent() +
             ", role=" + getRole() +
             ", project=" + getProject() +

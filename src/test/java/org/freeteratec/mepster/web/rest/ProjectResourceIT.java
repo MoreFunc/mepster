@@ -89,16 +89,6 @@ class ProjectResourceIT {
             .active(DEFAULT_ACTIVE)
             .notes(DEFAULT_NOTES);
         // Add required entity
-        Organization organization;
-        if (TestUtil.findAll(em, Organization.class).isEmpty()) {
-            organization = OrganizationResourceIT.createEntity(em);
-            em.persist(organization);
-            em.flush();
-        } else {
-            organization = TestUtil.findAll(em, Organization.class).get(0);
-        }
-        project.setOrganization(organization);
-        // Add required entity
         ProjectPosition projectPosition;
         if (TestUtil.findAll(em, ProjectPosition.class).isEmpty()) {
             projectPosition = ProjectPositionResourceIT.createEntity(em);
@@ -108,6 +98,16 @@ class ProjectResourceIT {
             projectPosition = TestUtil.findAll(em, ProjectPosition.class).get(0);
         }
         project.getProjectPositions().add(projectPosition);
+        // Add required entity
+        Organization organization;
+        if (TestUtil.findAll(em, Organization.class).isEmpty()) {
+            organization = OrganizationResourceIT.createEntity(em);
+            em.persist(organization);
+            em.flush();
+        } else {
+            organization = TestUtil.findAll(em, Organization.class).get(0);
+        }
+        project.setOrganization(organization);
         return project;
     }
 
@@ -126,16 +126,6 @@ class ProjectResourceIT {
             .active(UPDATED_ACTIVE)
             .notes(UPDATED_NOTES);
         // Add required entity
-        Organization organization;
-        if (TestUtil.findAll(em, Organization.class).isEmpty()) {
-            organization = OrganizationResourceIT.createUpdatedEntity(em);
-            em.persist(organization);
-            em.flush();
-        } else {
-            organization = TestUtil.findAll(em, Organization.class).get(0);
-        }
-        project.setOrganization(organization);
-        // Add required entity
         ProjectPosition projectPosition;
         if (TestUtil.findAll(em, ProjectPosition.class).isEmpty()) {
             projectPosition = ProjectPositionResourceIT.createUpdatedEntity(em);
@@ -145,6 +135,16 @@ class ProjectResourceIT {
             projectPosition = TestUtil.findAll(em, ProjectPosition.class).get(0);
         }
         project.getProjectPositions().add(projectPosition);
+        // Add required entity
+        Organization organization;
+        if (TestUtil.findAll(em, Organization.class).isEmpty()) {
+            organization = OrganizationResourceIT.createUpdatedEntity(em);
+            em.persist(organization);
+            em.flush();
+        } else {
+            organization = TestUtil.findAll(em, Organization.class).get(0);
+        }
+        project.setOrganization(organization);
         return project;
     }
 

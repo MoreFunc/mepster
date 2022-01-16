@@ -31,6 +31,8 @@
             <th scope="row"><span v-text="$t('global.field.id')">ID</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.projectPosition.title')">Title</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.projectPosition.description')">Description</span></th>
+            <th scope="row"><span v-text="$t('mepsterApp.projectPosition.start')">Start</span></th>
+            <th scope="row"><span v-text="$t('mepsterApp.projectPosition.end')">End</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.projectPosition.percent')">Percent</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.projectPosition.role')">Role</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.projectPosition.project')">Project</span></th>
@@ -46,6 +48,8 @@
             </td>
             <td>{{ projectPosition.title }}</td>
             <td>{{ projectPosition.description }}</td>
+            <td>{{ projectPosition.start }}</td>
+            <td>{{ projectPosition.end }}</td>
             <td>{{ projectPosition.percent }}</td>
             <td>
               <div v-if="projectPosition.role">

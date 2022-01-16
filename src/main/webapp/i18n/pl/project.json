@@ -24,8 +24,8 @@
       "end": "End",
       "active": "Active",
       "notes": "Notes",
-      "organization": "Organization",
-      "projectPositions": "Project Positions"
+      "projectPositions": "Project Positions",
+      "organization": "Organization"
     }
   }
 }

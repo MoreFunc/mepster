@@ -20,6 +20,12 @@
       "otherEntityName": "projectPosition",
       "otherEntityRelationshipName": "skills",
       "relationshipName": "projectPosition"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "person",
+      "otherEntityRelationshipName": "skills",
+      "relationshipName": "person"
     }
   ],
   "entityTableName": "skill",

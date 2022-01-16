@@ -19,6 +19,18 @@
             <span>{{ projectPosition.description }}</span>
           </dd>
           <dt>
+            <span v-text="$t('mepsterApp.projectPosition.start')">Start</span>
+          </dt>
+          <dd>
+            <span>{{ projectPosition.start }}</span>
+          </dd>
+          <dt>
+            <span v-text="$t('mepsterApp.projectPosition.end')">End</span>
+          </dt>
+          <dd>
+            <span>{{ projectPosition.end }}</span>
+          </dd>
+          <dt>
             <span v-text="$t('mepsterApp.projectPosition.percent')">Percent</span>
           </dt>
           <dd>

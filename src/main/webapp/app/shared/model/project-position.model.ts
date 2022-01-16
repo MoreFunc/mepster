@@ -7,6 +7,8 @@ export interface IProjectPosition {
   id?: number;
   title?: string;
   description?: string | null;
+  start?: Date | null;
+  end?: Date | null;
   percent?: number | null;
   role?: IRole;
   skills?: ISkill[] | null;
@@ -19,6 +21,8 @@ export class ProjectPosition implements IProjectPosition {
     public id?: number,
     public title?: string,
     public description?: string | null,
+    public start?: Date | null,
+    public end?: Date | null,
     public percent?: number | null,
     public role?: IRole,
     public skills?: ISkill[] | null,

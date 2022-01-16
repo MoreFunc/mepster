@@ -10,6 +10,9 @@ import AlertService from '@/shared/alert/alert.service';
 import ProjectPositionService from '@/entities/project-position/project-position.service';
 import { IProjectPosition } from '@/shared/model/project-position.model';
 
+import PersonService from '@/entities/person/person.service';
+import { IPerson } from '@/shared/model/person.model';
+
 import { ISkill, Skill } from '@/shared/model/skill.model';
 import SkillService from './skill.service';
 
@@ -36,6 +39,10 @@ export default class SkillUpdate extends mixins(JhiDataUtils) {
   @Inject('projectPositionService') private projectPositionService: () => ProjectPositionService;
 
   public projectPositions: IProjectPosition[] = [];
+
+  @Inject('personService') private personService: () => PersonService;
+
+  public people: IPerson[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
@@ -121,6 +128,11 @@ export default class SkillUpdate extends mixins(JhiDataUtils) {
       .retrieve()
       .then(res => {
         this.projectPositions = res.data;
+      });
+    this.personService()
+      .retrieve()
+      .then(res => {
+        this.people = res.data;
       });
   }
 }

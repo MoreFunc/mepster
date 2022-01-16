@@ -19,8 +19,8 @@ describe('Project e2e test', () => {
   const projectSample = { title: 'brand', active: false };
 
   let project: any;
-  //let organization: any;
   //let projectPosition: any;
+  //let organization: any;
 
   beforeEach(() => {
     cy.login(username, password);
@@ -31,18 +31,18 @@ describe('Project e2e test', () => {
     // create an instance at the required relationship entity:
     cy.authenticatedRequest({
       method: 'POST',
-      url: '/api/organizations',
-      body: {"name":"Loan optical","street":"Ondricka Coves","number":"Bedfo","city":"West Adriana","zipcode":"19196","country":"q","phone":"0","email":"RsB@S8yH"},
+      url: '/api/project-positions',
+      body: {"title":"Legacy","description":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ=","start":"2022-01-14","end":"2022-01-13","percent":9},
     }).then(({ body }) => {
-      organization = body;
+      projectPosition = body;
     });
     // create an instance at the required relationship entity:
     cy.authenticatedRequest({
       method: 'POST',
-      url: '/api/project-positions',
-      body: {"title":"Legacy","description":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ=","percent":44},
+      url: '/api/organizations',
+      body: {"name":"Loan optical","street":"Ondricka Coves","number":"Bedfo","city":"West Adriana","zipcode":"19196","country":"q","phone":"0","email":"RsB@S8yH"},
     }).then(({ body }) => {
-      projectPosition = body;
+      organization = body;
     });
   });
    */
@@ -56,14 +56,14 @@ describe('Project e2e test', () => {
   /* Disabled due to incompatibility
   beforeEach(() => {
     // Simulate relationships api for better performance and reproducibility.
-    cy.intercept('GET', '/api/organizations', {
-      statusCode: 200,
-      body: [organization],
-    });
-
     cy.intercept('GET', '/api/project-positions', {
       statusCode: 200,
       body: [projectPosition],
+    });
+
+    cy.intercept('GET', '/api/organizations', {
+      statusCode: 200,
+      body: [organization],
     });
 
   });
@@ -82,20 +82,20 @@ describe('Project e2e test', () => {
 
   /* Disabled due to incompatibility
   afterEach(() => {
-    if (organization) {
-      cy.authenticatedRequest({
-        method: 'DELETE',
-        url: `/api/organizations/${organization.id}`,
-      }).then(() => {
-        organization = undefined;
-      });
-    }
     if (projectPosition) {
       cy.authenticatedRequest({
         method: 'DELETE',
         url: `/api/project-positions/${projectPosition.id}`,
       }).then(() => {
         projectPosition = undefined;
+      });
+    }
+    if (organization) {
+      cy.authenticatedRequest({
+        method: 'DELETE',
+        url: `/api/organizations/${organization.id}`,
+      }).then(() => {
+        organization = undefined;
       });
     }
   });
@@ -143,8 +143,8 @@ describe('Project e2e test', () => {
           url: '/api/projects',
           body: {
             ...projectSample,
-            organization: organization,
             projectPositions: projectPosition,
+            organization: organization,
           },
         }).then(({ body }) => {
           project = body;
@@ -243,8 +243,8 @@ describe('Project e2e test', () => {
         .invoke('val')
         .should('match', new RegExp('../fake-data/blob/hipster.txt'));
 
-      cy.get(`[data-cy="organization"]`).select(1);
       cy.get(`[data-cy="projectPositions"]`).select([0]);
+      cy.get(`[data-cy="organization"]`).select(1);
 
       cy.get(entityCreateSaveButtonSelector).click();
 

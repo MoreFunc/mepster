@@ -7,11 +7,11 @@ import { required, minLength, maxLength } from 'vuelidate/lib/validators';
 
 import AlertService from '@/shared/alert/alert.service';
 
-import OrganizationService from '@/entities/organization/organization.service';
-import { IOrganization } from '@/shared/model/organization.model';
-
 import ProjectPositionService from '@/entities/project-position/project-position.service';
 import { IProjectPosition } from '@/shared/model/project-position.model';
+
+import OrganizationService from '@/entities/organization/organization.service';
+import { IOrganization } from '@/shared/model/organization.model';
 
 import { IProject, Project } from '@/shared/model/project.model';
 import ProjectService from './project.service';
@@ -30,10 +30,10 @@ const validations: any = {
       required,
     },
     notes: {},
-    organization: {
+    projectPositions: {
       required,
     },
-    projectPositions: {
+    organization: {
       required,
     },
   },
@@ -48,13 +48,13 @@ export default class ProjectUpdate extends mixins(JhiDataUtils) {
 
   public project: IProject = new Project();
 
-  @Inject('organizationService') private organizationService: () => OrganizationService;
-
-  public organizations: IOrganization[] = [];
-
   @Inject('projectPositionService') private projectPositionService: () => ProjectPositionService;
 
   public projectPositions: IProjectPosition[] = [];
+
+  @Inject('organizationService') private organizationService: () => OrganizationService;
+
+  public organizations: IOrganization[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
@@ -136,15 +136,15 @@ export default class ProjectUpdate extends mixins(JhiDataUtils) {
   }
 
   public initRelationships(): void {
-    this.organizationService()
-      .retrieve()
-      .then(res => {
-        this.organizations = res.data;
-      });
     this.projectPositionService()
       .retrieve()
       .then(res => {
         this.projectPositions = res.data;
+      });
+    this.organizationService()
+      .retrieve()
+      .then(res => {
+        this.organizations = res.data;
       });
   }
 }

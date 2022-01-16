@@ -41,6 +41,11 @@ public class Person implements Serializable {
     @Column(name = "notes")
     private String notes;
 
+    @OneToMany(mappedBy = "person")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "projectPosition", "person" }, allowSetters = true)
+    private Set<Skill> skills = new HashSet<>();
+
     @ManyToOne
     @JsonIgnoreProperties(value = { "persons", "projects" }, allowSetters = true)
     private Organization organization;
@@ -102,6 +107,37 @@ public class Person implements Serializable {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public Set<Skill> getSkills() {
+        return this.skills;
+    }
+
+    public void setSkills(Set<Skill> skills) {
+        if (this.skills != null) {
+            this.skills.forEach(i -> i.setPerson(null));
+        }
+        if (skills != null) {
+            skills.forEach(i -> i.setPerson(this));
+        }
+        this.skills = skills;
+    }
+
+    public Person skills(Set<Skill> skills) {
+        this.setSkills(skills);
+        return this;
+    }
+
+    public Person addSkills(Skill skill) {
+        this.skills.add(skill);
+        skill.setPerson(this);
+        return this;
+    }
+
+    public Person removeSkills(Skill skill) {
+        this.skills.remove(skill);
+        skill.setPerson(null);
+        return this;
     }
 
     public Organization getOrganization() {

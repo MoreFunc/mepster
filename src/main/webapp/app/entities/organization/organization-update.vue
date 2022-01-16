@@ -30,6 +30,20 @@
               <small class="form-text text-danger" v-if="!$v.organization.name.required" v-text="$t('entity.validation.required')">
                 This field is required.
               </small>
+              <small
+                class="form-text text-danger"
+                v-if="!$v.organization.name.minLength"
+                v-text="$t('entity.validation.minlength', { min: 2 })"
+              >
+                This field is required to be at least 2 characters.
+              </small>
+              <small
+                class="form-text text-danger"
+                v-if="!$v.organization.name.maxLength"
+                v-text="$t('entity.validation.maxlength', { max: 50 })"
+              >
+                This field cannot be longer than 50 characters.
+              </small>
             </div>
           </div>
           <div class="form-group">

@@ -10,6 +10,8 @@ import SkillClass from '@/entities/skill/skill-update.component';
 import SkillService from '@/entities/skill/skill.service';
 
 import ProjectPositionService from '@/entities/project-position/project-position.service';
+
+import PersonService from '@/entities/person/person.service';
 import AlertService from '@/shared/alert/alert.service';
 
 const localVue = createLocalVue();
@@ -46,6 +48,11 @@ describe('Component Tests', () => {
 
           projectPositionService: () =>
             sinon.createStubInstance<ProjectPositionService>(ProjectPositionService, {
+              retrieve: sinon.stub().resolves({}),
+            } as any),
+
+          personService: () =>
+            sinon.createStubInstance<PersonService>(PersonService, {
               retrieve: sinon.stub().resolves({}),
             } as any),
         },

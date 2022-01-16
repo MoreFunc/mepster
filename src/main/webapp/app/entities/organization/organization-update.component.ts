@@ -1,6 +1,6 @@
 import { Component, Vue, Inject } from 'vue-property-decorator';
 
-import { required, maxLength } from 'vuelidate/lib/validators';
+import { required, minLength, maxLength } from 'vuelidate/lib/validators';
 
 import AlertService from '@/shared/alert/alert.service';
 
@@ -17,6 +17,8 @@ const validations: any = {
   organization: {
     name: {
       required,
+      minLength: minLength(2),
+      maxLength: maxLength(50),
     },
     street: {
       maxLength: maxLength(50),

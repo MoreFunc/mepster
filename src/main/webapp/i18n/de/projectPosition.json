@@ -20,6 +20,8 @@
       "id": "ID",
       "title": "Title",
       "description": "Description",
+      "start": "Start",
+      "end": "End",
       "percent": "Percent",
       "role": "Role",
       "skills": "Skills",

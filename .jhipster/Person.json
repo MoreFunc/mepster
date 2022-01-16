@@ -23,6 +23,13 @@
   ],
   "relationships": [
     {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "skill",
+      "otherEntityRelationshipName": "person",
+      "relationshipName": "skills",
+      "otherEntityField": "title"
+    },
+    {
       "relationshipType": "many-to-one",
       "otherEntityName": "organization",
       "otherEntityRelationshipName": "persons",

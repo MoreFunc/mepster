@@ -12,6 +12,7 @@ public class OrganizationDTO implements Serializable {
     private Long id;
 
     @NotNull
+    @Size(min = 2, max = 50)
     private String name;
 
     @Size(max = 50)

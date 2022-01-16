@@ -21,6 +21,7 @@
       "firstname": "Firstname",
       "lastname": "Lastname",
       "notes": "Notes",
+      "skills": "Skills",
       "organization": "Organization",
       "monthlyAssignments": "Monthly Assignments"
     }

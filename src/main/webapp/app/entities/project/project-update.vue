@@ -142,6 +142,11 @@
               v-model="$v.project.notes.$model"
             ></textarea>
           </div>
+          <div v-if="$v.project.projectPositions.$anyDirty && $v.project.projectPositions.$invalid">
+            <small class="form-text text-danger" v-if="!$v.project.projectPositions.required" v-text="$t('entity.validation.required')">
+              This field is required.
+            </small>
+          </div>
           <div class="form-group">
             <label class="form-control-label" v-text="$t('mepsterApp.project.organization')" for="project-organization">Organization</label>
             <select
@@ -166,11 +171,6 @@
           </div>
           <div v-if="$v.project.organization.$anyDirty && $v.project.organization.$invalid">
             <small class="form-text text-danger" v-if="!$v.project.organization.required" v-text="$t('entity.validation.required')">
-              This field is required.
-            </small>
-          </div>
-          <div v-if="$v.project.projectPositions.$anyDirty && $v.project.projectPositions.$invalid">
-            <small class="form-text text-danger" v-if="!$v.project.projectPositions.required" v-text="$t('entity.validation.required')">
               This field is required.
             </small>
           </div>

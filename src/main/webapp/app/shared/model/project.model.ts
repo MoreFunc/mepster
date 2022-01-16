@@ -1,5 +1,5 @@
-import { IOrganization } from '@/shared/model/organization.model';
 import { IProjectPosition } from '@/shared/model/project-position.model';
+import { IOrganization } from '@/shared/model/organization.model';
 
 export interface IProject {
   id?: number;
@@ -9,8 +9,8 @@ export interface IProject {
   end?: Date | null;
   active?: boolean;
   notes?: string | null;
-  organization?: IOrganization;
   projectPositions?: IProjectPosition[];
+  organization?: IOrganization;
 }
 
 export class Project implements IProject {
@@ -22,8 +22,8 @@ export class Project implements IProject {
     public end?: Date | null,
     public active?: boolean,
     public notes?: string | null,
-    public organization?: IOrganization,
-    public projectPositions?: IProjectPosition[]
+    public projectPositions?: IProjectPosition[],
+    public organization?: IOrganization
   ) {
     this.active = this.active ?? false;
   }

@@ -2,6 +2,7 @@ package org.freeteratec.mepster.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -36,6 +37,12 @@ public class ProjectPosition implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "start")
+    private LocalDate start;
+
+    @Column(name = "jhi_end")
+    private LocalDate end;
+
     @Min(value = 0)
     @Max(value = 100)
     @Column(name = "percent")
@@ -49,12 +56,12 @@ public class ProjectPosition implements Serializable {
 
     @OneToMany(mappedBy = "projectPosition")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "projectPosition" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "projectPosition", "person" }, allowSetters = true)
     private Set<Skill> skills = new HashSet<>();
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties(value = { "organization", "projectPositions" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "projectPositions", "organization" }, allowSetters = true)
     private Project project;
 
     @OneToMany(mappedBy = "projectPosition")
@@ -101,6 +108,32 @@ public class ProjectPosition implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public LocalDate getStart() {
+        return this.start;
+    }
+
+    public ProjectPosition start(LocalDate start) {
+        this.setStart(start);
+        return this;
+    }
+
+    public void setStart(LocalDate start) {
+        this.start = start;
+    }
+
+    public LocalDate getEnd() {
+        return this.end;
+    }
+
+    public ProjectPosition end(LocalDate end) {
+        this.setEnd(end);
+        return this;
+    }
+
+    public void setEnd(LocalDate end) {
+        this.end = end;
     }
 
     public Integer getPercent() {
@@ -230,6 +263,8 @@ public class ProjectPosition implements Serializable {
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
             ", description='" + getDescription() + "'" +
+            ", start='" + getStart() + "'" +
+            ", end='" + getEnd() + "'" +
             ", percent=" + getPercent() +
             "}";
     }

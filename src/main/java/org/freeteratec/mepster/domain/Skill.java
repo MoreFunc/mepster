@@ -38,6 +38,10 @@ public class Skill implements Serializable {
     @JsonIgnoreProperties(value = { "role", "skills", "project", "monthlyAssignments" }, allowSetters = true)
     private ProjectPosition projectPosition;
 
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "skills", "organization", "monthlyAssignments" }, allowSetters = true)
+    private Person person;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -89,6 +93,19 @@ public class Skill implements Serializable {
 
     public Skill projectPosition(ProjectPosition projectPosition) {
         this.setProjectPosition(projectPosition);
+        return this;
+    }
+
+    public Person getPerson() {
+        return this.person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public Skill person(Person person) {
+        this.setPerson(person);
         return this;
     }
 

@@ -5,6 +5,8 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
@@ -40,6 +42,12 @@ class ProjectPositionResourceIT {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
+    private static final LocalDate DEFAULT_START = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_START = LocalDate.now(ZoneId.systemDefault());
+
+    private static final LocalDate DEFAULT_END = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_END = LocalDate.now(ZoneId.systemDefault());
+
     private static final Integer DEFAULT_PERCENT = 0;
     private static final Integer UPDATED_PERCENT = 1;
 
@@ -73,6 +81,8 @@ class ProjectPositionResourceIT {
         ProjectPosition projectPosition = new ProjectPosition()
             .title(DEFAULT_TITLE)
             .description(DEFAULT_DESCRIPTION)
+            .start(DEFAULT_START)
+            .end(DEFAULT_END)
             .percent(DEFAULT_PERCENT);
         // Add required entity
         Role role;
@@ -107,6 +117,8 @@ class ProjectPositionResourceIT {
         ProjectPosition projectPosition = new ProjectPosition()
             .title(UPDATED_TITLE)
             .description(UPDATED_DESCRIPTION)
+            .start(UPDATED_START)
+            .end(UPDATED_END)
             .percent(UPDATED_PERCENT);
         // Add required entity
         Role role;
@@ -154,6 +166,8 @@ class ProjectPositionResourceIT {
         ProjectPosition testProjectPosition = projectPositionList.get(projectPositionList.size() - 1);
         assertThat(testProjectPosition.getTitle()).isEqualTo(DEFAULT_TITLE);
         assertThat(testProjectPosition.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testProjectPosition.getStart()).isEqualTo(DEFAULT_START);
+        assertThat(testProjectPosition.getEnd()).isEqualTo(DEFAULT_END);
         assertThat(testProjectPosition.getPercent()).isEqualTo(DEFAULT_PERCENT);
     }
 
@@ -212,6 +226,8 @@ class ProjectPositionResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(projectPosition.getId().intValue())))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].start").value(hasItem(DEFAULT_START.toString())))
+            .andExpect(jsonPath("$.[*].end").value(hasItem(DEFAULT_END.toString())))
             .andExpect(jsonPath("$.[*].percent").value(hasItem(DEFAULT_PERCENT)));
     }
 
@@ -229,6 +245,8 @@ class ProjectPositionResourceIT {
             .andExpect(jsonPath("$.id").value(projectPosition.getId().intValue()))
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
+            .andExpect(jsonPath("$.start").value(DEFAULT_START.toString()))
+            .andExpect(jsonPath("$.end").value(DEFAULT_END.toString()))
             .andExpect(jsonPath("$.percent").value(DEFAULT_PERCENT));
     }
 
@@ -251,7 +269,12 @@ class ProjectPositionResourceIT {
         ProjectPosition updatedProjectPosition = projectPositionRepository.findById(projectPosition.getId()).get();
         // Disconnect from session so that the updates on updatedProjectPosition are not directly saved in db
         em.detach(updatedProjectPosition);
-        updatedProjectPosition.title(UPDATED_TITLE).description(UPDATED_DESCRIPTION).percent(UPDATED_PERCENT);
+        updatedProjectPosition
+            .title(UPDATED_TITLE)
+            .description(UPDATED_DESCRIPTION)
+            .start(UPDATED_START)
+            .end(UPDATED_END)
+            .percent(UPDATED_PERCENT);
         ProjectPositionDTO projectPositionDTO = projectPositionMapper.toDto(updatedProjectPosition);
 
         restProjectPositionMockMvc
@@ -268,6 +291,8 @@ class ProjectPositionResourceIT {
         ProjectPosition testProjectPosition = projectPositionList.get(projectPositionList.size() - 1);
         assertThat(testProjectPosition.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testProjectPosition.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testProjectPosition.getStart()).isEqualTo(UPDATED_START);
+        assertThat(testProjectPosition.getEnd()).isEqualTo(UPDATED_END);
         assertThat(testProjectPosition.getPercent()).isEqualTo(UPDATED_PERCENT);
     }
 
@@ -350,37 +375,6 @@ class ProjectPositionResourceIT {
         ProjectPosition partialUpdatedProjectPosition = new ProjectPosition();
         partialUpdatedProjectPosition.setId(projectPosition.getId());
 
-        partialUpdatedProjectPosition.title(UPDATED_TITLE).description(UPDATED_DESCRIPTION);
-
-        restProjectPositionMockMvc
-            .perform(
-                patch(ENTITY_API_URL_ID, partialUpdatedProjectPosition.getId())
-                    .contentType("application/merge-patch+json")
-                    .content(TestUtil.convertObjectToJsonBytes(partialUpdatedProjectPosition))
-            )
-            .andExpect(status().isOk());
-
-        // Validate the ProjectPosition in the database
-        List<ProjectPosition> projectPositionList = projectPositionRepository.findAll();
-        assertThat(projectPositionList).hasSize(databaseSizeBeforeUpdate);
-        ProjectPosition testProjectPosition = projectPositionList.get(projectPositionList.size() - 1);
-        assertThat(testProjectPosition.getTitle()).isEqualTo(UPDATED_TITLE);
-        assertThat(testProjectPosition.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
-        assertThat(testProjectPosition.getPercent()).isEqualTo(DEFAULT_PERCENT);
-    }
-
-    @Test
-    @Transactional
-    void fullUpdateProjectPositionWithPatch() throws Exception {
-        // Initialize the database
-        projectPositionRepository.saveAndFlush(projectPosition);
-
-        int databaseSizeBeforeUpdate = projectPositionRepository.findAll().size();
-
-        // Update the projectPosition using partial update
-        ProjectPosition partialUpdatedProjectPosition = new ProjectPosition();
-        partialUpdatedProjectPosition.setId(projectPosition.getId());
-
         partialUpdatedProjectPosition.title(UPDATED_TITLE).description(UPDATED_DESCRIPTION).percent(UPDATED_PERCENT);
 
         restProjectPositionMockMvc
@@ -397,6 +391,46 @@ class ProjectPositionResourceIT {
         ProjectPosition testProjectPosition = projectPositionList.get(projectPositionList.size() - 1);
         assertThat(testProjectPosition.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testProjectPosition.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testProjectPosition.getStart()).isEqualTo(DEFAULT_START);
+        assertThat(testProjectPosition.getEnd()).isEqualTo(DEFAULT_END);
+        assertThat(testProjectPosition.getPercent()).isEqualTo(UPDATED_PERCENT);
+    }
+
+    @Test
+    @Transactional
+    void fullUpdateProjectPositionWithPatch() throws Exception {
+        // Initialize the database
+        projectPositionRepository.saveAndFlush(projectPosition);
+
+        int databaseSizeBeforeUpdate = projectPositionRepository.findAll().size();
+
+        // Update the projectPosition using partial update
+        ProjectPosition partialUpdatedProjectPosition = new ProjectPosition();
+        partialUpdatedProjectPosition.setId(projectPosition.getId());
+
+        partialUpdatedProjectPosition
+            .title(UPDATED_TITLE)
+            .description(UPDATED_DESCRIPTION)
+            .start(UPDATED_START)
+            .end(UPDATED_END)
+            .percent(UPDATED_PERCENT);
+
+        restProjectPositionMockMvc
+            .perform(
+                patch(ENTITY_API_URL_ID, partialUpdatedProjectPosition.getId())
+                    .contentType("application/merge-patch+json")
+                    .content(TestUtil.convertObjectToJsonBytes(partialUpdatedProjectPosition))
+            )
+            .andExpect(status().isOk());
+
+        // Validate the ProjectPosition in the database
+        List<ProjectPosition> projectPositionList = projectPositionRepository.findAll();
+        assertThat(projectPositionList).hasSize(databaseSizeBeforeUpdate);
+        ProjectPosition testProjectPosition = projectPositionList.get(projectPositionList.size() - 1);
+        assertThat(testProjectPosition.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testProjectPosition.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testProjectPosition.getStart()).isEqualTo(UPDATED_START);
+        assertThat(testProjectPosition.getEnd()).isEqualTo(UPDATED_END);
         assertThat(testProjectPosition.getPercent()).isEqualTo(UPDATED_PERCENT);
     }
 

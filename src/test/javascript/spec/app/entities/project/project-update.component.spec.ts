@@ -9,9 +9,9 @@ import ProjectUpdateComponent from '@/entities/project/project-update.vue';
 import ProjectClass from '@/entities/project/project-update.component';
 import ProjectService from '@/entities/project/project.service';
 
-import OrganizationService from '@/entities/organization/organization.service';
-
 import ProjectPositionService from '@/entities/project-position/project-position.service';
+
+import OrganizationService from '@/entities/organization/organization.service';
 import AlertService from '@/shared/alert/alert.service';
 
 const localVue = createLocalVue();
@@ -46,13 +46,13 @@ describe('Component Tests', () => {
           projectService: () => projectServiceStub,
           alertService: () => new AlertService(),
 
-          organizationService: () =>
-            sinon.createStubInstance<OrganizationService>(OrganizationService, {
+          projectPositionService: () =>
+            sinon.createStubInstance<ProjectPositionService>(ProjectPositionService, {
               retrieve: sinon.stub().resolves({}),
             } as any),
 
-          projectPositionService: () =>
-            sinon.createStubInstance<ProjectPositionService>(ProjectPositionService, {
+          organizationService: () =>
+            sinon.createStubInstance<OrganizationService>(OrganizationService, {
               retrieve: sinon.stub().resolves({}),
             } as any),
         },

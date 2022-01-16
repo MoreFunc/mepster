@@ -7,6 +7,9 @@ import { required, minLength, maxLength } from 'vuelidate/lib/validators';
 
 import AlertService from '@/shared/alert/alert.service';
 
+import SkillService from '@/entities/skill/skill.service';
+import { ISkill } from '@/shared/model/skill.model';
+
 import OrganizationService from '@/entities/organization/organization.service';
 import { IOrganization } from '@/shared/model/organization.model';
 
@@ -40,6 +43,10 @@ export default class PersonUpdate extends mixins(JhiDataUtils) {
   @Inject('alertService') private alertService: () => AlertService;
 
   public person: IPerson = new Person();
+
+  @Inject('skillService') private skillService: () => SkillService;
+
+  public skills: ISkill[] = [];
 
   @Inject('organizationService') private organizationService: () => OrganizationService;
 
@@ -130,6 +137,11 @@ export default class PersonUpdate extends mixins(JhiDataUtils) {
   }
 
   public initRelationships(): void {
+    this.skillService()
+      .retrieve()
+      .then(res => {
+        this.skills = res.data;
+      });
     this.organizationService()
       .retrieve()
       .then(res => {

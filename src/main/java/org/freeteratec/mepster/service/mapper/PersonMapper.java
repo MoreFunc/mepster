@@ -12,6 +12,11 @@ public interface PersonMapper extends EntityMapper<PersonDTO, Person> {
     @Mapping(target = "organization", source = "organization", qualifiedByName = "name")
     PersonDTO toDto(Person s);
 
+    @Named("id")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    PersonDTO toDtoId(Person person);
+
     @Named("lastname")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")

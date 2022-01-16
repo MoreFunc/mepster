@@ -9,6 +9,8 @@ import PersonUpdateComponent from '@/entities/person/person-update.vue';
 import PersonClass from '@/entities/person/person-update.component';
 import PersonService from '@/entities/person/person.service';
 
+import SkillService from '@/entities/skill/skill.service';
+
 import OrganizationService from '@/entities/organization/organization.service';
 
 import MonthlyProjectPositionAssignmentService from '@/entities/monthly-project-position-assignment/monthly-project-position-assignment.service';
@@ -45,6 +47,11 @@ describe('Component Tests', () => {
         provide: {
           personService: () => personServiceStub,
           alertService: () => new AlertService(),
+
+          skillService: () =>
+            sinon.createStubInstance<SkillService>(SkillService, {
+              retrieve: sinon.stub().resolves({}),
+            } as any),
 
           organizationService: () =>
             sinon.createStubInstance<OrganizationService>(OrganizationService, {

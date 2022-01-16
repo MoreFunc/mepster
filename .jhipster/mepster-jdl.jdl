@@ -26,7 +26,7 @@ application {
 
 
 entity Organization(organization) {
-  name String required
+  name String required minlength(2) maxlength(50)
   street String maxlength(50)
   number String maxlength(5)
   city String maxlength(20)
@@ -58,6 +58,8 @@ entity Project(project) {
 entity ProjectPosition(project_position) {
   title String required minlength(2) maxlength(20)
   description TextBlob
+  start LocalDate
+  end LocalDate
   percent Integer min(0) max(100)
 }
 
@@ -75,11 +77,12 @@ entity MonthlyProjectPositionAssignment(monthly_position_assignment) {
 relationship OneToMany {
   Organization{persons(lastname)} to Person{organization(name)}
   Organization{projects(title)} to Project{organization(name) required}
+  Project{projectPositions(title) required} to ProjectPosition{project(title) required}
   ProjectPosition{skills(title)} to Skill
+  Person{skills(title)} to Skill
 }
 
 relationship ManyToOne {
-  ProjectPosition{project(title) required} to Project{projectPositions(title) required}
   MonthlyProjectPositionAssignment{projectPosition(title) required} to ProjectPosition{monthlyAssignments(yearmonth)}
   MonthlyProjectPositionAssignment{person(lastname) required} to Person{monthlyAssignments(yearmonth)}
 }

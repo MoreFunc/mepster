@@ -34,20 +34,20 @@
   ],
   "relationships": [
     {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "organization",
-      "otherEntityRelationshipName": "projects",
-      "relationshipValidateRules": "required",
-      "relationshipName": "organization",
-      "otherEntityField": "name"
-    },
-    {
       "relationshipType": "one-to-many",
       "otherEntityName": "projectPosition",
       "otherEntityRelationshipName": "project",
       "relationshipValidateRules": "required",
       "relationshipName": "projectPositions",
       "otherEntityField": "title"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "organization",
+      "otherEntityRelationshipName": "projects",
+      "relationshipValidateRules": "required",
+      "relationshipName": "organization",
+      "otherEntityField": "name"
     }
   ],
   "entityTableName": "project",

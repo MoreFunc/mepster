@@ -21,6 +21,8 @@ public class SkillDTO implements Serializable {
 
     private ProjectPositionDTO projectPosition;
 
+    private PersonDTO person;
+
     public Long getId() {
         return id;
     }
@@ -53,6 +55,14 @@ public class SkillDTO implements Serializable {
         this.projectPosition = projectPosition;
     }
 
+    public PersonDTO getPerson() {
+        return person;
+    }
+
+    public void setPerson(PersonDTO person) {
+        this.person = person;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -82,6 +92,7 @@ public class SkillDTO implements Serializable {
             ", title='" + getTitle() + "'" +
             ", description='" + getDescription() + "'" +
             ", projectPosition=" + getProjectPosition() +
+            ", person=" + getPerson() +
             "}";
     }
 }

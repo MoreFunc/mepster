@@ -28,6 +28,14 @@
               }}</router-link>
             </div>
           </dd>
+          <dt>
+            <span v-text="$t('mepsterApp.skill.person')">Person</span>
+          </dt>
+          <dd>
+            <div v-if="skill.person">
+              <router-link :to="{ name: 'PersonView', params: { personId: skill.person.id } }">{{ skill.person.id }}</router-link>
+            </div>
+          </dd>
         </dl>
         <button type="submit" v-on:click.prevent="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
           <font-awesome-icon icon="arrow-left"></font-awesome-icon>&nbsp;<span v-text="$t('entity.action.back')"> Back</span>

@@ -60,6 +60,62 @@
             ></textarea>
           </div>
           <div class="form-group">
+            <label class="form-control-label" v-text="$t('mepsterApp.projectPosition.start')" for="project-position-start">Start</label>
+            <b-input-group class="mb-3">
+              <b-input-group-prepend>
+                <b-form-datepicker
+                  aria-controls="project-position-start"
+                  v-model="$v.projectPosition.start.$model"
+                  name="start"
+                  class="form-control"
+                  :locale="currentLanguage"
+                  button-only
+                  today-button
+                  reset-button
+                  close-button
+                >
+                </b-form-datepicker>
+              </b-input-group-prepend>
+              <b-form-input
+                id="project-position-start"
+                data-cy="start"
+                type="text"
+                class="form-control"
+                name="start"
+                :class="{ valid: !$v.projectPosition.start.$invalid, invalid: $v.projectPosition.start.$invalid }"
+                v-model="$v.projectPosition.start.$model"
+              />
+            </b-input-group>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" v-text="$t('mepsterApp.projectPosition.end')" for="project-position-end">End</label>
+            <b-input-group class="mb-3">
+              <b-input-group-prepend>
+                <b-form-datepicker
+                  aria-controls="project-position-end"
+                  v-model="$v.projectPosition.end.$model"
+                  name="end"
+                  class="form-control"
+                  :locale="currentLanguage"
+                  button-only
+                  today-button
+                  reset-button
+                  close-button
+                >
+                </b-form-datepicker>
+              </b-input-group-prepend>
+              <b-form-input
+                id="project-position-end"
+                data-cy="end"
+                type="text"
+                class="form-control"
+                name="end"
+                :class="{ valid: !$v.projectPosition.end.$invalid, invalid: $v.projectPosition.end.$invalid }"
+                v-model="$v.projectPosition.end.$model"
+              />
+            </b-input-group>
+          </div>
+          <div class="form-group">
             <label class="form-control-label" v-text="$t('mepsterApp.projectPosition.percent')" for="project-position-percent"
               >Percent</label
             >
