@@ -40,7 +40,7 @@ describe('MonthlyProjectPositionAssignment e2e test', () => {
     cy.authenticatedRequest({
       method: 'POST',
       url: '/api/people',
-      body: {"firstname":"Wells","lastname":"Barbados Divide","phoneNumber":"9 6+","email":"%o@tXQh.iqpUQN.YPySIj","notes":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ="},
+      body: {"firstname":"Wells","lastname":"Barbados Divide","type":"bus Product salmon","lead":"Pula Direct Re-engineered","phoneNumber":"+ 8","email":"ZNl@l8merI","notes":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ="},
     }).then(({ body }) => {
       person = body;
     });

@@ -19,10 +19,11 @@ public class OrganizationDTO implements Serializable {
     @Size(max = 50)
     private String street;
 
-    @Size(max = 5)
+    @Size(max = 10)
     private String number;
 
     @Size(max = 20)
+    @Pattern(regexp = "^[A-Z][A-Za-z/-]*$")
     private String city;
 
     @Size(max = 5)
@@ -41,8 +42,14 @@ public class OrganizationDTO implements Serializable {
     @Pattern(regexp = "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")
     private String email;
 
+    @Size(max = 30)
+    @Pattern(regexp = "^https?:\\/\\/[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")
+    private String website;
+
     @Lob
     private String notes;
+
+    private OrganizationDTO parentOrganization;
 
     public Long getId() {
         return id;
@@ -116,12 +123,28 @@ public class OrganizationDTO implements Serializable {
         this.email = email;
     }
 
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
     public String getNotes() {
         return notes;
     }
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public OrganizationDTO getParentOrganization() {
+        return parentOrganization;
+    }
+
+    public void setParentOrganization(OrganizationDTO parentOrganization) {
+        this.parentOrganization = parentOrganization;
     }
 
     @Override
@@ -158,7 +181,9 @@ public class OrganizationDTO implements Serializable {
             ", country='" + getCountry() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
             ", email='" + getEmail() + "'" +
+            ", website='" + getWebsite() + "'" +
             ", notes='" + getNotes() + "'" +
+            ", parentOrganization=" + getParentOrganization() +
             "}";
     }
 }

@@ -36,6 +36,12 @@ public class Person implements Serializable {
     @Column(name = "lastname", length = 50, nullable = false)
     private String lastname;
 
+    @Column(name = "type")
+    private String type;
+
+    @Column(name = "lead")
+    private String lead;
+
     @Size(max = 30)
     @Pattern(regexp = "^[0-9 +-]*$")
     @Column(name = "phone_number", length = 30)
@@ -62,7 +68,7 @@ public class Person implements Serializable {
     private Set<Role> roles = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "persons", "projects" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "persons", "projects", "subOrganizations", "parentOrganization" }, allowSetters = true)
     private Organization organization;
 
     @OneToMany(mappedBy = "person")
@@ -114,6 +120,32 @@ public class Person implements Serializable {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    public Person type(String type) {
+        this.setType(type);
+        return this;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getLead() {
+        return this.lead;
+    }
+
+    public Person lead(String lead) {
+        this.setLead(lead);
+        return this;
+    }
+
+    public void setLead(String lead) {
+        this.lead = lead;
     }
 
     public String getPhoneNumber() {
@@ -318,6 +350,8 @@ public class Person implements Serializable {
             "id=" + getId() +
             ", firstname='" + getFirstname() + "'" +
             ", lastname='" + getLastname() + "'" +
+            ", type='" + getType() + "'" +
+            ", lead='" + getLead() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
             ", email='" + getEmail() + "'" +
             ", notes='" + getNotes() + "'" +

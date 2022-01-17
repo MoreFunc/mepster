@@ -19,33 +19,33 @@ describe('Project e2e test', () => {
   const projectSample = { title: 'Highway blue', isActive: true };
 
   let project: any;
-  //let projectPosition: any;
-  //let organization: any;
+  let organization: any;
 
   beforeEach(() => {
     cy.login(username, password);
   });
 
-  /* Disabled due to incompatibility
   beforeEach(() => {
     // create an instance at the required relationship entity:
     cy.authenticatedRequest({
       method: 'POST',
-      url: '/api/project-positions',
-      body: {"title":"Legacy","description":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ=","startDate":"2022-01-14","endDate":"2022-01-13","percent":9},
-    }).then(({ body }) => {
-      projectPosition = body;
-    });
-    // create an instance at the required relationship entity:
-    cy.authenticatedRequest({
-      method: 'POST',
       url: '/api/organizations',
-      body: {"name":"Loan optical","street":"Ondricka Coves","number":"Bedfo","city":"West Adriana","zipcode":"19196","country":"q","phoneNumber":"0","email":"RsB@S8yH","notes":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ="},
+      body: {
+        name: 'Loan optical',
+        street: 'Ondricka Coves',
+        number: 'Bedfordshi',
+        city: 'JAO',
+        zipcode: '91962',
+        country: 'PCVf',
+        phoneNumber: '5',
+        email: 'Z=AM@w',
+        website: 'http://atYZum.P4lXWm',
+        notes: 'Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ=',
+      },
     }).then(({ body }) => {
       organization = body;
     });
   });
-   */
 
   beforeEach(() => {
     cy.intercept('GET', '/api/projects+(?*|)').as('entitiesRequest');
@@ -53,21 +53,18 @@ describe('Project e2e test', () => {
     cy.intercept('DELETE', '/api/projects/*').as('deleteEntityRequest');
   });
 
-  /* Disabled due to incompatibility
   beforeEach(() => {
     // Simulate relationships api for better performance and reproducibility.
     cy.intercept('GET', '/api/project-positions', {
       statusCode: 200,
-      body: [projectPosition],
+      body: [],
     });
 
     cy.intercept('GET', '/api/organizations', {
       statusCode: 200,
       body: [organization],
     });
-
   });
-   */
 
   afterEach(() => {
     if (project) {
@@ -80,16 +77,7 @@ describe('Project e2e test', () => {
     }
   });
 
-  /* Disabled due to incompatibility
   afterEach(() => {
-    if (projectPosition) {
-      cy.authenticatedRequest({
-        method: 'DELETE',
-        url: `/api/project-positions/${projectPosition.id}`,
-      }).then(() => {
-        projectPosition = undefined;
-      });
-    }
     if (organization) {
       cy.authenticatedRequest({
         method: 'DELETE',
@@ -99,7 +87,6 @@ describe('Project e2e test', () => {
       });
     }
   });
-   */
 
   it('Projects menu should load Projects page', () => {
     cy.visit('/');
@@ -136,14 +123,12 @@ describe('Project e2e test', () => {
     });
 
     describe('with existing value', () => {
-      /* Disabled due to incompatibility
       beforeEach(() => {
         cy.authenticatedRequest({
           method: 'POST',
           url: '/api/projects',
           body: {
             ...projectSample,
-            projectPositions: projectPosition,
             organization: organization,
           },
         }).then(({ body }) => {
@@ -165,17 +150,6 @@ describe('Project e2e test', () => {
         cy.visit(projectPageUrl);
 
         cy.wait('@entitiesRequestInternal');
-      });
-       */
-
-      beforeEach(function () {
-        cy.visit(projectPageUrl);
-
-        cy.wait('@entitiesRequest').then(({ response }) => {
-          if (response!.body.length === 0) {
-            this.skip();
-          }
-        });
       });
 
       it('detail button click should load details Project page', () => {
@@ -199,7 +173,7 @@ describe('Project e2e test', () => {
         cy.url().should('match', projectPageUrlPattern);
       });
 
-      it.skip('last delete button click should delete instance of Project', () => {
+      it('last delete button click should delete instance of Project', () => {
         cy.get(entityDeleteButtonSelector).last().click();
         cy.getEntityDeleteDialogHeading('project').should('exist');
         cy.get(entityConfirmDeleteButtonSelector).click();
@@ -223,7 +197,7 @@ describe('Project e2e test', () => {
       cy.getEntityCreateUpdateHeading('Project');
     });
 
-    it.skip('should create an instance of Project', () => {
+    it('should create an instance of Project', () => {
       cy.get(`[data-cy="title"]`).type('feed').should('have.value', 'feed');
 
       cy.get(`[data-cy="description"]`)
@@ -245,7 +219,6 @@ describe('Project e2e test', () => {
         .invoke('val')
         .should('match', new RegExp('../fake-data/blob/hipster.txt'));
 
-      cy.get(`[data-cy="projectPositions"]`).select([0]);
       cy.get(`[data-cy="organization"]`).select(1);
 
       cy.get(entityCreateSaveButtonSelector).click();

@@ -26,9 +26,12 @@
       "country": "Country",
       "phoneNumber": "Phone Number",
       "email": "Email",
+      "website": "Website",
       "notes": "Notes",
       "persons": "Persons",
-      "projects": "Projects"
+      "projects": "Projects",
+      "subOrganizations": "Sub Organizations",
+      "parentOrganization": "Parent Organization"
     }
   }
 }

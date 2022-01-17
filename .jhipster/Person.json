@@ -16,6 +16,14 @@
       "fieldValidateRulesMaxlength": "50"
     },
     {
+      "fieldName": "type",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lead",
+      "fieldType": "String"
+    },
+    {
       "fieldName": "phoneNumber",
       "fieldType": "String",
       "fieldValidateRules": ["maxlength", "pattern"],

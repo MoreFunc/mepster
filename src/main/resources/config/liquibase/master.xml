@@ -24,6 +24,7 @@
     <include file="config/liquibase/changelog/20220114145539_added_entity_MonthlyProjectPositionAssignment.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220116164153_added_entity_MonthlyAvailability.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20220114145431_added_entity_constraints_Organization.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220114145432_added_entity_constraints_Person.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220114145433_added_entity_constraints_Role.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220114145434_added_entity_constraints_Project.xml" relativeToChangelogFile="false"/>

@@ -38,8 +38,8 @@ class OrganizationResourceIT {
     private static final String DEFAULT_STREET = "AAAAAAAAAA";
     private static final String UPDATED_STREET = "BBBBBBBBBB";
 
-    private static final String DEFAULT_NUMBER = "AAAAA";
-    private static final String UPDATED_NUMBER = "BBBBB";
+    private static final String DEFAULT_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_NUMBER = "BBBBBBBBBB";
 
     private static final String DEFAULT_CITY = "AAAAAAAAAA";
     private static final String UPDATED_CITY = "BBBBBBBBBB";
@@ -55,6 +55,9 @@ class OrganizationResourceIT {
 
     private static final String DEFAULT_EMAIL = "?u*@d0e4";
     private static final String UPDATED_EMAIL = "H6W{@hR.KrnWWi.l0a";
+
+    private static final String DEFAULT_WEBSITE = "http://Jpms5c.X.gdcF4T.wb.zDjyrF.ODIuY";
+    private static final String UPDATED_WEBSITE = "https://Rlx.n.s.SJ.hB";
 
     private static final String DEFAULT_NOTES = "AAAAAAAAAA";
     private static final String UPDATED_NOTES = "BBBBBBBBBB";
@@ -95,6 +98,7 @@ class OrganizationResourceIT {
             .country(DEFAULT_COUNTRY)
             .phoneNumber(DEFAULT_PHONE_NUMBER)
             .email(DEFAULT_EMAIL)
+            .website(DEFAULT_WEBSITE)
             .notes(DEFAULT_NOTES);
         return organization;
     }
@@ -115,6 +119,7 @@ class OrganizationResourceIT {
             .country(UPDATED_COUNTRY)
             .phoneNumber(UPDATED_PHONE_NUMBER)
             .email(UPDATED_EMAIL)
+            .website(UPDATED_WEBSITE)
             .notes(UPDATED_NOTES);
         return organization;
     }
@@ -148,6 +153,7 @@ class OrganizationResourceIT {
         assertThat(testOrganization.getCountry()).isEqualTo(DEFAULT_COUNTRY);
         assertThat(testOrganization.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
         assertThat(testOrganization.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testOrganization.getWebsite()).isEqualTo(DEFAULT_WEBSITE);
         assertThat(testOrganization.getNotes()).isEqualTo(DEFAULT_NOTES);
     }
 
@@ -212,6 +218,7 @@ class OrganizationResourceIT {
             .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY)))
             .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
+            .andExpect(jsonPath("$.[*].website").value(hasItem(DEFAULT_WEBSITE)))
             .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES.toString())));
     }
 
@@ -235,6 +242,7 @@ class OrganizationResourceIT {
             .andExpect(jsonPath("$.country").value(DEFAULT_COUNTRY))
             .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
+            .andExpect(jsonPath("$.website").value(DEFAULT_WEBSITE))
             .andExpect(jsonPath("$.notes").value(DEFAULT_NOTES.toString()));
     }
 
@@ -266,6 +274,7 @@ class OrganizationResourceIT {
             .country(UPDATED_COUNTRY)
             .phoneNumber(UPDATED_PHONE_NUMBER)
             .email(UPDATED_EMAIL)
+            .website(UPDATED_WEBSITE)
             .notes(UPDATED_NOTES);
         OrganizationDTO organizationDTO = organizationMapper.toDto(updatedOrganization);
 
@@ -289,6 +298,7 @@ class OrganizationResourceIT {
         assertThat(testOrganization.getCountry()).isEqualTo(UPDATED_COUNTRY);
         assertThat(testOrganization.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testOrganization.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testOrganization.getWebsite()).isEqualTo(UPDATED_WEBSITE);
         assertThat(testOrganization.getNotes()).isEqualTo(UPDATED_NOTES);
     }
 
@@ -371,7 +381,12 @@ class OrganizationResourceIT {
         Organization partialUpdatedOrganization = new Organization();
         partialUpdatedOrganization.setId(organization.getId());
 
-        partialUpdatedOrganization.street(UPDATED_STREET).number(UPDATED_NUMBER).phoneNumber(UPDATED_PHONE_NUMBER).notes(UPDATED_NOTES);
+        partialUpdatedOrganization
+            .street(UPDATED_STREET)
+            .number(UPDATED_NUMBER)
+            .zipcode(UPDATED_ZIPCODE)
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .notes(UPDATED_NOTES);
 
         restOrganizationMockMvc
             .perform(
@@ -389,10 +404,11 @@ class OrganizationResourceIT {
         assertThat(testOrganization.getStreet()).isEqualTo(UPDATED_STREET);
         assertThat(testOrganization.getNumber()).isEqualTo(UPDATED_NUMBER);
         assertThat(testOrganization.getCity()).isEqualTo(DEFAULT_CITY);
-        assertThat(testOrganization.getZipcode()).isEqualTo(DEFAULT_ZIPCODE);
+        assertThat(testOrganization.getZipcode()).isEqualTo(UPDATED_ZIPCODE);
         assertThat(testOrganization.getCountry()).isEqualTo(DEFAULT_COUNTRY);
         assertThat(testOrganization.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testOrganization.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testOrganization.getWebsite()).isEqualTo(DEFAULT_WEBSITE);
         assertThat(testOrganization.getNotes()).isEqualTo(UPDATED_NOTES);
     }
 
@@ -417,6 +433,7 @@ class OrganizationResourceIT {
             .country(UPDATED_COUNTRY)
             .phoneNumber(UPDATED_PHONE_NUMBER)
             .email(UPDATED_EMAIL)
+            .website(UPDATED_WEBSITE)
             .notes(UPDATED_NOTES);
 
         restOrganizationMockMvc
@@ -439,6 +456,7 @@ class OrganizationResourceIT {
         assertThat(testOrganization.getCountry()).isEqualTo(UPDATED_COUNTRY);
         assertThat(testOrganization.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testOrganization.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testOrganization.getWebsite()).isEqualTo(UPDATED_WEBSITE);
         assertThat(testOrganization.getNotes()).isEqualTo(UPDATED_NOTES);
     }
 

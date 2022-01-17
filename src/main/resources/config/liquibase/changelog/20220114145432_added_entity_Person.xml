@@ -20,6 +20,12 @@
             <column name="lastname" type="varchar(50)">
                 <constraints nullable="false" />
             </column>
+            <column name="type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="lead" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <column name="phone_number" type="varchar(30)">
                 <constraints nullable="true" />
             </column>
@@ -55,6 +61,8 @@
             <column name="id" type="numeric"/>
             <column name="firstname" type="string"/>
             <column name="lastname" type="string"/>
+            <column name="type" type="string"/>
+            <column name="lead" type="string"/>
             <column name="phone_number" type="string"/>
             <column name="email" type="string"/>
             <column name="notes" type="clob"/>

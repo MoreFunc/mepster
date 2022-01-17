@@ -35,9 +35,6 @@ const validations: any = {
       max: maxValue(100),
     },
     notes: {},
-    projectPositions: {
-      required,
-    },
     organization: {
       required,
     },

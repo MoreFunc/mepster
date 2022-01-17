@@ -33,8 +33,10 @@ describe('MonthlyAvailability e2e test', () => {
       body: {
         firstname: 'Rubber Direct',
         lastname: 'generate haptic bypass',
-        phoneNumber: '54',
-        email: '9_8V9@FJran.Wb.fVYT.Zoth',
+        type: 'Inlet JBOD',
+        lead: 'PNG Indiana',
+        phoneNumber: '7',
+        email: '1a@fVYT.othNH.QPT.eKMu',
         notes: 'Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ=',
       },
     }).then(({ body }) => {

@@ -28,18 +28,21 @@ application {
 entity Organization(organization) {
   name String required minlength(2) maxlength(50)
   street String maxlength(50)
-  number String maxlength(5)
-  city String maxlength(20)
+  number String maxlength(10)
+  city String maxlength(20) pattern(/^[A-Z][A-Za-z/-]*$/)
   zipcode String maxlength(5) pattern(/^[0-9]{5}$/)
   country String maxlength(20) pattern(/^[A-Za-z-]*$/)
   phoneNumber String maxlength(30) pattern(/^[0-9 +-]*$/)
   email String maxlength(30) pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+  website String maxlength(30) pattern(/^https?:\/\/[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
   notes TextBlob
 }
 
 entity Person(person) {
   firstname String required minlength(2) maxlength(50)
   lastname String required minlength(2) maxlength(50)
+  type String
+  lead String
   phoneNumber String maxlength(30) pattern(/^[0-9 +-]*$/)
   email String maxlength(30) pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
   notes TextBlob
@@ -87,7 +90,8 @@ entity MonthlyAvailability(monthly_availability) {
 relationship OneToMany {
   Organization{persons(lastname)} to Person{organization(name)}
   Organization{projects(title)} to Project{organization(name) required}
-  Project{projectPositions(title) required} to ProjectPosition{project(title) required}
+  Organization{subOrganizations(name)} to Organization{parentOrganization(name)}
+  Project{projectPositions(title)} to ProjectPosition{project(title) required}
   ProjectPosition{skills(title)} to Skill
   Person{skills(title)} to Skill
   Person{roles(title)} to Role

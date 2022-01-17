@@ -16,7 +16,7 @@ describe('Organization e2e test', () => {
   const organizationPageUrlPattern = new RegExp('/organization(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const organizationSample = { name: 'Public-key Avon Lane' };
+  const organizationSample = { name: 'Soap asymmetric' };
 
   let organization: any;
 
@@ -152,15 +152,19 @@ describe('Organization e2e test', () => {
 
       cy.get(`[data-cy="street"]`).type('Noemie Inlet').should('have.value', 'Noemie Inlet');
 
-      cy.get(`[data-cy="number"]`).type('Creat').should('have.value', 'Creat');
+      cy.get(`[data-cy="number"]`).type('Creative A').should('have.value', 'Creative A');
 
-      cy.get(`[data-cy="city"]`).type('Troy').should('have.value', 'Troy');
+      cy.get(`[data-cy="city"]`).type('VORovj').should('have.value', 'VORovj');
 
-      cy.get(`[data-cy="zipcode"]`).type('37861').should('have.value', '37861');
+      cy.get(`[data-cy="zipcode"]`).type('28058').should('have.value', '28058');
 
-      cy.get(`[data-cy="country"]`).type('v').should('have.value', 'v');
+      cy.get(`[data-cy="country"]`).type('BW').should('have.value', 'BW');
 
-      cy.get(`[data-cy="email"]`).type('6CaC@2Tex.xFs6.Kr9F.R6f59').should('have.value', '6CaC@2Tex.xFs6.Kr9F.R6f59');
+      cy.get(`[data-cy="phoneNumber"]`).type('+90').should('have.value', '+90');
+
+      cy.get(`[data-cy="email"]`).type('VT~@s6M.9F.R6f59.pRCEe').should('have.value', 'VT~@s6M.9F.R6f59.pRCEe');
+
+      cy.get(`[data-cy="website"]`).type('https://AhE').should('have.value', 'https://AhE');
 
       cy.get(`[data-cy="notes"]`)
         .type('../fake-data/blob/hipster.txt')

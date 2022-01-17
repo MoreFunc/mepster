@@ -8,6 +8,8 @@ export interface IPerson {
   id?: number;
   firstname?: string;
   lastname?: string;
+  type?: string | null;
+  lead?: string | null;
   phoneNumber?: string | null;
   email?: string | null;
   notes?: string | null;
@@ -23,6 +25,8 @@ export class Person implements IPerson {
     public id?: number,
     public firstname?: string,
     public lastname?: string,
+    public type?: string | null,
+    public lead?: string | null,
     public phoneNumber?: string | null,
     public email?: string | null,
     public notes?: string | null,

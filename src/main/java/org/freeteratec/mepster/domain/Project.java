@@ -64,7 +64,7 @@ public class Project implements Serializable {
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties(value = { "persons", "projects" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "persons", "projects", "subOrganizations", "parentOrganization" }, allowSetters = true)
     private Organization organization;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

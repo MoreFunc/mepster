@@ -11,9 +11,12 @@ export interface IOrganization {
   country?: string | null;
   phoneNumber?: string | null;
   email?: string | null;
+  website?: string | null;
   notes?: string | null;
   persons?: IPerson[] | null;
   projects?: IProject[] | null;
+  subOrganizations?: IOrganization[] | null;
+  parentOrganization?: IOrganization | null;
 }
 
 export class Organization implements IOrganization {
@@ -27,8 +30,11 @@ export class Organization implements IOrganization {
     public country?: string | null,
     public phoneNumber?: string | null,
     public email?: string | null,
+    public website?: string | null,
     public notes?: string | null,
     public persons?: IPerson[] | null,
-    public projects?: IProject[] | null
+    public projects?: IProject[] | null,
+    public subOrganizations?: IOrganization[] | null,
+    public parentOrganization?: IOrganization | null
   ) {}
 }

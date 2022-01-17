@@ -39,6 +39,7 @@ describe('Service Tests', () => {
         'AAAAAAA',
         'AAAAAAA',
         'AAAAAAA',
+        'AAAAAAA',
         'AAAAAAA'
       );
     });
@@ -100,6 +101,7 @@ describe('Service Tests', () => {
             country: 'BBBBBB',
             phoneNumber: 'BBBBBB',
             email: 'BBBBBB',
+            website: 'BBBBBB',
             notes: 'BBBBBB',
           },
           elemDefault
@@ -169,6 +171,7 @@ describe('Service Tests', () => {
             country: 'BBBBBB',
             phoneNumber: 'BBBBBB',
             email: 'BBBBBB',
+            website: 'BBBBBB',
             notes: 'BBBBBB',
           },
           elemDefault

@@ -10,7 +10,7 @@ export interface IProject {
   isActive?: boolean;
   chancePercent?: number | null;
   notes?: string | null;
-  projectPositions?: IProjectPosition[];
+  projectPositions?: IProjectPosition[] | null;
   organization?: IOrganization;
 }
 
@@ -24,7 +24,7 @@ export class Project implements IProject {
     public isActive?: boolean,
     public chancePercent?: number | null,
     public notes?: string | null,
-    public projectPositions?: IProjectPosition[],
+    public projectPositions?: IProjectPosition[] | null,
     public organization?: IOrganization
   ) {
     this.isActive = this.isActive ?? false;

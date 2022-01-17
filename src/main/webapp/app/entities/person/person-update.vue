@@ -79,6 +79,30 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="form-control-label" v-text="$t('mepsterApp.person.type')" for="person-type">Type</label>
+            <input
+              type="text"
+              class="form-control"
+              name="type"
+              id="person-type"
+              data-cy="type"
+              :class="{ valid: !$v.person.type.$invalid, invalid: $v.person.type.$invalid }"
+              v-model="$v.person.type.$model"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" v-text="$t('mepsterApp.person.lead')" for="person-lead">Lead</label>
+            <input
+              type="text"
+              class="form-control"
+              name="lead"
+              id="person-lead"
+              data-cy="lead"
+              :class="{ valid: !$v.person.lead.$invalid, invalid: $v.person.lead.$invalid }"
+              v-model="$v.person.lead.$model"
+            />
+          </div>
+          <div class="form-group">
             <label class="form-control-label" v-text="$t('mepsterApp.person.phoneNumber')" for="person-phoneNumber">Phone Number</label>
             <input
               type="text"

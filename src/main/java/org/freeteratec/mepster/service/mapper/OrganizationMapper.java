@@ -9,6 +9,9 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = {})
 public interface OrganizationMapper extends EntityMapper<OrganizationDTO, Organization> {
+    @Mapping(target = "parentOrganization", source = "parentOrganization", qualifiedByName = "name")
+    OrganizationDTO toDto(Organization s);
+
     @Named("name")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")

@@ -51,6 +51,7 @@ public class CacheConfiguration {
             createCache(cm, org.freeteratec.mepster.domain.Organization.class.getName());
             createCache(cm, org.freeteratec.mepster.domain.Organization.class.getName() + ".persons");
             createCache(cm, org.freeteratec.mepster.domain.Organization.class.getName() + ".projects");
+            createCache(cm, org.freeteratec.mepster.domain.Organization.class.getName() + ".subOrganizations");
             createCache(cm, org.freeteratec.mepster.domain.Person.class.getName());
             createCache(cm, org.freeteratec.mepster.domain.Person.class.getName() + ".skills");
             createCache(cm, org.freeteratec.mepster.domain.Person.class.getName() + ".roles");

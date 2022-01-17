@@ -38,6 +38,12 @@ class PersonResourceIT {
     private static final String DEFAULT_LASTNAME = "AAAAAAAAAA";
     private static final String UPDATED_LASTNAME = "BBBBBBBBBB";
 
+    private static final String DEFAULT_TYPE = "AAAAAAAAAA";
+    private static final String UPDATED_TYPE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_LEAD = "AAAAAAAAAA";
+    private static final String UPDATED_LEAD = "BBBBBBBBBB";
+
     private static final String DEFAULT_PHONE_NUMBER = "";
     private static final String UPDATED_PHONE_NUMBER = " ";
 
@@ -77,6 +83,8 @@ class PersonResourceIT {
         Person person = new Person()
             .firstname(DEFAULT_FIRSTNAME)
             .lastname(DEFAULT_LASTNAME)
+            .type(DEFAULT_TYPE)
+            .lead(DEFAULT_LEAD)
             .phoneNumber(DEFAULT_PHONE_NUMBER)
             .email(DEFAULT_EMAIL)
             .notes(DEFAULT_NOTES);
@@ -93,6 +101,8 @@ class PersonResourceIT {
         Person person = new Person()
             .firstname(UPDATED_FIRSTNAME)
             .lastname(UPDATED_LASTNAME)
+            .type(UPDATED_TYPE)
+            .lead(UPDATED_LEAD)
             .phoneNumber(UPDATED_PHONE_NUMBER)
             .email(UPDATED_EMAIL)
             .notes(UPDATED_NOTES);
@@ -120,6 +130,8 @@ class PersonResourceIT {
         Person testPerson = personList.get(personList.size() - 1);
         assertThat(testPerson.getFirstname()).isEqualTo(DEFAULT_FIRSTNAME);
         assertThat(testPerson.getLastname()).isEqualTo(DEFAULT_LASTNAME);
+        assertThat(testPerson.getType()).isEqualTo(DEFAULT_TYPE);
+        assertThat(testPerson.getLead()).isEqualTo(DEFAULT_LEAD);
         assertThat(testPerson.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
         assertThat(testPerson.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testPerson.getNotes()).isEqualTo(DEFAULT_NOTES);
@@ -194,6 +206,8 @@ class PersonResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(person.getId().intValue())))
             .andExpect(jsonPath("$.[*].firstname").value(hasItem(DEFAULT_FIRSTNAME)))
             .andExpect(jsonPath("$.[*].lastname").value(hasItem(DEFAULT_LASTNAME)))
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE)))
+            .andExpect(jsonPath("$.[*].lead").value(hasItem(DEFAULT_LEAD)))
             .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES.toString())));
@@ -213,6 +227,8 @@ class PersonResourceIT {
             .andExpect(jsonPath("$.id").value(person.getId().intValue()))
             .andExpect(jsonPath("$.firstname").value(DEFAULT_FIRSTNAME))
             .andExpect(jsonPath("$.lastname").value(DEFAULT_LASTNAME))
+            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE))
+            .andExpect(jsonPath("$.lead").value(DEFAULT_LEAD))
             .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
             .andExpect(jsonPath("$.notes").value(DEFAULT_NOTES.toString()));
@@ -240,6 +256,8 @@ class PersonResourceIT {
         updatedPerson
             .firstname(UPDATED_FIRSTNAME)
             .lastname(UPDATED_LASTNAME)
+            .type(UPDATED_TYPE)
+            .lead(UPDATED_LEAD)
             .phoneNumber(UPDATED_PHONE_NUMBER)
             .email(UPDATED_EMAIL)
             .notes(UPDATED_NOTES);
@@ -259,6 +277,8 @@ class PersonResourceIT {
         Person testPerson = personList.get(personList.size() - 1);
         assertThat(testPerson.getFirstname()).isEqualTo(UPDATED_FIRSTNAME);
         assertThat(testPerson.getLastname()).isEqualTo(UPDATED_LASTNAME);
+        assertThat(testPerson.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testPerson.getLead()).isEqualTo(UPDATED_LEAD);
         assertThat(testPerson.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testPerson.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testPerson.getNotes()).isEqualTo(UPDATED_NOTES);
@@ -341,7 +361,7 @@ class PersonResourceIT {
         Person partialUpdatedPerson = new Person();
         partialUpdatedPerson.setId(person.getId());
 
-        partialUpdatedPerson.email(UPDATED_EMAIL);
+        partialUpdatedPerson.lead(UPDATED_LEAD).email(UPDATED_EMAIL).notes(UPDATED_NOTES);
 
         restPersonMockMvc
             .perform(
@@ -357,9 +377,11 @@ class PersonResourceIT {
         Person testPerson = personList.get(personList.size() - 1);
         assertThat(testPerson.getFirstname()).isEqualTo(DEFAULT_FIRSTNAME);
         assertThat(testPerson.getLastname()).isEqualTo(DEFAULT_LASTNAME);
+        assertThat(testPerson.getType()).isEqualTo(DEFAULT_TYPE);
+        assertThat(testPerson.getLead()).isEqualTo(UPDATED_LEAD);
         assertThat(testPerson.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
         assertThat(testPerson.getEmail()).isEqualTo(UPDATED_EMAIL);
-        assertThat(testPerson.getNotes()).isEqualTo(DEFAULT_NOTES);
+        assertThat(testPerson.getNotes()).isEqualTo(UPDATED_NOTES);
     }
 
     @Test
@@ -377,6 +399,8 @@ class PersonResourceIT {
         partialUpdatedPerson
             .firstname(UPDATED_FIRSTNAME)
             .lastname(UPDATED_LASTNAME)
+            .type(UPDATED_TYPE)
+            .lead(UPDATED_LEAD)
             .phoneNumber(UPDATED_PHONE_NUMBER)
             .email(UPDATED_EMAIL)
             .notes(UPDATED_NOTES);
@@ -395,6 +419,8 @@ class PersonResourceIT {
         Person testPerson = personList.get(personList.size() - 1);
         assertThat(testPerson.getFirstname()).isEqualTo(UPDATED_FIRSTNAME);
         assertThat(testPerson.getLastname()).isEqualTo(UPDATED_LASTNAME);
+        assertThat(testPerson.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testPerson.getLead()).isEqualTo(UPDATED_LEAD);
         assertThat(testPerson.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testPerson.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testPerson.getNotes()).isEqualTo(UPDATED_NOTES);

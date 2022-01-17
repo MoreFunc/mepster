@@ -37,6 +37,8 @@ const validations: any = {
       minLength: minLength(2),
       maxLength: maxLength(50),
     },
+    type: {},
+    lead: {},
     phoneNumber: {
       maxLength: maxLength(30),
     },

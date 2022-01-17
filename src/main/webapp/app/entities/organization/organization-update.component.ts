@@ -27,7 +27,7 @@ const validations: any = {
       maxLength: maxLength(50),
     },
     number: {
-      maxLength: maxLength(5),
+      maxLength: maxLength(10),
     },
     city: {
       maxLength: maxLength(20),
@@ -42,6 +42,9 @@ const validations: any = {
       maxLength: maxLength(30),
     },
     email: {
+      maxLength: maxLength(30),
+    },
+    website: {
       maxLength: maxLength(30),
     },
     notes: {},
@@ -64,6 +67,8 @@ export default class OrganizationUpdate extends mixins(JhiDataUtils) {
   @Inject('projectService') private projectService: () => ProjectService;
 
   public projects: IProject[] = [];
+
+  public organizations: IOrganization[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
@@ -154,6 +159,11 @@ export default class OrganizationUpdate extends mixins(JhiDataUtils) {
       .retrieve()
       .then(res => {
         this.projects = res.data;
+      });
+    this.organizationService()
+      .retrieve()
+      .then(res => {
+        this.organizations = res.data;
       });
   }
 }

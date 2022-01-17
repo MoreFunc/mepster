@@ -20,6 +20,8 @@
       "id": "ID",
       "firstname": "Firstname",
       "lastname": "Lastname",
+      "type": "Type",
+      "lead": "Lead",
       "phoneNumber": "Phone Number",
       "email": "Email",
       "notes": "Notes",

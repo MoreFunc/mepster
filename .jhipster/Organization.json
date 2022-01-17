@@ -18,13 +18,14 @@
       "fieldName": "number",
       "fieldType": "String",
       "fieldValidateRules": ["maxlength"],
-      "fieldValidateRulesMaxlength": "5"
+      "fieldValidateRulesMaxlength": "10"
     },
     {
       "fieldName": "city",
       "fieldType": "String",
-      "fieldValidateRules": ["maxlength"],
-      "fieldValidateRulesMaxlength": "20"
+      "fieldValidateRules": ["maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "20",
+      "fieldValidateRulesPattern": "^[A-Z][A-Za-z/-]*$"
     },
     {
       "fieldName": "zipcode",
@@ -55,6 +56,13 @@
       "fieldValidateRulesPattern": "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
     },
     {
+      "fieldName": "website",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "30",
+      "fieldValidateRulesPattern": "^https?:\\/\\/[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
+    },
+    {
       "fieldName": "notes",
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "text"
@@ -74,6 +82,20 @@
       "otherEntityRelationshipName": "organization",
       "relationshipName": "projects",
       "otherEntityField": "title"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "organization",
+      "otherEntityRelationshipName": "parentOrganization",
+      "relationshipName": "subOrganizations",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "organization",
+      "otherEntityRelationshipName": "subOrganizations",
+      "relationshipName": "parentOrganization",
+      "otherEntityField": "name"
     }
   ],
   "entityTableName": "organization",

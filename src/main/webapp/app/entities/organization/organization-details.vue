@@ -55,10 +55,26 @@
             <span>{{ organization.email }}</span>
           </dd>
           <dt>
+            <span v-text="$t('mepsterApp.organization.website')">Website</span>
+          </dt>
+          <dd>
+            <span>{{ organization.website }}</span>
+          </dd>
+          <dt>
             <span v-text="$t('mepsterApp.organization.notes')">Notes</span>
           </dt>
           <dd>
             <span>{{ organization.notes }}</span>
+          </dd>
+          <dt>
+            <span v-text="$t('mepsterApp.organization.parentOrganization')">Parent Organization</span>
+          </dt>
+          <dd>
+            <div v-if="organization.parentOrganization">
+              <router-link :to="{ name: 'OrganizationView', params: { organizationId: organization.parentOrganization.id } }">{{
+                organization.parentOrganization.name
+              }}</router-link>
+            </div>
           </dd>
         </dl>
         <button type="submit" v-on:click.prevent="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

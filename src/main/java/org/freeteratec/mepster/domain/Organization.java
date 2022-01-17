@@ -35,11 +35,12 @@ public class Organization implements Serializable {
     @Column(name = "street", length = 50)
     private String street;
 
-    @Size(max = 5)
-    @Column(name = "number", length = 5)
+    @Size(max = 10)
+    @Column(name = "number", length = 10)
     private String number;
 
     @Size(max = 20)
+    @Pattern(regexp = "^[A-Z][A-Za-z/-]*$")
     @Column(name = "city", length = 20)
     private String city;
 
@@ -63,6 +64,11 @@ public class Organization implements Serializable {
     @Column(name = "email", length = 30)
     private String email;
 
+    @Size(max = 30)
+    @Pattern(regexp = "^https?:\\/\\/[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")
+    @Column(name = "website", length = 30)
+    private String website;
+
     @Lob
     @Type(type = "org.hibernate.type.TextType")
     @Column(name = "notes")
@@ -77,6 +83,15 @@ public class Organization implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "projectPositions", "organization" }, allowSetters = true)
     private Set<Project> projects = new HashSet<>();
+
+    @OneToMany(mappedBy = "parentOrganization")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "persons", "projects", "subOrganizations", "parentOrganization" }, allowSetters = true)
+    private Set<Organization> subOrganizations = new HashSet<>();
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "persons", "projects", "subOrganizations", "parentOrganization" }, allowSetters = true)
+    private Organization parentOrganization;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -197,6 +212,19 @@ public class Organization implements Serializable {
         this.email = email;
     }
 
+    public String getWebsite() {
+        return this.website;
+    }
+
+    public Organization website(String website) {
+        this.setWebsite(website);
+        return this;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
     public String getNotes() {
         return this.notes;
     }
@@ -272,6 +300,50 @@ public class Organization implements Serializable {
         return this;
     }
 
+    public Set<Organization> getSubOrganizations() {
+        return this.subOrganizations;
+    }
+
+    public void setSubOrganizations(Set<Organization> organizations) {
+        if (this.subOrganizations != null) {
+            this.subOrganizations.forEach(i -> i.setParentOrganization(null));
+        }
+        if (organizations != null) {
+            organizations.forEach(i -> i.setParentOrganization(this));
+        }
+        this.subOrganizations = organizations;
+    }
+
+    public Organization subOrganizations(Set<Organization> organizations) {
+        this.setSubOrganizations(organizations);
+        return this;
+    }
+
+    public Organization addSubOrganizations(Organization organization) {
+        this.subOrganizations.add(organization);
+        organization.setParentOrganization(this);
+        return this;
+    }
+
+    public Organization removeSubOrganizations(Organization organization) {
+        this.subOrganizations.remove(organization);
+        organization.setParentOrganization(null);
+        return this;
+    }
+
+    public Organization getParentOrganization() {
+        return this.parentOrganization;
+    }
+
+    public void setParentOrganization(Organization organization) {
+        this.parentOrganization = organization;
+    }
+
+    public Organization parentOrganization(Organization organization) {
+        this.setParentOrganization(organization);
+        return this;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -304,6 +376,7 @@ public class Organization implements Serializable {
             ", country='" + getCountry() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
             ", email='" + getEmail() + "'" +
+            ", website='" + getWebsite() + "'" +
             ", notes='" + getNotes() + "'" +
             "}";
     }

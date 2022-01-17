@@ -31,6 +31,8 @@
             <th scope="row"><span v-text="$t('global.field.id')">ID</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.person.firstname')">Firstname</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.person.lastname')">Lastname</span></th>
+            <th scope="row"><span v-text="$t('mepsterApp.person.type')">Type</span></th>
+            <th scope="row"><span v-text="$t('mepsterApp.person.lead')">Lead</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.person.phoneNumber')">Phone Number</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.person.email')">Email</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.person.notes')">Notes</span></th>
@@ -45,6 +47,8 @@
             </td>
             <td>{{ person.firstname }}</td>
             <td>{{ person.lastname }}</td>
+            <td>{{ person.type }}</td>
+            <td>{{ person.lead }}</td>
             <td>{{ person.phoneNumber }}</td>
             <td>{{ person.email }}</td>
             <td>{{ person.notes }}</td>

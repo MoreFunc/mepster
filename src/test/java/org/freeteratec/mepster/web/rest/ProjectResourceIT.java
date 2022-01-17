@@ -14,7 +14,6 @@ import javax.persistence.EntityManager;
 import org.freeteratec.mepster.IntegrationTest;
 import org.freeteratec.mepster.domain.Organization;
 import org.freeteratec.mepster.domain.Project;
-import org.freeteratec.mepster.domain.ProjectPosition;
 import org.freeteratec.mepster.repository.ProjectRepository;
 import org.freeteratec.mepster.service.dto.ProjectDTO;
 import org.freeteratec.mepster.service.mapper.ProjectMapper;
@@ -93,16 +92,6 @@ class ProjectResourceIT {
             .chancePercent(DEFAULT_CHANCE_PERCENT)
             .notes(DEFAULT_NOTES);
         // Add required entity
-        ProjectPosition projectPosition;
-        if (TestUtil.findAll(em, ProjectPosition.class).isEmpty()) {
-            projectPosition = ProjectPositionResourceIT.createEntity(em);
-            em.persist(projectPosition);
-            em.flush();
-        } else {
-            projectPosition = TestUtil.findAll(em, ProjectPosition.class).get(0);
-        }
-        project.getProjectPositions().add(projectPosition);
-        // Add required entity
         Organization organization;
         if (TestUtil.findAll(em, Organization.class).isEmpty()) {
             organization = OrganizationResourceIT.createEntity(em);
@@ -130,16 +119,6 @@ class ProjectResourceIT {
             .isActive(UPDATED_IS_ACTIVE)
             .chancePercent(UPDATED_CHANCE_PERCENT)
             .notes(UPDATED_NOTES);
-        // Add required entity
-        ProjectPosition projectPosition;
-        if (TestUtil.findAll(em, ProjectPosition.class).isEmpty()) {
-            projectPosition = ProjectPositionResourceIT.createUpdatedEntity(em);
-            em.persist(projectPosition);
-            em.flush();
-        } else {
-            projectPosition = TestUtil.findAll(em, ProjectPosition.class).get(0);
-        }
-        project.getProjectPositions().add(projectPosition);
         // Add required entity
         Organization organization;
         if (TestUtil.findAll(em, Organization.class).isEmpty()) {

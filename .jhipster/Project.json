@@ -44,7 +44,6 @@
       "relationshipType": "one-to-many",
       "otherEntityName": "projectPosition",
       "otherEntityRelationshipName": "project",
-      "relationshipValidateRules": "required",
       "relationshipName": "projectPositions",
       "otherEntityField": "title"
     },

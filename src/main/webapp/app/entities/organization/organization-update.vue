@@ -82,9 +82,9 @@
               <small
                 class="form-text text-danger"
                 v-if="!$v.organization.number.maxLength"
-                v-text="$t('entity.validation.maxlength', { max: 5 })"
+                v-text="$t('entity.validation.maxlength', { max: 10 })"
               >
-                This field cannot be longer than 5 characters.
+                This field cannot be longer than 10 characters.
               </small>
             </div>
           </div>
@@ -106,6 +106,13 @@
                 v-text="$t('entity.validation.maxlength', { max: 20 })"
               >
                 This field cannot be longer than 20 characters.
+              </small>
+              <small
+                class="form-text text-danger"
+                v-if="!$v.organization.city.pattern"
+                v-text="$t('entity.validation.pattern', { pattern: 'City' })"
+              >
+                This field should follow pattern for "City".
               </small>
             </div>
           </div>
@@ -224,6 +231,34 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="form-control-label" v-text="$t('mepsterApp.organization.website')" for="organization-website">Website</label>
+            <input
+              type="text"
+              class="form-control"
+              name="website"
+              id="organization-website"
+              data-cy="website"
+              :class="{ valid: !$v.organization.website.$invalid, invalid: $v.organization.website.$invalid }"
+              v-model="$v.organization.website.$model"
+            />
+            <div v-if="$v.organization.website.$anyDirty && $v.organization.website.$invalid">
+              <small
+                class="form-text text-danger"
+                v-if="!$v.organization.website.maxLength"
+                v-text="$t('entity.validation.maxlength', { max: 30 })"
+              >
+                This field cannot be longer than 30 characters.
+              </small>
+              <small
+                class="form-text text-danger"
+                v-if="!$v.organization.website.pattern"
+                v-text="$t('entity.validation.pattern', { pattern: 'Website' })"
+              >
+                This field should follow pattern for "Website".
+              </small>
+            </div>
+          </div>
+          <div class="form-group">
             <label class="form-control-label" v-text="$t('mepsterApp.organization.notes')" for="organization-notes">Notes</label>
             <textarea
               class="form-control"
@@ -233,6 +268,34 @@
               :class="{ valid: !$v.organization.notes.$invalid, invalid: $v.organization.notes.$invalid }"
               v-model="$v.organization.notes.$model"
             ></textarea>
+          </div>
+          <div class="form-group">
+            <label
+              class="form-control-label"
+              v-text="$t('mepsterApp.organization.parentOrganization')"
+              for="organization-parentOrganization"
+              >Parent Organization</label
+            >
+            <select
+              class="form-control"
+              id="organization-parentOrganization"
+              data-cy="parentOrganization"
+              name="parentOrganization"
+              v-model="organization.parentOrganization"
+            >
+              <option v-bind:value="null"></option>
+              <option
+                v-bind:value="
+                  organization.parentOrganization && organizationOption.id === organization.parentOrganization.id
+                    ? organization.parentOrganization
+                    : organizationOption
+                "
+                v-for="organizationOption in organizations"
+                :key="organizationOption.id"
+              >
+                {{ organizationOption.name }}
+              </option>
+            </select>
           </div>
         </div>
         <div>

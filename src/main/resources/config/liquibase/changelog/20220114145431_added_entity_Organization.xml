@@ -20,7 +20,7 @@
             <column name="street" type="varchar(50)">
                 <constraints nullable="true" />
             </column>
-            <column name="number" type="varchar(5)">
+            <column name="number" type="varchar(10)">
                 <constraints nullable="true" />
             </column>
             <column name="city" type="varchar(20)">
@@ -38,7 +38,13 @@
             <column name="email" type="varchar(30)">
                 <constraints nullable="true" />
             </column>
+            <column name="website" type="varchar(30)">
+                <constraints nullable="true" />
+            </column>
             <column name="notes" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="parent_organization_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
@@ -70,6 +76,7 @@
             <column name="country" type="string"/>
             <column name="phone_number" type="string"/>
             <column name="email" type="string"/>
+            <column name="website" type="string"/>
             <column name="notes" type="clob"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
