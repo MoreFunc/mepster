@@ -98,6 +98,8 @@ export default class PersonUpdate extends mixins(JhiDataUtils) {
         this.currentLanguage = this.$store.getters.currentLanguage;
       }
     );
+    this.person.skills = [];
+    this.person.roles = [];
   }
 
   public save(): void {
@@ -184,5 +186,12 @@ export default class PersonUpdate extends mixins(JhiDataUtils) {
       .then(res => {
         this.monthlyAvailabilities = res.data;
       });
+  }
+
+  public getSelected(selectedVals, option): any {
+    if (selectedVals) {
+      return selectedVals.find(value => option.id === value.id) ?? option;
+    }
+    return option;
   }
 }

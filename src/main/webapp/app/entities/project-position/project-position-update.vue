@@ -167,6 +167,22 @@
             </small>
           </div>
           <div class="form-group">
+            <label v-text="$t('mepsterApp.projectPosition.skills')" for="project-position-skills">Skills</label>
+            <select
+              class="form-control"
+              id="project-position-skills"
+              data-cy="skills"
+              multiple
+              name="skills"
+              v-if="projectPosition.skills !== undefined"
+              v-model="projectPosition.skills"
+            >
+              <option v-bind:value="getSelected(projectPosition.skills, skillOption)" v-for="skillOption in skills" :key="skillOption.id">
+                {{ skillOption.title }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
             <label class="form-control-label" v-text="$t('mepsterApp.projectPosition.project')" for="project-position-project"
               >Project</label
             >

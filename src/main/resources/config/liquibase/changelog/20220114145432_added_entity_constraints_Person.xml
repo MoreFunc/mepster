@@ -8,6 +8,30 @@
     -->
     <changeSet id="20220114145432-2" author="jhipster">
 
+        <addForeignKeyConstraint baseColumnNames="person_id"
+                                 baseTableName="rel_person__skills"
+                                 constraintName="fk_rel_person__skills__person_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"/>
+
+        <addForeignKeyConstraint baseColumnNames="skills_id"
+                                 baseTableName="rel_person__skills"
+                                 constraintName="fk_rel_person__skills__skills_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="skill"/>
+
+        <addForeignKeyConstraint baseColumnNames="person_id"
+                                 baseTableName="rel_person__roles"
+                                 constraintName="fk_rel_person__roles__person_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"/>
+
+        <addForeignKeyConstraint baseColumnNames="roles_id"
+                                 baseTableName="rel_person__roles"
+                                 constraintName="fk_rel_person__roles__roles_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="role"/>
+
         <addForeignKeyConstraint baseColumnNames="organization_id"
                                  baseTableName="person"
                                  constraintName="fk_person__organization_id"

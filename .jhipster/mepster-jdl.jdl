@@ -87,22 +87,23 @@ entity MonthlyAvailability(monthly_availability) {
   isActive Boolean required
 }
 
+
 relationship OneToMany {
   Organization{persons(lastname)} to Person{organization(name)}
   Organization{projects(title)} to Project{organization(name) required}
   Organization{subOrganizations(name)} to Organization{parentOrganization(name)}
   Project{projectPositions(title)} to ProjectPosition{project(title) required}
-  ProjectPosition{skills(title)} to Skill
-  Person{skills(title)} to Skill
-  Person{roles(title)} to Role
 }
 
 relationship ManyToOne {
   MonthlyProjectPositionAssignment{projectPosition(title) required} to ProjectPosition{monthlyAssignments(yearmonth)}
   MonthlyProjectPositionAssignment{person(lastname) required} to Person{monthlyAssignments(yearmonth)}
   MonthlyAvailability{person(lastname) required} to Person{monthlyAvailabilities(yearmonth)}
+  ProjectPosition{role(title) required} to Role{projectPosition(title)}
 }
 
-relationship OneToOne {
-  ProjectPosition{role(title) required} to Role{projectPosition(title)}
+relationship ManyToMany {
+  ProjectPosition{skills(title)} to Skill{projectPositions(title)}
+  Person{skills(title)} to Skill{persons(lastname)}
+  Person{roles(title)} to Role{persons(lastname)}
 }

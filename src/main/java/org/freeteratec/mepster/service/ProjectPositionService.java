@@ -10,6 +10,8 @@ import org.freeteratec.mepster.service.dto.ProjectPositionDTO;
 import org.freeteratec.mepster.service.mapper.ProjectPositionMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -73,10 +75,19 @@ public class ProjectPositionService {
     public List<ProjectPositionDTO> findAll() {
         log.debug("Request to get all ProjectPositions");
         return projectPositionRepository
-            .findAll()
+            .findAllWithEagerRelationships()
             .stream()
             .map(projectPositionMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    /**
+     * Get all the projectPositions with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<ProjectPositionDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return projectPositionRepository.findAllWithEagerRelationships(pageable).map(projectPositionMapper::toDto);
     }
 
     /**
@@ -88,7 +99,7 @@ public class ProjectPositionService {
     @Transactional(readOnly = true)
     public Optional<ProjectPositionDTO> findOne(Long id) {
         log.debug("Request to get ProjectPosition : {}", id);
-        return projectPositionRepository.findById(id).map(projectPositionMapper::toDto);
+        return projectPositionRepository.findOneWithEagerRelationships(id).map(projectPositionMapper::toDto);
     }
 
     /**

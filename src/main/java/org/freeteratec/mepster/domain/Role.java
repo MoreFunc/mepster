@@ -2,6 +2,8 @@ package org.freeteratec.mepster.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
@@ -28,13 +30,15 @@ public class Role implements Serializable {
     @Column(name = "title", length = 40, nullable = false)
     private String title;
 
+    @OneToMany(mappedBy = "role")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "role", "skills", "project", "monthlyAssignments" }, allowSetters = true)
-    @OneToOne(mappedBy = "role")
-    private ProjectPosition projectPosition;
+    private Set<ProjectPosition> projectPositions = new HashSet<>();
 
-    @ManyToOne
+    @ManyToMany(mappedBy = "roles")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "skills", "roles", "organization", "monthlyAssignments", "monthlyAvailabilities" }, allowSetters = true)
-    private Person person;
+    private Set<Person> persons = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -64,35 +68,65 @@ public class Role implements Serializable {
         this.title = title;
     }
 
-    public ProjectPosition getProjectPosition() {
-        return this.projectPosition;
+    public Set<ProjectPosition> getProjectPositions() {
+        return this.projectPositions;
     }
 
-    public void setProjectPosition(ProjectPosition projectPosition) {
-        if (this.projectPosition != null) {
-            this.projectPosition.setRole(null);
+    public void setProjectPositions(Set<ProjectPosition> projectPositions) {
+        if (this.projectPositions != null) {
+            this.projectPositions.forEach(i -> i.setRole(null));
         }
-        if (projectPosition != null) {
-            projectPosition.setRole(this);
+        if (projectPositions != null) {
+            projectPositions.forEach(i -> i.setRole(this));
         }
-        this.projectPosition = projectPosition;
+        this.projectPositions = projectPositions;
     }
 
-    public Role projectPosition(ProjectPosition projectPosition) {
-        this.setProjectPosition(projectPosition);
+    public Role projectPositions(Set<ProjectPosition> projectPositions) {
+        this.setProjectPositions(projectPositions);
         return this;
     }
 
-    public Person getPerson() {
-        return this.person;
+    public Role addProjectPosition(ProjectPosition projectPosition) {
+        this.projectPositions.add(projectPosition);
+        projectPosition.setRole(this);
+        return this;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public Role removeProjectPosition(ProjectPosition projectPosition) {
+        this.projectPositions.remove(projectPosition);
+        projectPosition.setRole(null);
+        return this;
     }
 
-    public Role person(Person person) {
-        this.setPerson(person);
+    public Set<Person> getPersons() {
+        return this.persons;
+    }
+
+    public void setPersons(Set<Person> people) {
+        if (this.persons != null) {
+            this.persons.forEach(i -> i.removeRoles(this));
+        }
+        if (people != null) {
+            people.forEach(i -> i.addRoles(this));
+        }
+        this.persons = people;
+    }
+
+    public Role persons(Set<Person> people) {
+        this.setPersons(people);
+        return this;
+    }
+
+    public Role addPersons(Person person) {
+        this.persons.add(person);
+        person.getRoles().add(this);
+        return this;
+    }
+
+    public Role removePersons(Person person) {
+        this.persons.remove(person);
+        person.getRoles().remove(this);
         return this;
     }
 

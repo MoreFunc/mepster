@@ -30,13 +30,27 @@
                 <constraints nullable="true" />
             </column>
             <column name="role_id" type="bigint">
-                <constraints nullable="false" unique="true" uniqueConstraintName="ux_project_position__role_id" />
+                <constraints nullable="false" />
             </column>
             <column name="project_id" type="bigint">
                 <constraints nullable="false" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
+    </changeSet>
+
+    <changeSet id="20220114145435-1-relations" author="jhipster">
+
+        <createTable tableName="rel_project_position__skills">
+            <column name="skills_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="project_position_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="project_position_id, skills_id" tableName="rel_project_position__skills"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->

@@ -5,8 +5,8 @@ export interface ISkill {
   id?: number;
   title?: string;
   description?: string | null;
-  projectPosition?: IProjectPosition | null;
-  person?: IPerson | null;
+  projectPositions?: IProjectPosition[] | null;
+  persons?: IPerson[] | null;
 }
 
 export class Skill implements ISkill {
@@ -14,7 +14,7 @@ export class Skill implements ISkill {
     public id?: number,
     public title?: string,
     public description?: string | null,
-    public projectPosition?: IProjectPosition | null,
-    public person?: IPerson | null
+    public projectPositions?: IProjectPosition[] | null,
+    public persons?: IPerson[] | null
   ) {}
 }

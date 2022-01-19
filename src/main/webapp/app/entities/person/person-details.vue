@@ -49,6 +49,24 @@
             <span>{{ person.notes }}</span>
           </dd>
           <dt>
+            <span v-text="$t('mepsterApp.person.skills')">Skills</span>
+          </dt>
+          <dd>
+            <span v-for="(skills, i) in person.skills" :key="skills.id"
+              >{{ i > 0 ? ', ' : '' }}
+              <router-link :to="{ name: 'SkillView', params: { skillId: skills.id } }">{{ skills.title }}</router-link>
+            </span>
+          </dd>
+          <dt>
+            <span v-text="$t('mepsterApp.person.roles')">Roles</span>
+          </dt>
+          <dd>
+            <span v-for="(roles, i) in person.roles" :key="roles.id"
+              >{{ i > 0 ? ', ' : '' }}
+              <router-link :to="{ name: 'RoleView', params: { roleId: roles.id } }">{{ roles.title }}</router-link>
+            </span>
+          </dd>
+          <dt>
             <span v-text="$t('mepsterApp.person.organization')">Organization</span>
           </dt>
           <dd>

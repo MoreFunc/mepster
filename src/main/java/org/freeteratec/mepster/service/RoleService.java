@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import org.freeteratec.mepster.domain.Role;
 import org.freeteratec.mepster.repository.RoleRepository;
 import org.freeteratec.mepster.service.dto.RoleDTO;
@@ -74,20 +73,6 @@ public class RoleService {
     public List<RoleDTO> findAll() {
         log.debug("Request to get all Roles");
         return roleRepository.findAll().stream().map(roleMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
-    }
-
-    /**
-     *  Get all the roles where ProjectPosition is {@code null}.
-     *  @return the list of entities.
-     */
-    @Transactional(readOnly = true)
-    public List<RoleDTO> findAllWhereProjectPositionIsNull() {
-        log.debug("Request to get all roles where ProjectPosition is null");
-        return StreamSupport
-            .stream(roleRepository.findAll().spliterator(), false)
-            .filter(role -> role.getProjectPosition() == null)
-            .map(roleMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**

@@ -136,10 +136,11 @@ public class ProjectPositionResource {
     /**
      * {@code GET  /project-positions} : get all the projectPositions.
      *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of projectPositions in body.
      */
     @GetMapping("/project-positions")
-    public List<ProjectPositionDTO> getAllProjectPositions() {
+    public List<ProjectPositionDTO> getAllProjectPositions(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get all ProjectPositions");
         return projectPositionService.findAll();
     }

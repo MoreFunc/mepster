@@ -20,12 +20,6 @@
             <column name="description" type="${clobType}">
                 <constraints nullable="true" />
             </column>
-            <column name="project_position_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="person_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>

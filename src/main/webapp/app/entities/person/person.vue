@@ -36,6 +36,8 @@
             <th scope="row"><span v-text="$t('mepsterApp.person.phoneNumber')">Phone Number</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.person.email')">Email</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.person.notes')">Notes</span></th>
+            <th scope="row"><span v-text="$t('mepsterApp.person.skills')">Skills</span></th>
+            <th scope="row"><span v-text="$t('mepsterApp.person.roles')">Roles</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.person.organization')">Organization</span></th>
             <th scope="row"></th>
           </tr>
@@ -52,6 +54,22 @@
             <td>{{ person.phoneNumber }}</td>
             <td>{{ person.email }}</td>
             <td>{{ person.notes }}</td>
+            <td>
+              <span v-for="(skills, i) in person.skills" :key="skills.id"
+                >{{ i > 0 ? ', ' : '' }}
+                <router-link class="form-control-static" :to="{ name: 'SkillView', params: { skillId: skills.id } }">{{
+                  skills.title
+                }}</router-link>
+              </span>
+            </td>
+            <td>
+              <span v-for="(roles, i) in person.roles" :key="roles.id"
+                >{{ i > 0 ? ', ' : '' }}
+                <router-link class="form-control-static" :to="{ name: 'RoleView', params: { roleId: roles.id } }">{{
+                  roles.title
+                }}</router-link>
+              </span>
+            </td>
             <td>
               <div v-if="person.organization">
                 <router-link :to="{ name: 'OrganizationView', params: { organizationId: person.organization.id } }">{{

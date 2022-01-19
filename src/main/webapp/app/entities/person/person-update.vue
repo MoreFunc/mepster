@@ -170,6 +170,38 @@
             ></textarea>
           </div>
           <div class="form-group">
+            <label v-text="$t('mepsterApp.person.skills')" for="person-skills">Skills</label>
+            <select
+              class="form-control"
+              id="person-skills"
+              data-cy="skills"
+              multiple
+              name="skills"
+              v-if="person.skills !== undefined"
+              v-model="person.skills"
+            >
+              <option v-bind:value="getSelected(person.skills, skillOption)" v-for="skillOption in skills" :key="skillOption.id">
+                {{ skillOption.title }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label v-text="$t('mepsterApp.person.roles')" for="person-roles">Roles</label>
+            <select
+              class="form-control"
+              id="person-roles"
+              data-cy="roles"
+              multiple
+              name="roles"
+              v-if="person.roles !== undefined"
+              v-model="person.roles"
+            >
+              <option v-bind:value="getSelected(person.roles, roleOption)" v-for="roleOption in roles" :key="roleOption.id">
+                {{ roleOption.title }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
             <label class="form-control-label" v-text="$t('mepsterApp.person.organization')" for="person-organization">Organization</label>
             <select class="form-control" id="person-organization" data-cy="organization" name="organization" v-model="person.organization">
               <option v-bind:value="null"></option>

@@ -14,6 +14,18 @@
                                  referencedColumnNames="id"
                                  referencedTableName="role"/>
 
+        <addForeignKeyConstraint baseColumnNames="project_position_id"
+                                 baseTableName="rel_project_position__skills"
+                                 constraintName="fk_rel_project_position__skills__project_position_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project_position"/>
+
+        <addForeignKeyConstraint baseColumnNames="skills_id"
+                                 baseTableName="rel_project_position__skills"
+                                 constraintName="fk_rel_project_position__skills__skills_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="skill"/>
+
         <addForeignKeyConstraint baseColumnNames="project_id"
                                  baseTableName="project_position"
                                  constraintName="fk_project_position__project_id"

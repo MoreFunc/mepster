@@ -31,20 +31,20 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-one",
+      "relationshipType": "many-to-one",
       "otherEntityName": "role",
       "otherEntityRelationshipName": "projectPosition",
       "relationshipValidateRules": "required",
       "relationshipName": "role",
-      "otherEntityField": "title",
-      "ownerSide": true
+      "otherEntityField": "title"
     },
     {
-      "relationshipType": "one-to-many",
+      "relationshipType": "many-to-many",
       "otherEntityName": "skill",
-      "otherEntityRelationshipName": "projectPosition",
+      "otherEntityRelationshipName": "projectPositions",
       "relationshipName": "skills",
-      "otherEntityField": "title"
+      "otherEntityField": "title",
+      "ownerSide": true
     },
     {
       "relationshipType": "many-to-one",

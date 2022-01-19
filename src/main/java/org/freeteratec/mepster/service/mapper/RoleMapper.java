@@ -1,5 +1,6 @@
 package org.freeteratec.mepster.service.mapper;
 
+import java.util.Set;
 import org.freeteratec.mepster.domain.Role;
 import org.freeteratec.mepster.service.dto.RoleDTO;
 import org.mapstruct.*;
@@ -7,10 +8,13 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Role} and its DTO {@link RoleDTO}.
  */
-@Mapper(componentModel = "spring", uses = { PersonMapper.class })
+@Mapper(componentModel = "spring", uses = {})
 public interface RoleMapper extends EntityMapper<RoleDTO, Role> {
-    @Mapping(target = "person", source = "person", qualifiedByName = "id")
-    RoleDTO toDto(Role s);
+    @Named("titleSet")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "title", source = "title")
+    Set<RoleDTO> toDtoTitleSet(Set<Role> role);
 
     @Named("title")
     @BeanMapping(ignoreByDefault = true)

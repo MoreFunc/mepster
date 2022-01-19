@@ -57,14 +57,24 @@ public class Person implements Serializable {
     @Column(name = "notes")
     private String notes;
 
-    @OneToMany(mappedBy = "person")
+    @ManyToMany
+    @JoinTable(
+        name = "rel_person__skills",
+        joinColumns = @JoinColumn(name = "person_id"),
+        inverseJoinColumns = @JoinColumn(name = "skills_id")
+    )
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "projectPosition", "person" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "projectPositions", "persons" }, allowSetters = true)
     private Set<Skill> skills = new HashSet<>();
 
-    @OneToMany(mappedBy = "person")
+    @ManyToMany
+    @JoinTable(
+        name = "rel_person__roles",
+        joinColumns = @JoinColumn(name = "person_id"),
+        inverseJoinColumns = @JoinColumn(name = "roles_id")
+    )
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "projectPosition", "person" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "projectPositions", "persons" }, allowSetters = true)
     private Set<Role> roles = new HashSet<>();
 
     @ManyToOne
@@ -192,12 +202,6 @@ public class Person implements Serializable {
     }
 
     public void setSkills(Set<Skill> skills) {
-        if (this.skills != null) {
-            this.skills.forEach(i -> i.setPerson(null));
-        }
-        if (skills != null) {
-            skills.forEach(i -> i.setPerson(this));
-        }
         this.skills = skills;
     }
 
@@ -208,13 +212,13 @@ public class Person implements Serializable {
 
     public Person addSkills(Skill skill) {
         this.skills.add(skill);
-        skill.setPerson(this);
+        skill.getPersons().add(this);
         return this;
     }
 
     public Person removeSkills(Skill skill) {
         this.skills.remove(skill);
-        skill.setPerson(null);
+        skill.getPersons().remove(this);
         return this;
     }
 
@@ -223,12 +227,6 @@ public class Person implements Serializable {
     }
 
     public void setRoles(Set<Role> roles) {
-        if (this.roles != null) {
-            this.roles.forEach(i -> i.setPerson(null));
-        }
-        if (roles != null) {
-            roles.forEach(i -> i.setPerson(this));
-        }
         this.roles = roles;
     }
 
@@ -239,13 +237,13 @@ public class Person implements Serializable {
 
     public Person addRoles(Role role) {
         this.roles.add(role);
-        role.setPerson(this);
+        role.getPersons().add(this);
         return this;
     }
 
     public Person removeRoles(Role role) {
         this.roles.remove(role);
-        role.setPerson(null);
+        role.getPersons().remove(this);
         return this;
     }
 

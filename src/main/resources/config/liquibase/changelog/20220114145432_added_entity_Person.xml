@@ -42,6 +42,31 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="20220114145432-1-relations" author="jhipster">
+
+        <createTable tableName="rel_person__skills">
+            <column name="skills_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="person_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="person_id, skills_id" tableName="rel_person__skills"/>
+
+        <createTable tableName="rel_person__roles">
+            <column name="roles_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="person_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="person_id, roles_id" tableName="rel_person__roles"/>
+    </changeSet>
+
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
 
     <!--

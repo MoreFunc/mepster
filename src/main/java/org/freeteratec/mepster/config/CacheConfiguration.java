@@ -58,12 +58,16 @@ public class CacheConfiguration {
             createCache(cm, org.freeteratec.mepster.domain.Person.class.getName() + ".monthlyAssignments");
             createCache(cm, org.freeteratec.mepster.domain.Person.class.getName() + ".monthlyAvailabilities");
             createCache(cm, org.freeteratec.mepster.domain.Role.class.getName());
+            createCache(cm, org.freeteratec.mepster.domain.Role.class.getName() + ".projectPositions");
+            createCache(cm, org.freeteratec.mepster.domain.Role.class.getName() + ".persons");
             createCache(cm, org.freeteratec.mepster.domain.Project.class.getName());
             createCache(cm, org.freeteratec.mepster.domain.Project.class.getName() + ".projectPositions");
             createCache(cm, org.freeteratec.mepster.domain.ProjectPosition.class.getName());
             createCache(cm, org.freeteratec.mepster.domain.ProjectPosition.class.getName() + ".skills");
             createCache(cm, org.freeteratec.mepster.domain.ProjectPosition.class.getName() + ".monthlyAssignments");
             createCache(cm, org.freeteratec.mepster.domain.Skill.class.getName());
+            createCache(cm, org.freeteratec.mepster.domain.Skill.class.getName() + ".projectPositions");
+            createCache(cm, org.freeteratec.mepster.domain.Skill.class.getName() + ".persons");
             createCache(cm, org.freeteratec.mepster.domain.MonthlyProjectPositionAssignment.class.getName());
             createCache(cm, org.freeteratec.mepster.domain.MonthlyAvailability.class.getName());
             // jhipster-needle-ehcache-add-entry

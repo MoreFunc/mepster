@@ -45,18 +45,20 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-many",
+      "relationshipType": "many-to-many",
       "otherEntityName": "skill",
-      "otherEntityRelationshipName": "person",
+      "otherEntityRelationshipName": "persons",
       "relationshipName": "skills",
-      "otherEntityField": "title"
+      "otherEntityField": "title",
+      "ownerSide": true
     },
     {
-      "relationshipType": "one-to-many",
+      "relationshipType": "many-to-many",
       "otherEntityName": "role",
-      "otherEntityRelationshipName": "person",
+      "otherEntityRelationshipName": "persons",
       "relationshipName": "roles",
-      "otherEntityField": "title"
+      "otherEntityField": "title",
+      "ownerSide": true
     },
     {
       "relationshipType": "many-to-one",

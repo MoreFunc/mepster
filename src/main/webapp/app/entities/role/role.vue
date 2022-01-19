@@ -25,7 +25,6 @@
           <tr>
             <th scope="row"><span v-text="$t('global.field.id')">ID</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.role.title')">Title</span></th>
-            <th scope="row"><span v-text="$t('mepsterApp.role.person')">Person</span></th>
             <th scope="row"></th>
           </tr>
         </thead>
@@ -35,11 +34,6 @@
               <router-link :to="{ name: 'RoleView', params: { roleId: role.id } }">{{ role.id }}</router-link>
             </td>
             <td>{{ role.title }}</td>
-            <td>
-              <div v-if="role.person">
-                <router-link :to="{ name: 'PersonView', params: { personId: role.person.id } }">{{ role.person.id }}</router-link>
-              </div>
-            </td>
             <td class="text-right">
               <div class="btn-group">
                 <router-link :to="{ name: 'RoleView', params: { roleId: role.id } }" custom v-slot="{ navigate }">

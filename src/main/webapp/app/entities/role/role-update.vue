@@ -38,19 +38,6 @@
               </small>
             </div>
           </div>
-          <div class="form-group">
-            <label class="form-control-label" v-text="$t('mepsterApp.role.person')" for="role-person">Person</label>
-            <select class="form-control" id="role-person" data-cy="person" name="person" v-model="role.person">
-              <option v-bind:value="null"></option>
-              <option
-                v-bind:value="role.person && personOption.id === role.person.id ? role.person : personOption"
-                v-for="personOption in people"
-                :key="personOption.id"
-              >
-                {{ personOption.id }}
-              </option>
-            </select>
-          </div>
         </div>
         <div>
           <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" v-on:click="previousState()">

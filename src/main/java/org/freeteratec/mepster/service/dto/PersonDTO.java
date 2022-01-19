@@ -1,7 +1,9 @@
 package org.freeteratec.mepster.service.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Lob;
 import javax.validation.constraints.*;
 
@@ -34,6 +36,10 @@ public class PersonDTO implements Serializable {
 
     @Lob
     private String notes;
+
+    private Set<SkillDTO> skills = new HashSet<>();
+
+    private Set<RoleDTO> roles = new HashSet<>();
 
     private OrganizationDTO organization;
 
@@ -101,6 +107,22 @@ public class PersonDTO implements Serializable {
         this.notes = notes;
     }
 
+    public Set<SkillDTO> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(Set<SkillDTO> skills) {
+        this.skills = skills;
+    }
+
+    public Set<RoleDTO> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleDTO> roles) {
+        this.roles = roles;
+    }
+
     public OrganizationDTO getOrganization() {
         return organization;
     }
@@ -142,6 +164,8 @@ public class PersonDTO implements Serializable {
             ", phoneNumber='" + getPhoneNumber() + "'" +
             ", email='" + getEmail() + "'" +
             ", notes='" + getNotes() + "'" +
+            ", skills=" + getSkills() +
+            ", roles=" + getRoles() +
             ", organization=" + getOrganization() +
             "}";
     }

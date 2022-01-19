@@ -11,18 +11,19 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-one",
+      "relationshipType": "one-to-many",
       "otherEntityName": "projectPosition",
       "otherEntityRelationshipName": "role",
       "relationshipName": "projectPosition",
-      "otherEntityField": "title",
-      "ownerSide": false
+      "otherEntityField": "title"
     },
     {
-      "relationshipType": "many-to-one",
+      "relationshipType": "many-to-many",
       "otherEntityName": "person",
       "otherEntityRelationshipName": "roles",
-      "relationshipName": "person"
+      "relationshipName": "persons",
+      "otherEntityField": "lastname",
+      "ownerSide": false
     }
   ],
   "entityTableName": "role",

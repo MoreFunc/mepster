@@ -48,15 +48,19 @@ public class ProjectPosition implements Serializable {
     @Column(name = "percent")
     private Integer percent;
 
-    @JsonIgnoreProperties(value = { "projectPosition", "person" }, allowSetters = true)
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @NotNull
-    @JoinColumn(unique = true)
+    @JsonIgnoreProperties(value = { "projectPositions", "persons" }, allowSetters = true)
     private Role role;
 
-    @OneToMany(mappedBy = "projectPosition")
+    @ManyToMany
+    @JoinTable(
+        name = "rel_project_position__skills",
+        joinColumns = @JoinColumn(name = "project_position_id"),
+        inverseJoinColumns = @JoinColumn(name = "skills_id")
+    )
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "projectPosition", "person" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "projectPositions", "persons" }, allowSetters = true)
     private Set<Skill> skills = new HashSet<>();
 
     @ManyToOne(optional = false)
@@ -167,12 +171,6 @@ public class ProjectPosition implements Serializable {
     }
 
     public void setSkills(Set<Skill> skills) {
-        if (this.skills != null) {
-            this.skills.forEach(i -> i.setProjectPosition(null));
-        }
-        if (skills != null) {
-            skills.forEach(i -> i.setProjectPosition(this));
-        }
         this.skills = skills;
     }
 
@@ -183,13 +181,13 @@ public class ProjectPosition implements Serializable {
 
     public ProjectPosition addSkills(Skill skill) {
         this.skills.add(skill);
-        skill.setProjectPosition(this);
+        skill.getProjectPositions().add(this);
         return this;
     }
 
     public ProjectPosition removeSkills(Skill skill) {
         this.skills.remove(skill);
-        skill.setProjectPosition(null);
+        skill.getProjectPositions().remove(this);
         return this;
     }
 

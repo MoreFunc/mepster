@@ -16,16 +16,20 @@
   ],
   "relationships": [
     {
-      "relationshipType": "many-to-one",
+      "relationshipType": "many-to-many",
       "otherEntityName": "projectPosition",
       "otherEntityRelationshipName": "skills",
-      "relationshipName": "projectPosition"
+      "relationshipName": "projectPositions",
+      "otherEntityField": "title",
+      "ownerSide": false
     },
     {
-      "relationshipType": "many-to-one",
+      "relationshipType": "many-to-many",
       "otherEntityName": "person",
       "otherEntityRelationshipName": "skills",
-      "relationshipName": "person"
+      "relationshipName": "persons",
+      "otherEntityField": "lastname",
+      "ownerSide": false
     }
   ],
   "entityTableName": "skill",

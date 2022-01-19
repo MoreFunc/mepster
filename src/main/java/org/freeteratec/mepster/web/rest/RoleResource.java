@@ -5,7 +5,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.freeteratec.mepster.repository.RoleRepository;
@@ -136,15 +135,10 @@ public class RoleResource {
     /**
      * {@code GET  /roles} : get all the roles.
      *
-     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of roles in body.
      */
     @GetMapping("/roles")
-    public List<RoleDTO> getAllRoles(@RequestParam(required = false) String filter) {
-        if ("projectposition-is-null".equals(filter)) {
-            log.debug("REST request to get all Roles where projectPosition is null");
-            return roleService.findAllWhereProjectPositionIsNull();
-        }
+    public List<RoleDTO> getAllRoles() {
         log.debug("REST request to get all Roles");
         return roleService.findAll();
     }

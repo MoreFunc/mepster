@@ -91,6 +91,7 @@ export default class ProjectPositionUpdate extends mixins(JhiDataUtils) {
         this.currentLanguage = this.$store.getters.currentLanguage;
       }
     );
+    this.projectPosition.skills = [];
   }
 
   public save(): void {
@@ -172,5 +173,12 @@ export default class ProjectPositionUpdate extends mixins(JhiDataUtils) {
       .then(res => {
         this.monthlyProjectPositionAssignments = res.data;
       });
+  }
+
+  public getSelected(selectedVals, option): any {
+    if (selectedVals) {
+      return selectedVals.find(value => option.id === value.id) ?? option;
+    }
+    return option;
   }
 }

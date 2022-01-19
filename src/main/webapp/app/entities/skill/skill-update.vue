@@ -49,44 +49,6 @@
               v-model="$v.skill.description.$model"
             ></textarea>
           </div>
-          <div class="form-group">
-            <label class="form-control-label" v-text="$t('mepsterApp.skill.projectPosition')" for="skill-projectPosition"
-              >Project Position</label
-            >
-            <select
-              class="form-control"
-              id="skill-projectPosition"
-              data-cy="projectPosition"
-              name="projectPosition"
-              v-model="skill.projectPosition"
-            >
-              <option v-bind:value="null"></option>
-              <option
-                v-bind:value="
-                  skill.projectPosition && projectPositionOption.id === skill.projectPosition.id
-                    ? skill.projectPosition
-                    : projectPositionOption
-                "
-                v-for="projectPositionOption in projectPositions"
-                :key="projectPositionOption.id"
-              >
-                {{ projectPositionOption.id }}
-              </option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-control-label" v-text="$t('mepsterApp.skill.person')" for="skill-person">Person</label>
-            <select class="form-control" id="skill-person" data-cy="person" name="person" v-model="skill.person">
-              <option v-bind:value="null"></option>
-              <option
-                v-bind:value="skill.person && personOption.id === skill.person.id ? skill.person : personOption"
-                v-for="personOption in people"
-                :key="personOption.id"
-              >
-                {{ personOption.id }}
-              </option>
-            </select>
-          </div>
         </div>
         <div>
           <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" v-on:click="previousState()">

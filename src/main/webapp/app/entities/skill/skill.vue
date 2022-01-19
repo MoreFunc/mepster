@@ -31,8 +31,6 @@
             <th scope="row"><span v-text="$t('global.field.id')">ID</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.skill.title')">Title</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.skill.description')">Description</span></th>
-            <th scope="row"><span v-text="$t('mepsterApp.skill.projectPosition')">Project Position</span></th>
-            <th scope="row"><span v-text="$t('mepsterApp.skill.person')">Person</span></th>
             <th scope="row"></th>
           </tr>
         </thead>
@@ -43,18 +41,6 @@
             </td>
             <td>{{ skill.title }}</td>
             <td>{{ skill.description }}</td>
-            <td>
-              <div v-if="skill.projectPosition">
-                <router-link :to="{ name: 'ProjectPositionView', params: { projectPositionId: skill.projectPosition.id } }">{{
-                  skill.projectPosition.id
-                }}</router-link>
-              </div>
-            </td>
-            <td>
-              <div v-if="skill.person">
-                <router-link :to="{ name: 'PersonView', params: { personId: skill.person.id } }">{{ skill.person.id }}</router-link>
-              </div>
-            </td>
             <td class="text-right">
               <div class="btn-group">
                 <router-link :to="{ name: 'SkillView', params: { skillId: skill.id } }" custom v-slot="{ navigate }">

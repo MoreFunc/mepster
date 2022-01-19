@@ -35,6 +35,7 @@
             <th scope="row"><span v-text="$t('mepsterApp.projectPosition.endDate')">End Date</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.projectPosition.percent')">Percent</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.projectPosition.role')">Role</span></th>
+            <th scope="row"><span v-text="$t('mepsterApp.projectPosition.skills')">Skills</span></th>
             <th scope="row"><span v-text="$t('mepsterApp.projectPosition.project')">Project</span></th>
             <th scope="row"></th>
           </tr>
@@ -57,6 +58,14 @@
                   projectPosition.role.title
                 }}</router-link>
               </div>
+            </td>
+            <td>
+              <span v-for="(skills, i) in projectPosition.skills" :key="skills.id"
+                >{{ i > 0 ? ', ' : '' }}
+                <router-link class="form-control-static" :to="{ name: 'SkillView', params: { skillId: skills.id } }">{{
+                  skills.title
+                }}</router-link>
+              </span>
             </td>
             <td>
               <div v-if="projectPosition.project">

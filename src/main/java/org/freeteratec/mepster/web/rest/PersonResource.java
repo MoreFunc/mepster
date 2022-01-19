@@ -135,10 +135,11 @@ public class PersonResource {
     /**
      * {@code GET  /people} : get all the people.
      *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of people in body.
      */
     @GetMapping("/people")
-    public List<PersonDTO> getAllPeople() {
+    public List<PersonDTO> getAllPeople(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get all People");
         return personService.findAll();
     }

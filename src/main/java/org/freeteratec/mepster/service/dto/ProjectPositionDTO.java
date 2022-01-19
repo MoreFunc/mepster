@@ -2,7 +2,9 @@ package org.freeteratec.mepster.service.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Lob;
 import javax.validation.constraints.*;
 
@@ -29,6 +31,8 @@ public class ProjectPositionDTO implements Serializable {
     private Integer percent;
 
     private RoleDTO role;
+
+    private Set<SkillDTO> skills = new HashSet<>();
 
     private ProjectDTO project;
 
@@ -88,6 +92,14 @@ public class ProjectPositionDTO implements Serializable {
         this.role = role;
     }
 
+    public Set<SkillDTO> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(Set<SkillDTO> skills) {
+        this.skills = skills;
+    }
+
     public ProjectDTO getProject() {
         return project;
     }
@@ -128,6 +140,7 @@ public class ProjectPositionDTO implements Serializable {
             ", endDate='" + getEndDate() + "'" +
             ", percent=" + getPercent() +
             ", role=" + getRole() +
+            ", skills=" + getSkills() +
             ", project=" + getProject() +
             "}";
     }
