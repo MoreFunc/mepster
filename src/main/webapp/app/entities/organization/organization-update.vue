@@ -131,9 +131,9 @@
               <small
                 class="form-text text-danger"
                 v-if="!$v.organization.zipcode.maxLength"
-                v-text="$t('entity.validation.maxlength', { max: 5 })"
+                v-text="$t('entity.validation.maxlength', { max: 8 })"
               >
-                This field cannot be longer than 5 characters.
+                This field cannot be longer than 8 characters.
               </small>
               <small
                 class="form-text text-danger"
@@ -245,9 +245,9 @@
               <small
                 class="form-text text-danger"
                 v-if="!$v.organization.website.maxLength"
-                v-text="$t('entity.validation.maxlength', { max: 30 })"
+                v-text="$t('entity.validation.maxlength', { max: 50 })"
               >
-                This field cannot be longer than 30 characters.
+                This field cannot be longer than 50 characters.
               </small>
               <small
                 class="form-text text-danger"

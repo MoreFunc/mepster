@@ -32,7 +32,7 @@ describe('MonthlyProjectPositionAssignment e2e test', () => {
     cy.authenticatedRequest({
       method: 'POST',
       url: '/api/project-positions',
-      body: {"title":"Versatile Ecuador sy","description":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ=","startDate":"2022-01-14","endDate":"2022-01-14","percent":65},
+      body: {"title":"Versatile Ecuador system","description":"Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ=","startDate":"2022-01-14","endDate":"2022-01-14","percent":65},
     }).then(({ body }) => {
       projectPosition = body;
     });

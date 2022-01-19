@@ -26,7 +26,7 @@ public class OrganizationDTO implements Serializable {
     @Pattern(regexp = "^[A-Z][A-Za-z/-]*$")
     private String city;
 
-    @Size(max = 5)
+    @Size(max = 8)
     @Pattern(regexp = "^[0-9]{5}$")
     private String zipcode;
 
@@ -42,7 +42,7 @@ public class OrganizationDTO implements Serializable {
     @Pattern(regexp = "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")
     private String email;
 
-    @Size(max = 30)
+    @Size(max = 50)
     @Pattern(regexp = "^https?:\\/\\/[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")
     private String website;
 

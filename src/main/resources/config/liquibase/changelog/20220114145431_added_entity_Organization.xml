@@ -26,7 +26,7 @@
             <column name="city" type="varchar(20)">
                 <constraints nullable="true" />
             </column>
-            <column name="zipcode" type="varchar(5)">
+            <column name="zipcode" type="varchar(8)">
                 <constraints nullable="true" />
             </column>
             <column name="country" type="varchar(20)">
@@ -38,7 +38,7 @@
             <column name="email" type="varchar(30)">
                 <constraints nullable="true" />
             </column>
-            <column name="website" type="varchar(30)">
+            <column name="website" type="varchar(50)">
                 <constraints nullable="true" />
             </column>
             <column name="notes" type="${clobType}">

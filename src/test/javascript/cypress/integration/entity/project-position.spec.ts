@@ -16,7 +16,7 @@ describe('ProjectPosition e2e test', () => {
   const projectPositionPageUrlPattern = new RegExp('/project-position(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const projectPositionSample = { title: 'Optimized Gloves Ver' };
+  const projectPositionSample = { title: 'Optimized Gloves Verde' };
 
   let projectPosition: any;
   //let role: any;
@@ -234,7 +234,7 @@ describe('ProjectPosition e2e test', () => {
     });
 
     it.skip('should create an instance of ProjectPosition', () => {
-      cy.get(`[data-cy="title"]`).type('Orchestrator Seychel').should('have.value', 'Orchestrator Seychel');
+      cy.get(`[data-cy="title"]`).type('Orchestrator Seychelles').should('have.value', 'Orchestrator Seychelles');
 
       cy.get(`[data-cy="description"]`)
         .type('../fake-data/blob/hipster.txt')

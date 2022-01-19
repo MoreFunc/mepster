@@ -33,7 +33,7 @@ const validations: any = {
       maxLength: maxLength(20),
     },
     zipcode: {
-      maxLength: maxLength(5),
+      maxLength: maxLength(8),
     },
     country: {
       maxLength: maxLength(20),
@@ -45,7 +45,7 @@ const validations: any = {
       maxLength: maxLength(30),
     },
     website: {
-      maxLength: maxLength(30),
+      maxLength: maxLength(50),
     },
     notes: {},
   },

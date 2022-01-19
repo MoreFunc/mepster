@@ -27,7 +27,7 @@ const validations: any = {
     title: {
       required,
       minLength: minLength(2),
-      maxLength: maxLength(20),
+      maxLength: maxLength(40),
     },
     description: {},
     startDate: {},

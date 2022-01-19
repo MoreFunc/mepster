@@ -44,9 +44,9 @@ public class Organization implements Serializable {
     @Column(name = "city", length = 20)
     private String city;
 
-    @Size(max = 5)
+    @Size(max = 8)
     @Pattern(regexp = "^[0-9]{5}$")
-    @Column(name = "zipcode", length = 5)
+    @Column(name = "zipcode", length = 8)
     private String zipcode;
 
     @Size(max = 20)
@@ -64,9 +64,9 @@ public class Organization implements Serializable {
     @Column(name = "email", length = 30)
     private String email;
 
-    @Size(max = 30)
+    @Size(max = 50)
     @Pattern(regexp = "^https?:\\/\\/[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")
-    @Column(name = "website", length = 30)
+    @Column(name = "website", length = 50)
     private String website;
 
     @Lob

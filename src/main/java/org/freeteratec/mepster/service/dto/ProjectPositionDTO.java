@@ -16,7 +16,7 @@ public class ProjectPositionDTO implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(min = 2, max = 20)
+    @Size(min = 2, max = 40)
     private String title;
 
     @Lob
