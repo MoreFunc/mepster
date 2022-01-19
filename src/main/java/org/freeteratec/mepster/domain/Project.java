@@ -28,8 +28,8 @@ public class Project implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(min = 2, max = 50)
-    @Column(name = "title", length = 50, nullable = false)
+    @Size(min = 2, max = 100)
+    @Column(name = "title", length = 100, nullable = false)
     private String title;
 
     @Lob

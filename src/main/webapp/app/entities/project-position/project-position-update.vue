@@ -40,9 +40,9 @@
               <small
                 class="form-text text-danger"
                 v-if="!$v.projectPosition.title.maxLength"
-                v-text="$t('entity.validation.maxlength', { max: 40 })"
+                v-text="$t('entity.validation.maxlength', { max: 100 })"
               >
-                This field cannot be longer than 40 characters.
+                This field cannot be longer than 100 characters.
               </small>
             </div>
           </div>

@@ -33,7 +33,7 @@ entity Organization(organization) {
   zipcode String maxlength(8) pattern(/^[0-9]{5}$/)
   country String maxlength(20) pattern(/^[A-Za-z-]*$/)
   phoneNumber String maxlength(30) pattern(/^[0-9 +-]*$/)
-  email String maxlength(30) pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+  email String maxlength(50) pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
   website String maxlength(50) pattern(/^https?:\/\/[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
   notes TextBlob
 }
@@ -53,7 +53,7 @@ entity Role(role) {
 }
 
 entity Project(project) {
-  title String required minlength(2) maxlength(50)
+  title String required minlength(2) maxlength(100)
   description TextBlob
   startDate LocalDate
   endDate LocalDate
@@ -63,7 +63,7 @@ entity Project(project) {
 }
 
 entity ProjectPosition(project_position) {
-  title String required minlength(2) maxlength(40)
+  title String required minlength(2) maxlength(100)
   description TextBlob
   startDate LocalDate
   endDate LocalDate

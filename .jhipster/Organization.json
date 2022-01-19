@@ -52,7 +52,7 @@
       "fieldName": "email",
       "fieldType": "String",
       "fieldValidateRules": ["maxlength", "pattern"],
-      "fieldValidateRulesMaxlength": "30",
+      "fieldValidateRulesMaxlength": "50",
       "fieldValidateRulesPattern": "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
     },
     {

@@ -217,9 +217,9 @@
               <small
                 class="form-text text-danger"
                 v-if="!$v.organization.email.maxLength"
-                v-text="$t('entity.validation.maxlength', { max: 30 })"
+                v-text="$t('entity.validation.maxlength', { max: 50 })"
               >
-                This field cannot be longer than 30 characters.
+                This field cannot be longer than 50 characters.
               </small>
               <small
                 class="form-text text-danger"

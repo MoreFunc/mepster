@@ -35,7 +35,7 @@
             <column name="phone_number" type="varchar(30)">
                 <constraints nullable="true" />
             </column>
-            <column name="email" type="varchar(30)">
+            <column name="email" type="varchar(50)">
                 <constraints nullable="true" />
             </column>
             <column name="website" type="varchar(50)">

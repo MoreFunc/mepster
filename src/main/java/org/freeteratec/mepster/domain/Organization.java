@@ -59,9 +59,9 @@ public class Organization implements Serializable {
     @Column(name = "phone_number", length = 30)
     private String phoneNumber;
 
-    @Size(max = 30)
+    @Size(max = 50)
     @Pattern(regexp = "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")
-    @Column(name = "email", length = 30)
+    @Column(name = "email", length = 50)
     private String email;
 
     @Size(max = 50)

@@ -38,7 +38,7 @@ public class OrganizationDTO implements Serializable {
     @Pattern(regexp = "^[0-9 +-]*$")
     private String phoneNumber;
 
-    @Size(max = 30)
+    @Size(max = 50)
     @Pattern(regexp = "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")
     private String email;
 

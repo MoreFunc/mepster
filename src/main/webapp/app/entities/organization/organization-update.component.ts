@@ -42,7 +42,7 @@ const validations: any = {
       maxLength: maxLength(30),
     },
     email: {
-      maxLength: maxLength(30),
+      maxLength: maxLength(50),
     },
     website: {
       maxLength: maxLength(50),
